@@ -124,11 +124,26 @@ const Checkout = () => {
     }));
   };
 
-  const handlePaymentMethodSelect = (method) => {
+  const handlePaymentMethodSelect = (method, paymentData = null) => {
     setFormData(prevData => ({
       ...prevData,
-      paymentMethod: method
+      paymentMethod: method,
+      paymentData: paymentData
     }));
+
+    // If payment is already completed via Google Pay, we can proceed to the next step
+    if (paymentData && method === 'googlePay') {
+      // Store the transaction ID for reference
+      setFormData(prevData => ({
+        ...prevData,
+        transactionId: paymentData.transactionId
+      }));
+
+      // If we're on the payment step, automatically proceed to review
+      if (step === 2) {
+        nextStep();
+      }
+    }
   };
 
   const nextStep = () => {
@@ -507,7 +522,10 @@ const Checkout = () => {
                     <div className="checkout-step">
                       <h2>Payment Information</h2>
 
-                      <PaymentMethods onPaymentMethodSelect={handlePaymentMethodSelect} />
+                      <PaymentMethods
+                        onPaymentMethodSelect={handlePaymentMethodSelect}
+                        totalAmount={total}
+                      />
 
                       {errors.paymentMethod && <div className="error payment-error">{errors.paymentMethod}</div>}
 
@@ -563,8 +581,28 @@ const Checkout = () => {
                       <div className="review-section">
                         <h3>Payment Information</h3>
                         <div className="review-info">
-                          <p><strong>Card:</strong> **** **** **** {formData.cardNumber.slice(-4)}</p>
-                          <p><strong>Name on Card:</strong> {formData.cardName}</p>
+                          {formData.paymentMethod === 'googlePay' ? (
+                            <>
+                              <p><strong>Payment Method:</strong> Google Pay</p>
+                              {formData.transactionId && (
+                                <p><strong>Transaction ID:</strong> {formData.transactionId}</p>
+                              )}
+                              <p><strong>Status:</strong> <span className="payment-status success">Payment Completed</span></p>
+                            </>
+                          ) : formData.paymentMethod === 'creditCard' ? (
+                            <>
+                              <p><strong>Payment Method:</strong> Credit/Debit Card</p>
+                              <p><strong>Card:</strong> **** **** **** {formData.cardNumber ? formData.cardNumber.slice(-4) : '****'}</p>
+                              <p><strong>Name on Card:</strong> {formData.cardName || 'N/A'}</p>
+                            </>
+                          ) : (
+                            <p><strong>Payment Method:</strong> {
+                              formData.paymentMethod === 'paypal' ? 'PayPal' :
+                              formData.paymentMethod === 'applePay' ? 'Apple Pay' :
+                              formData.paymentMethod === 'cashOnDelivery' ? 'Cash on Delivery' :
+                              'Not specified'
+                            }</p>
+                          )}
                         </div>
                       </div>
 

@@ -1,17 +1,18 @@
-import { useState } from 'react';
-import { 
-  FaCreditCard, 
-  FaPaypal, 
-  FaApplePay, 
-  FaGooglePay, 
+import { useState, useEffect } from 'react';
+import {
+  FaCreditCard,
+  FaPaypal,
+  FaApplePay,
+  FaGooglePay,
   FaMoneyBillWave,
   FaLock,
   FaEye,
   FaEyeSlash
 } from 'react-icons/fa';
+import GooglePayButton from './GooglePayButton';
 import './PaymentMethods.css';
 
-const PaymentMethods = ({ onPaymentMethodSelect }) => {
+const PaymentMethods = ({ onPaymentMethodSelect, totalAmount = 0 }) => {
   const [selectedMethod, setSelectedMethod] = useState('creditCard');
   const [cardDetails, setCardDetails] = useState({
     cardNumber: '',
@@ -20,15 +21,26 @@ const PaymentMethods = ({ onPaymentMethodSelect }) => {
     cvv: ''
   });
   const [showCvv, setShowCvv] = useState(false);
-  
+  const [paymentCompleted, setPaymentCompleted] = useState(false);
+
   const handleMethodChange = (method) => {
     setSelectedMethod(method);
     onPaymentMethodSelect(method);
+
+    // Reset payment completed state when changing payment method
+    if (paymentCompleted) {
+      setPaymentCompleted(false);
+    }
   };
-  
+
+  const handleGooglePayComplete = (paymentData) => {
+    setPaymentCompleted(true);
+    onPaymentMethodSelect('googlePay', paymentData);
+  };
+
   const handleCardDetailsChange = (e) => {
     const { name, value } = e.target;
-    
+
     // Format card number with spaces
     if (name === 'cardNumber') {
       const formattedValue = value
@@ -36,72 +48,72 @@ const PaymentMethods = ({ onPaymentMethodSelect }) => {
         .replace(/(\d{4})/g, '$1 ')
         .trim()
         .slice(0, 19);
-      
+
       setCardDetails({
         ...cardDetails,
         [name]: formattedValue
       });
       return;
     }
-    
+
     // Format expiry date with slash
     if (name === 'expiryDate') {
       const formattedValue = value
         .replace(/\//g, '')
         .replace(/(\d{2})(\d{2})/, '$1/$2')
         .slice(0, 5);
-      
+
       setCardDetails({
         ...cardDetails,
         [name]: formattedValue
       });
       return;
     }
-    
+
     setCardDetails({
       ...cardDetails,
       [name]: value
     });
   };
-  
+
   return (
     <div className="payment-methods">
       <h3>Select Payment Method</h3>
-      
+
       <div className="payment-options">
-        <div 
+        <div
           className={`payment-option ${selectedMethod === 'creditCard' ? 'selected' : ''}`}
           onClick={() => handleMethodChange('creditCard')}
         >
           <FaCreditCard className="payment-icon" />
           <span>Credit/Debit Card</span>
         </div>
-        
-        <div 
+
+        <div
           className={`payment-option ${selectedMethod === 'paypal' ? 'selected' : ''}`}
           onClick={() => handleMethodChange('paypal')}
         >
           <FaPaypal className="payment-icon" />
           <span>PayPal</span>
         </div>
-        
-        <div 
+
+        <div
           className={`payment-option ${selectedMethod === 'applePay' ? 'selected' : ''}`}
           onClick={() => handleMethodChange('applePay')}
         >
           <FaApplePay className="payment-icon" />
           <span>Apple Pay</span>
         </div>
-        
-        <div 
+
+        <div
           className={`payment-option ${selectedMethod === 'googlePay' ? 'selected' : ''}`}
           onClick={() => handleMethodChange('googlePay')}
         >
           <FaGooglePay className="payment-icon" />
           <span>Google Pay</span>
         </div>
-        
-        <div 
+
+        <div
           className={`payment-option ${selectedMethod === 'cashOnDelivery' ? 'selected' : ''}`}
           onClick={() => handleMethodChange('cashOnDelivery')}
         >
@@ -109,13 +121,13 @@ const PaymentMethods = ({ onPaymentMethodSelect }) => {
           <span>Cash on Delivery</span>
         </div>
       </div>
-      
+
       {selectedMethod === 'creditCard' && (
         <div className="card-details">
           <div className="secure-badge">
             <FaLock /> Secure Payment
           </div>
-          
+
           <div className="form-group">
             <label htmlFor="cardNumber">Card Number</label>
             <div className="input-with-icon">
@@ -131,7 +143,7 @@ const PaymentMethods = ({ onPaymentMethodSelect }) => {
               />
             </div>
           </div>
-          
+
           <div className="form-group">
             <label htmlFor="cardName">Cardholder Name</label>
             <input
@@ -143,7 +155,7 @@ const PaymentMethods = ({ onPaymentMethodSelect }) => {
               onChange={handleCardDetailsChange}
             />
           </div>
-          
+
           <div className="card-row">
             <div className="form-group">
               <label htmlFor="expiryDate">Expiry Date</label>
@@ -157,7 +169,7 @@ const PaymentMethods = ({ onPaymentMethodSelect }) => {
                 maxLength="5"
               />
             </div>
-            
+
             <div className="form-group">
               <label htmlFor="cvv">CVV</label>
               <div className="input-with-icon">
@@ -183,25 +195,39 @@ const PaymentMethods = ({ onPaymentMethodSelect }) => {
           </div>
         </div>
       )}
-      
+
       {selectedMethod === 'paypal' && (
         <div className="payment-info">
           <p>You will be redirected to PayPal to complete your payment securely.</p>
         </div>
       )}
-      
+
       {selectedMethod === 'applePay' && (
         <div className="payment-info">
           <p>You will be prompted to confirm payment with Apple Pay.</p>
         </div>
       )}
-      
+
       {selectedMethod === 'googlePay' && (
-        <div className="payment-info">
-          <p>You will be prompted to confirm payment with Google Pay.</p>
+        <div className="payment-info google-pay-container">
+          {paymentCompleted ? (
+            <div className="payment-success">
+              <div className="success-icon">✓</div>
+              <h4>Payment Successful!</h4>
+              <p>Your Google Pay payment has been processed successfully.</p>
+            </div>
+          ) : (
+            <>
+              <p>Complete your payment securely with Google Pay.</p>
+              <GooglePayButton
+                amount={totalAmount}
+                onPaymentComplete={handleGooglePayComplete}
+              />
+            </>
+          )}
         </div>
       )}
-      
+
       {selectedMethod === 'cashOnDelivery' && (
         <div className="payment-info">
           <p>Pay with cash when your order is delivered.</p>
