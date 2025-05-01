@@ -1,0 +1,142 @@
+.payment-methods {
+  margin-bottom: 2rem;
+}
+
+.payment-methods h3 {
+  color: #8b5e34;
+  margin-bottom: 1rem;
+}
+
+.payment-options {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.payment-option {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  border: 2px solid #d4a373;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s;
+  text-align: center;
+}
+
+.payment-option:hover {
+  background-color: #f8e3dd;
+}
+
+.payment-option.selected {
+  background-color: #f8e3dd;
+  border-color: #8b5e34;
+}
+
+.payment-icon {
+  font-size: 1.5rem;
+  color: #8b5e34;
+  margin-bottom: 0.5rem;
+}
+
+.card-details {
+  background-color: #f9f9f9;
+  padding: 1.5rem;
+  border-radius: 8px;
+  margin-top: 1rem;
+}
+
+.secure-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: #e8f5e9;
+  color: #2e7d32;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  margin-bottom: 1.5rem;
+  font-size: 0.9rem;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  color: #8b5e34;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 0.8rem;
+  border: 1px solid #d4a373;
+  border-radius: 4px;
+  font-family: inherit;
+  font-size: 1rem;
+}
+
+.input-with-icon {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-icon {
+  position: absolute;
+  left: 1rem;
+  color: #8b5e34;
+}
+
+.input-with-icon input {
+  padding-left: 2.5rem;
+}
+
+.cvv-toggle {
+  position: absolute;
+  right: 1rem;
+  background: none;
+  border: none;
+  color: #8b5e34;
+  cursor: pointer;
+  padding: 0;
+  font-size: 1rem;
+}
+
+.card-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.payment-info {
+  background-color: #f9f9f9;
+  padding: 1.5rem;
+  border-radius: 8px;
+  margin-top: 1rem;
+}
+
+.payment-info p {
+  margin: 0 0 0.5rem;
+}
+
+.note {
+  font-size: 0.9rem;
+  color: #666;
+  font-style: italic;
+}
+
+@media (max-width: 576px) {
+  .payment-options {
+    grid-template-columns: 1fr;
+  }
+  
+  .card-row {
+    grid-template-columns: 1fr;
+  }
+}

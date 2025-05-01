@@ -1,0 +1,107 @@
+.product-customization {
+  background-color: #f9f5f0;
+  padding: 1.5rem;
+  border-radius: 8px;
+  margin-top: 2rem;
+}
+
+.product-customization h3 {
+  color: #8b5e34;
+  margin: 0 0 1.5rem;
+  font-size: 1.3rem;
+}
+
+.customization-section {
+  margin-bottom: 1.5rem;
+}
+
+.customization-section h4 {
+  color: #8b5e34;
+  margin: 0 0 0.8rem;
+  font-size: 1.1rem;
+}
+
+/* Size Options */
+.size-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.size-option {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.size-option input[type="radio"] {
+  margin-right: 0.5rem;
+  accent-color: #8b5e34;
+}
+
+/* Extras Options */
+.extras-options {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 0.8rem;
+}
+
+.extra-option {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.extra-option input[type="checkbox"] {
+  margin-right: 0.5rem;
+  accent-color: #8b5e34;
+}
+
+.option-label {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.option-price {
+  color: #8b5e34;
+  font-weight: 600;
+  margin-left: 0.5rem;
+}
+
+/* Special Instructions */
+.customization-section textarea {
+  width: 100%;
+  padding: 0.8rem;
+  border: 1px solid #d4a373;
+  border-radius: 4px;
+  font-family: inherit;
+  font-size: 0.95rem;
+  resize: vertical;
+}
+
+/* Additional Price */
+.additional-price {
+  font-weight: 600;
+  color: #333;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px dashed #d4a373;
+}
+
+.price-amount {
+  color: #8b5e34;
+  margin-left: 0.5rem;
+}
+
+@media (max-width: 768px) {
+  .size-options,
+  .extras-options {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .extras-options {
+    grid-template-columns: 1fr;
+  }
+}

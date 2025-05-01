@@ -1,0 +1,75 @@
+.address-autocomplete {
+  position: relative;
+  width: 100%;
+}
+
+.autocomplete-input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.address-icon {
+  position: absolute;
+  left: 1rem;
+  color: #8b5e34;
+}
+
+.autocomplete-input {
+  width: 100%;
+  padding: 0.8rem 2.5rem;
+  border: 1px solid #d4a373;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+.loading-icon {
+  position: absolute;
+  right: 1rem;
+  color: #8b5e34;
+}
+
+.spin {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.address-suggestions {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background-color: white;
+  border: 1px solid #d4a373;
+  border-top: none;
+  border-radius: 0 0 4px 4px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  max-height: 200px;
+  overflow-y: auto;
+  z-index: 10;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.suggestion-item {
+  padding: 0.8rem 1rem;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.suggestion-item:hover {
+  background-color: #f8e3dd;
+}
+
+.suggestion-icon {
+  color: #8b5e34;
+  margin-right: 0.8rem;
+  font-size: 0.9rem;
+}

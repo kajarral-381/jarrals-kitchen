@@ -1,0 +1,67 @@
+.menu-page {
+  padding-bottom: 3rem;
+}
+
+.menu-header {
+  background-color: #8b5e34;
+  color: white;
+  padding: 4rem 2rem;
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.menu-header h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.category-filter {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+}
+
+.category-filter button {
+  background-color: #f8e3dd;
+  border: none;
+  padding: 0.5rem 1.5rem;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.3s;
+  color: #8b5e34;
+}
+
+.category-filter button:hover {
+  background-color: #d4a373;
+  color: white;
+}
+
+.category-filter button.active {
+  background-color: #8b5e34;
+  color: white;
+}
+
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+@media (max-width: 768px) {
+  .menu-header h1 {
+    font-size: 2rem;
+  }
+  
+  .category-filter {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .category-filter button {
+    width: 100%;
+    max-width: 200px;
+  }
+}

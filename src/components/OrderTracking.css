@@ -1,0 +1,270 @@
+.order-tracking {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.order-tracking h2 {
+  color: #8b5e34;
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
+
+.tracking-info {
+  text-align: center;
+  color: #666;
+  margin-bottom: 1.5rem;
+}
+
+.tracking-form {
+  margin-bottom: 2rem;
+}
+
+.tracking-input-wrapper {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.tracking-input {
+  flex: 1;
+  padding: 0.8rem 1rem;
+  border: 1px solid #d4a373;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+.track-button {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: #8b5e34;
+  color: white;
+  border: none;
+  padding: 0 1.5rem;
+  border-radius: 4px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.track-button:hover:not(:disabled) {
+  background-color: #6e4a29;
+}
+
+.track-button:disabled {
+  background-color: #ccb5a1;
+  cursor: not-allowed;
+}
+
+.tracking-error {
+  color: #dc3545;
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.order-details {
+  margin-top: 2rem;
+  border: 1px solid #d4a373;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.order-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem;
+  background-color: #f8e3dd;
+  border-bottom: 1px solid #d4a373;
+}
+
+.order-info h3 {
+  color: #8b5e34;
+  margin: 0 0 0.5rem;
+}
+
+.order-date {
+  color: #666;
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+.order-status {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 600;
+}
+
+.status-icon {
+  font-size: 1.2rem;
+}
+
+.status-icon.delivered {
+  color: #28a745;
+}
+
+.status-icon.in-transit {
+  color: #007bff;
+}
+
+.status-icon.processing {
+  color: #ffc107;
+}
+
+.tracking-timeline {
+  padding: 1.5rem;
+  border-bottom: 1px solid #d4a373;
+}
+
+.timeline-step {
+  display: flex;
+  margin-bottom: 1.5rem;
+}
+
+.timeline-step:last-child {
+  margin-bottom: 0;
+}
+
+.timeline-indicator {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 1rem;
+}
+
+.timeline-dot {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background-color: #d4a373;
+  margin-top: 4px;
+}
+
+.timeline-step.completed .timeline-dot {
+  background-color: #28a745;
+}
+
+.timeline-line {
+  width: 2px;
+  height: 40px;
+  background-color: #d4a373;
+  margin-top: 4px;
+}
+
+.timeline-step.completed .timeline-line {
+  background-color: #28a745;
+}
+
+.timeline-content h4 {
+  margin: 0 0 0.5rem;
+  color: #8b5e34;
+}
+
+.timeline-content p {
+  margin: 0;
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.order-summary {
+  padding: 1.5rem;
+  border-bottom: 1px solid #d4a373;
+}
+
+.order-summary h3 {
+  color: #8b5e34;
+  margin: 0 0 1rem;
+}
+
+.order-items {
+  margin-bottom: 1rem;
+}
+
+.order-item {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px dashed #eee;
+}
+
+.order-item:last-child {
+  margin-bottom: 0;
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+.item-details {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.item-quantity {
+  color: #666;
+}
+
+.order-total {
+  display: flex;
+  justify-content: space-between;
+  font-weight: 600;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid #d4a373;
+}
+
+.delivery-address {
+  padding: 1.5rem;
+}
+
+.delivery-address h3 {
+  color: #8b5e34;
+  margin: 0 0 1rem;
+}
+
+.delivery-address p {
+  margin: 0 0 0.5rem;
+}
+
+.tracking-examples {
+  margin-top: 2rem;
+  padding: 1rem;
+  background-color: #f8f9fa;
+  border-radius: 4px;
+  font-size: 0.9rem;
+}
+
+.tracking-examples p {
+  margin: 0 0 0.5rem;
+}
+
+.tracking-examples ul {
+  margin: 0;
+  padding-left: 1.5rem;
+}
+
+.tracking-examples li {
+  margin-bottom: 0.3rem;
+}
+
+@media (max-width: 576px) {
+  .order-tracking {
+    padding: 1.5rem;
+  }
+  
+  .tracking-input-wrapper {
+    flex-direction: column;
+  }
+  
+  .order-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .order-status {
+    margin-top: 1rem;
+  }
+}

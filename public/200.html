@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sweet Delights Bakery</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      background-color: #f9f5f0;
+      color: #8b5e34;
+      text-align: center;
+    }
+    .container {
+      max-width: 600px;
+      padding: 2rem;
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    h1 {
+      color: #8b5e34;
+      margin-bottom: 1rem;
+    }
+    p {
+      margin-bottom: 1.5rem;
+      line-height: 1.6;
+    }
+    .button {
+      display: inline-block;
+      background-color: #8b5e34;
+      color: white;
+      padding: 0.8rem 1.5rem;
+      border-radius: 4px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: background-color 0.3s;
+    }
+    .button:hover {
+      background-color: #6e4a29;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Sweet Delights Bakery</h1>
+    <p>Welcome to Sweet Delights Bakery! Our website is loading...</p>
+    <p>If you continue to see this page, please try refreshing your browser.</p>
+    <a href="/" class="button">Refresh Page</a>
+  </div>
+  <script>
+    // Redirect to the home page after a short delay
+    setTimeout(() => {
+      window.location.href = '/';
+    }, 3000);
+  </script>
+</body>
+</html>

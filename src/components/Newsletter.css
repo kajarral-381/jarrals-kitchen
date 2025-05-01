@@ -1,0 +1,133 @@
+.newsletter {
+  background-color: #f8e3dd;
+  padding: 4rem 0;
+  margin: 3rem 0;
+}
+
+.newsletter-content {
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 0 1.5rem;
+}
+
+.newsletter h2 {
+  color: #8b5e34;
+  margin-bottom: 1rem;
+  font-size: 2rem;
+}
+
+.newsletter p {
+  color: #666;
+  margin-bottom: 2rem;
+}
+
+.newsletter-form {
+  margin-bottom: 2rem;
+}
+
+.form-group {
+  display: flex;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 50px;
+  overflow: hidden;
+}
+
+.form-group input {
+  flex: 1;
+  padding: 1rem 1.5rem;
+  border: none;
+  font-size: 1rem;
+}
+
+.form-group input:focus {
+  outline: none;
+}
+
+.form-group button {
+  background-color: #8b5e34;
+  color: white;
+  border: none;
+  padding: 0 1.5rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.form-group button:hover {
+  background-color: #6e4a29;
+}
+
+.form-group button.loading {
+  background-color: #d4a373;
+  cursor: not-allowed;
+}
+
+.error-message {
+  color: #e74c3c;
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.subscription-success {
+  background-color: white;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.success-icon {
+  font-size: 2rem;
+  color: #28a745;
+  background-color: rgba(40, 167, 69, 0.1);
+  padding: 1rem;
+  border-radius: 50%;
+}
+
+.subscription-success p {
+  margin: 0;
+  font-weight: 600;
+  color: #333;
+}
+
+.newsletter-benefits {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 2rem;
+}
+
+.benefit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.benefit span {
+  font-size: 2rem;
+}
+
+.benefit p {
+  margin: 0;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #8b5e34;
+}
+
+@media (max-width: 768px) {
+  .newsletter {
+    padding: 3rem 0;
+  }
+  
+  .newsletter-benefits {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+}

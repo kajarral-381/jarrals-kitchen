@@ -1,0 +1,23 @@
+In a real project, you would have actual image files here. For this demo, we're using placeholder references.
+
+The following images would be needed:
+1. hero-bakery.jpg - A hero image of a bakery storefront or interior
+2. chocolate-croissant.jpg - Image of a chocolate croissant
+3. strawberry-cheesecake.jpg - Image of a strawberry cheesecake
+4. sourdough-bread.jpg - Image of sourdough bread
+5. blueberry-muffin.jpg - Image of a blueberry muffin
+6. cinnamon-roll.jpg - Image of a cinnamon roll
+7. baguette.jpg - Image of a baguette
+8. chocolate-cake.jpg - Image of a chocolate cake
+9. apple-pie.jpg - Image of an apple pie
+10. chocolate-chip-cookie.jpg - Image of chocolate chip cookies
+11. bakery-story.jpg - Image for the about page story section
+12. baker-jane.jpg - Photo of baker Jane
+13. baker-michael.jpg - Photo of baker Michael
+14. baker-emily.jpg - Photo of baker Emily
+
+For a real website, you would:
+1. Use actual high-quality images
+2. Optimize them for web (compress, proper dimensions)
+3. Consider using a CDN for better performance
+4. Implement lazy loading for images

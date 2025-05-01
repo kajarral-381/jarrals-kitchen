@@ -1,0 +1,130 @@
+.social-feed {
+  padding: 4rem 0;
+}
+
+.social-feed-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.social-feed-header h2 {
+  color: #8b5e34;
+  margin-bottom: 0.5rem;
+  font-size: 2rem;
+}
+
+.social-feed-header p {
+  color: #666;
+  margin-bottom: 1.5rem;
+  font-size: 1.2rem;
+}
+
+.instagram-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.8rem 1.5rem;
+  background-color: #e1306c;
+  color: white;
+  border-radius: 4px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: background-color 0.3s;
+}
+
+.instagram-link:hover {
+  background-color: #c13584;
+}
+
+.loading {
+  text-align: center;
+  padding: 2rem;
+  color: #666;
+}
+
+.instagram-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.instagram-post {
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s;
+}
+
+.instagram-post:hover {
+  transform: translateY(-5px);
+}
+
+.post-image {
+  position: relative;
+  height: 300px;
+  overflow: hidden;
+}
+
+.post-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s;
+}
+
+.instagram-post:hover .post-image img {
+  transform: scale(1.05);
+}
+
+.post-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.instagram-post:hover .post-overlay {
+  opacity: 1;
+}
+
+.post-stats {
+  display: flex;
+  gap: 2rem;
+  color: white;
+}
+
+.stat {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 600;
+}
+
+.post-caption {
+  padding: 1.5rem;
+  background-color: white;
+}
+
+.post-caption p {
+  margin: 0;
+  font-size: 0.95rem;
+  color: #333;
+  line-height: 1.5;
+}
+
+@media (max-width: 768px) {
+  .instagram-grid {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  }
+  
+  .post-image {
+    height: 250px;
+  }
+}

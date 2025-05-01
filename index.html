@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Sweet Delights Bakery - Fresh baked goods made with love. Order online for pickup or delivery." />
+    <title>Sweet Delights Bakery</title>
+    <!-- Preconnect to Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Ensure fonts are loaded -->
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+    <!-- Fallback script in case of loading issues -->
+    <script>
+      // If the app doesn't load within 10 seconds, show an error message
+      const timeout = setTimeout(() => {
+        const root = document.getElementById('root');
+        if (!root.hasChildNodes()) {
+          root.innerHTML = `
+            <div style="text-align: center; padding: 2rem; font-family: sans-serif;">
+              <h1>Sweet Delights Bakery</h1>
+              <p>We're having trouble loading the page. Please try refreshing your browser.</p>
+              <button onclick="window.location.reload()" style="padding: 0.5rem 1rem; background: #8b5e34; color: white; border: none; border-radius: 4px; cursor: pointer;">
+                Refresh Page
+              </button>
+            </div>
+          `;
+        }
+      }, 10000);
+
+      // Clear the timeout if the app loads successfully
+      window.addEventListener('load', () => {
+        clearTimeout(timeout);
+      });
+    </script>
+  </body>
+</html>

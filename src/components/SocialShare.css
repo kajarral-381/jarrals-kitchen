@@ -1,0 +1,102 @@
+.social-share {
+  position: relative;
+}
+
+.share-toggle {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #8b5e34;
+  color: white;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  font-size: 1rem;
+}
+
+.share-toggle:hover,
+.share-toggle.active {
+  background-color: #6e4a29;
+}
+
+.share-dropdown {
+  position: absolute;
+  bottom: 50px;
+  right: 0;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  padding: 1rem;
+  z-index: 100;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: all 0.3s;
+}
+
+.share-dropdown.open {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.share-platforms {
+  display: flex;
+  gap: 0.8rem;
+}
+
+.share-button {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: none;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.3s;
+  font-size: 1rem;
+}
+
+.share-button:hover {
+  transform: translateY(-3px);
+}
+
+.copy-link {
+  background-color: #6c757d;
+  position: relative;
+}
+
+.tooltip {
+  position: absolute;
+  bottom: 45px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #333;
+  color: white;
+  padding: 0.5rem 0.8rem;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  white-space: nowrap;
+}
+
+.tooltip::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #333 transparent transparent transparent;
+}
+
+@media (max-width: 768px) {
+  .share-dropdown {
+    right: -100px;
+  }
+}
