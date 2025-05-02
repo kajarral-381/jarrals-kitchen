@@ -90,6 +90,10 @@ const Checkout = () => {
       if (!formData.city) newErrors.city = 'City is required';
       if (!formData.state) newErrors.state = 'State is required';
       if (!formData.zipCode) newErrors.zipCode = 'ZIP code is required';
+
+      // Log validation results for debugging
+      console.log('Step 1 validation errors:', newErrors);
+      console.log('Form data:', formData);
     }
 
     // Payment validation is now handled by the PaymentMethods component
@@ -98,10 +102,15 @@ const Checkout = () => {
       if (!formData.paymentMethod) {
         newErrors.paymentMethod = 'Please select a payment method';
       }
+
+      // Log validation results for debugging
+      console.log('Step 2 validation errors:', newErrors);
     }
 
     setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
+    const isValid = Object.keys(newErrors).length === 0;
+    console.log('Validation result:', isValid);
+    return isValid;
   };
 
   const handleAddressSelect = (addressData) => {
@@ -147,9 +156,18 @@ const Checkout = () => {
   };
 
   const nextStep = () => {
-    if (validateStep(step)) {
+    console.log('nextStep called, current step:', step);
+    const isValid = validateStep(step);
+    console.log('Validation result in nextStep:', isValid);
+
+    if (isValid) {
+      console.log('Moving to next step');
       setStep(step + 1);
       window.scrollTo(0, 0);
+    } else {
+      console.log('Validation failed, staying on current step');
+      // Show a toast message to help the user understand what's happening
+      showErrorToast('Please fill in all required fields');
     }
   };
 
