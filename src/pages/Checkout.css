@@ -130,7 +130,25 @@
   border: 1px solid #d4a373;
   border-radius: 4px;
   font-family: inherit;
-  font-size: 1rem;
+  font-size: 1.1rem;
+  line-height: 1.5;
+  color: #333;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+/* Improve focus state for better accessibility */
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: #8b5e34;
+  box-shadow: 0 0 0 3px rgba(139, 94, 52, 0.2);
+}
+
+/* Placeholder styling */
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  color: #999;
+  font-size: 1.1rem;
 }
 
 .error {
