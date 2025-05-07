@@ -1,16 +1,5 @@
 import { useState, useEffect } from 'react';
 import ProductCard from '../components/ProductCard';
-import {
-  chocolateCroissant,
-  strawberryCheesecake,
-  sourdoughBread,
-  blueberryMuffin,
-  cinnamonRoll,
-  baguette,
-  chocolateCake,
-  applePie,
-  chocolateChipCookie
-} from '../assets';
 import menuData from '../assets/menu.json';
 import './Menu.css';
 
@@ -19,42 +8,7 @@ const Menu = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  // Map of product names to images
-  const productImages = {
-    'Chocolate Croissant': chocolateCroissant,
-    'Strawberry Cheesecake': strawberryCheesecake,
-    'Sourdough Bread': sourdoughBread,
-    'Blueberry Muffin': blueberryMuffin,
-    'Cinnamon Roll': cinnamonRoll,
-    'Baguette': baguette,
-    'Chocolate Cake': chocolateCake,
-    'Apple Pie': applePie,
-    'Chocolate Chip Cookie': chocolateChipCookie,
-    // Default images for other products by category
-    'BRUNCH': chocolateCroissant,
-    'PAKISTANI': sourdoughBread,
-    'CHINESE': baguette,
-    'ITALIAN': applePie,
-    'DESSERTS': cinnamonRoll,
-    'CAKES': chocolateCake,
-    'CUPCAKES': blueberryMuffin,
-    'MUFFINS': blueberryMuffin,
-    'BROWNIES': chocolateChipCookie
-  };
 
-  // Get image for a product
-  const getProductImage = (product) => {
-    // Try to match by exact name
-    if (productImages[product.name]) {
-      return productImages[product.name];
-    }
-    // Fall back to category
-    if (productImages[product.category]) {
-      return productImages[product.category];
-    }
-    // Default fallback
-    return chocolateCroissant;
-  };
 
   useEffect(() => {
     // Process menu data
@@ -63,7 +17,6 @@ const Menu = () => {
       name: item.name,
       description: item.description,
       price: item.price, // Price is already in PKR
-      image: getProductImage(item),
       category: item.category.toLowerCase()
     }));
 

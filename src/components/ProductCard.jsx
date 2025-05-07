@@ -40,7 +40,9 @@ const ProductCard = ({ product }) => {
     <div className="product-card">
       <div className="product-image">
         <Link to={`/product/${id}`} className="product-image-link">
-          <img src={image} alt={name} />
+          <div className="no-image-placeholder">
+            <span>{name.charAt(0)}</span>
+          </div>
         </Link>
         <div className="product-actions">
           <button
@@ -54,7 +56,7 @@ const ProductCard = ({ product }) => {
             <SocialShare
               url={`${window.location.origin}/product/${id}`}
               title={name}
-              image={image}
+              image=""
               description={description}
             />
           </div>
