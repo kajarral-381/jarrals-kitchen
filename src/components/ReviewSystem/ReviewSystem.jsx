@@ -10,17 +10,17 @@ const ReviewSystem = ({ productId }) => {
   const [loading, setLoading] = useState(true);
   const [showReviewForm, setShowReviewForm] = useState(false);
   const { showErrorToast } = useToast();
-  
+
   useEffect(() => {
     // In a real app, this would be an API call to fetch reviews for the product
     // For demo purposes, we'll use mock data
     const fetchReviews = async () => {
       try {
         setLoading(true);
-        
+
         // Simulate API call delay
         await new Promise(resolve => setTimeout(resolve, 1000));
-        
+
         // Mock reviews data
         const mockReviews = [
           {
@@ -152,7 +152,7 @@ const ReviewSystem = ({ productId }) => {
             replies: []
           }
         ];
-        
+
         setReviews(mockReviews);
       } catch (error) {
         console.error('Error fetching reviews:', error);
@@ -161,21 +161,21 @@ const ReviewSystem = ({ productId }) => {
         setLoading(false);
       }
     };
-    
+
     fetchReviews();
   }, [productId, showErrorToast]);
-  
+
   const handleReviewSubmit = (newReview) => {
     // In a real app, this would be an API call to submit the review
     // For demo purposes, we'll just add it to our local state
     setReviews(prev => [newReview, ...prev]);
     setShowReviewForm(false);
   };
-  
+
   const toggleReviewForm = () => {
     setShowReviewForm(prev => !prev);
   };
-  
+
   if (loading) {
     return (
       <div className="review-system-loading">
@@ -184,32 +184,35 @@ const ReviewSystem = ({ productId }) => {
       </div>
     );
   }
-  
+
   return (
     <div className="review-system">
-      <h2 className="review-system-title">Customer Reviews</h2>
-      
+      <div className="review-system-header">
+        <h2 className="review-system-title">Customer Reviews</h2>
+
+        <button
+          className="write-review-button primary"
+          onClick={toggleReviewForm}
+        >
+          {showReviewForm ? 'Cancel Review' : 'Write a Review'}
+        </button>
+      </div>
+
       <div className="review-system-content">
         <div className="review-summary-section">
           <ReviewSummary reviews={reviews} />
-          
-          <button 
-            className="write-review-button"
-            onClick={toggleReviewForm}
-          >
-            {showReviewForm ? 'Cancel Review' : 'Write a Review'}
-          </button>
         </div>
-        
+
         {showReviewForm && (
           <div className="review-form-section">
-            <ReviewForm 
-              productId={productId} 
-              onReviewSubmit={handleReviewSubmit} 
+            <ReviewForm
+              productId={productId}
+              onReviewSubmit={handleReviewSubmit}
+              onCancel={toggleReviewForm}
             />
           </div>
         )}
-        
+
         <div className="review-list-section">
           <ReviewList reviews={reviews} productId={productId} />
         </div>

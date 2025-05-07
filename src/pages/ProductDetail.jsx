@@ -18,6 +18,7 @@ import {
   applePie,
   chocolateChipCookie
 } from '../assets';
+import menuData from '../assets/menu.json';
 import './ProductDetail.css';
 
 // Mock product data
@@ -365,7 +366,7 @@ const mockProducts = [
 
 const ProductDetail = () => {
   const { id } = useParams();
-  const { addToCart } = useCart();
+  const { cart, addToCart, updateQuantity } = useCart();
   const { addToWishlist, removeFromWishlist, isInWishlist } = useWishlist();
   const { convertPrice, formatPrice } = useCurrency();
   const { showSuccessToast } = useToast();
@@ -379,13 +380,187 @@ const ProductDetail = () => {
   const [zoomLevel, setZoomLevel] = useState(1);
   const [isZoomed, setIsZoomed] = useState(false);
   const [zoomPosition, setZoomPosition] = useState({ x: 0, y: 0 });
+  const [isInCart, setIsInCart] = useState(false);
+  const [cartItemId, setCartItemId] = useState(null);
   const imageRef = useRef(null);
 
-  useEffect(() => {
-    // In a real app, this would be an API call
-    const foundProduct = mockProducts.find(p => p.id === parseInt(id));
+  // Map of product names to images
+  const productImages = {
+    'Chocolate Croissant': chocolateCroissant,
+    'Strawberry Cheesecake': strawberryCheesecake,
+    'Sourdough Bread': sourdoughBread,
+    'Blueberry Muffin': blueberryMuffin,
+    'Cinnamon Roll': cinnamonRoll,
+    'Baguette': baguette,
+    'Chocolate Cake': chocolateCake,
+    'Apple Pie': applePie,
+    'Chocolate Chip Cookie': chocolateChipCookie,
+    // Default images for other products by category
+    'BRUNCH': chocolateCroissant,
+    'PAKISTANI': sourdoughBread,
+    'CHINESE': baguette,
+    'ITALIAN': applePie,
+    'DESSERTS': cinnamonRoll,
+    'CAKES': chocolateCake,
+    'CUPCAKES': blueberryMuffin,
+    'MUFFINS': blueberryMuffin,
+    'BROWNIES': chocolateChipCookie
+  };
 
-    if (foundProduct) {
+  // Get image for a product
+  const getProductImage = (product) => {
+    // Try to match by exact name
+    if (productImages[product.name]) {
+      return productImages[product.name];
+    }
+    // Fall back to category
+    if (productImages[product.category]) {
+      return productImages[product.category];
+    }
+    // Default fallback
+    return chocolateCroissant;
+  };
+
+  // Check if product is in cart
+  useEffect(() => {
+    if (product) {
+      const cartItem = cart.items.find(item => item.id === product.id);
+      if (cartItem) {
+        setIsInCart(true);
+        setCartItemId(cartItem.id);
+        setQuantity(cartItem.quantity);
+        if (cartItem.customizations) {
+          setCustomizations(cartItem.customizations);
+        }
+      } else {
+        setIsInCart(false);
+        setCartItemId(null);
+      }
+    }
+  }, [cart.items, product]);
+
+  // Initialize customizations when product is loaded
+  useEffect(() => {
+    if (product && !customizations) {
+      // Set default customizations based on product category
+      const defaultCustomizations = {
+        size: 'regular',
+        extras: [],
+        specialInstructions: ''
+      };
+      setCustomizations(defaultCustomizations);
+    }
+  }, [product, customizations]);
+
+  useEffect(() => {
+    // Find the product in the menu data
+    const menuProduct = menuData.find((item, index) => (index + 1) === parseInt(id));
+
+    if (menuProduct) {
+      // Create a product object with the necessary properties
+      const productImage = getProductImage(menuProduct);
+
+      // Generate detailed description based on category
+      let detailedDescription = '';
+      let ingredients = '';
+      let allergens = 'May contain wheat, dairy, nuts, and spices. Please ask our staff for specific allergen information.';
+      let nutritionalInfo = {
+        calories: 350,
+        fat: 15,
+        carbs: 40,
+        protein: 8,
+        sodium: 250
+      };
+      let dimensions = {
+        weight: '150g',
+        size: 'Standard serving'
+      };
+
+      // Customize details based on category
+      switch(menuProduct.category.toLowerCase()) {
+        case 'brunch':
+          detailedDescription = `<p>${menuProduct.description}</p>
+            <p>Our ${menuProduct.name} is a delicious brunch option prepared with authentic Pakistani recipes passed down through generations. Each serving is freshly made to order, ensuring you get the best taste and quality.</p>
+            <p>Perfect for a hearty breakfast or a satisfying lunch, this dish combines traditional spices and cooking techniques to create a memorable dining experience.</p>`;
+          ingredients = 'Fresh vegetables, aromatic spices, premium quality meat (where applicable), herbs, and traditional Pakistani seasonings.';
+          allergens = 'May contain wheat, dairy, nuts, and spices. Please ask our staff for specific allergen information.';
+          dimensions.weight = '250g';
+          dimensions.size = 'Standard serving (serves 1)';
+          break;
+
+        case 'pakistani':
+          detailedDescription = `<p>${menuProduct.description}</p>
+            <p>Our ${menuProduct.name} is a classic Pakistani dish prepared with authentic recipes and techniques. We use only the freshest ingredients and traditional spice blends to create this flavorful dish that captures the essence of Pakistani cuisine.</p>
+            <p>Each dish is carefully prepared by our skilled chefs who have mastered the art of balancing spices and flavors to create an unforgettable dining experience.</p>`;
+          ingredients = 'Premium quality meat or vegetables, authentic Pakistani spice blend, fresh herbs, ghee, and traditional seasonings.';
+          allergens = 'May contain wheat, dairy, nuts, and various spices. Please ask our staff for specific allergen information.';
+          dimensions.weight = '300g';
+          dimensions.size = 'Standard serving (serves 1-2)';
+          break;
+
+        case 'chinese':
+          detailedDescription = `<p>${menuProduct.description}</p>
+            <p>Our ${menuProduct.name} brings the authentic flavors of Chinese cuisine right to your table. We use traditional cooking methods and high-quality ingredients to create this delicious dish that's both satisfying and flavorful.</p>
+            <p>Our chefs have been trained in authentic Chinese cooking techniques to ensure each dish maintains its traditional taste while incorporating the freshest local ingredients.</p>`;
+          ingredients = 'Fresh vegetables, premium quality meat (where applicable), authentic Chinese sauces, aromatic spices, and herbs.';
+          allergens = 'May contain soy, wheat, sesame, shellfish, and nuts. Please ask our staff for specific allergen information.';
+          dimensions.weight = '275g';
+          dimensions.size = 'Standard serving (serves 1)';
+          break;
+
+        case 'italian':
+          detailedDescription = `<p>${menuProduct.description}</p>
+            <p>Our ${menuProduct.name} is inspired by traditional Italian recipes, bringing the authentic taste of Italy to your dining experience. We use premium ingredients and time-honored cooking methods to create this delicious dish.</p>
+            <p>Each Italian dish is prepared with attention to detail and a passion for capturing the true essence of Italian cuisine, resulting in flavors that transport you straight to Italy.</p>`;
+          ingredients = 'Imported Italian ingredients, fresh herbs, premium quality olive oil, and authentic seasonings.';
+          allergens = 'May contain wheat, dairy, eggs, and nuts. Please ask our staff for specific allergen information.';
+          dimensions.weight = '280g';
+          dimensions.size = 'Standard serving (serves 1)';
+          break;
+
+        case 'desserts':
+          detailedDescription = `<p>${menuProduct.description}</p>
+            <p>Our ${menuProduct.name} is a delightful sweet treat that perfectly concludes any meal. Made with the finest ingredients and prepared with care, this dessert offers a perfect balance of flavors and textures.</p>
+            <p>Our pastry chefs take pride in creating desserts that not only look beautiful but taste amazing, ensuring each bite is a moment to savor.</p>`;
+          ingredients = 'Premium quality flour, fresh dairy, natural sweeteners, and high-quality flavorings.';
+          allergens = 'Contains wheat, dairy, eggs, and may contain nuts. Please ask our staff for specific allergen information.';
+          nutritionalInfo.calories = 420;
+          nutritionalInfo.fat = 22;
+          nutritionalInfo.carbs = 52;
+          nutritionalInfo.protein = 6;
+          dimensions.weight = '120g';
+          dimensions.size = 'Standard serving (serves 1)';
+          break;
+
+        default:
+          detailedDescription = `<p>${menuProduct.description}</p>
+            <p>Our ${menuProduct.name} is prepared with the finest ingredients and traditional recipes to ensure an authentic and delicious dining experience.</p>
+            <p>Each dish is carefully crafted by our skilled chefs who take pride in delivering exceptional quality and taste with every serving.</p>`;
+          ingredients = 'Premium quality ingredients selected for freshness and flavor.';
+          allergens = 'May contain allergens. Please ask our staff for details.';
+      }
+
+      // Create the long description with the detailed information
+      const longDescription = `${detailedDescription}
+        <h3>Ingredients</h3>
+        <p>${ingredients}</p>`;
+
+      const foundProduct = {
+        id: parseInt(id),
+        name: menuProduct.name,
+        description: menuProduct.description,
+        longDescription: longDescription,
+        price: menuProduct.price,
+        category: menuProduct.category.toLowerCase(),
+        image: productImage,
+        gallery: [productImage, productImage, productImage],
+        stock: 20,
+        featured: true,
+        nutritionalInfo: nutritionalInfo,
+        dimensions: dimensions,
+        allergens: allergens
+      };
+
       setProduct(foundProduct);
       // Reset state when product changes
       setQuantity(1);
@@ -441,10 +616,15 @@ const ProductDetail = () => {
       customizations
     };
 
-    addToCart(productToAdd);
-
-    // Show confirmation message with toast
-    showSuccessToast(`${quantity} ${product.name}${quantity > 1 ? 's' : ''} added to cart!`);
+    if (isInCart) {
+      // Update existing cart item
+      updateQuantity(product.id, quantity, customizations, product.price + additionalPrice);
+      showSuccessToast(`Cart updated with ${quantity} ${product.name}${quantity > 1 ? 's' : ''}!`);
+    } else {
+      // Add new item to cart
+      addToCart(productToAdd);
+      showSuccessToast(`${quantity} ${product.name}${quantity > 1 ? 's' : ''} added to cart!`);
+    }
   };
 
   const toggleWishlist = () => {
@@ -660,6 +840,7 @@ const ProductDetail = () => {
             <ProductCustomization
               product={product}
               onCustomizationChange={handleCustomizationChange}
+              initialCustomizations={customizations}
             />
 
             <div className="product-actions">
@@ -692,7 +873,7 @@ const ProductDetail = () => {
                 onClick={handleAddToCart}
                 disabled={product.stock === 0}
               >
-                <FaShoppingCart /> Add to Cart
+                <FaShoppingCart /> {isInCart ? 'Update Cart' : 'Add to Cart'}
               </button>
 
               <button
@@ -737,7 +918,11 @@ const ProductDetail = () => {
 
           <div className="tabs-content">
             {activeTab === 'description' && (
-              <div className="tab-pane" dangerouslySetInnerHTML={{ __html: product.longDescription }}></div>
+              <div className="tab-pane">
+                <div dangerouslySetInnerHTML={{ __html: product.longDescription }}></div>
+                <h3>Allergens</h3>
+                <p>{product.allergens || 'May contain wheat, dairy, nuts, and spices. Please ask our staff for specific allergen information.'}</p>
+              </div>
             )}
 
             {activeTab === 'details' && (
@@ -778,28 +963,7 @@ const ProductDetail = () => {
           </div>
         </div>
 
-        <div className="related-products">
-          <h2>You Might Also Like</h2>
-          <div className="related-products-grid">
-            {mockProducts
-              .filter(p => p.id !== product.id && p.category === product.category)
-              .slice(0, 2)
-              .map(relatedProduct => (
-                <div key={relatedProduct.id} className="related-product-card">
-                  <div className="related-product-image">
-                    <img src={relatedProduct.image} alt={relatedProduct.name} />
-                  </div>
-                  <div className="related-product-info">
-                    <h3>{relatedProduct.name}</h3>
-                    <div className="related-product-price">{formatPrice(convertPrice(relatedProduct.price))}</div>
-                    <Link to={`/product/${relatedProduct.id}`} className="view-product-btn">
-                      View Product
-                    </Link>
-                  </div>
-                </div>
-              ))}
-          </div>
-        </div>
+
       </div>
     </div>
   );

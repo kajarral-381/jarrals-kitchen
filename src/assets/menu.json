@@ -1,0 +1,584 @@
+[
+  {
+    "category":"BRUNCH",
+    "name":"Aloo Bhujia",
+    "description":"Delicious item",
+    "price":350
+  },
+  {
+    "category":"BRUNCH",
+    "name":"Chicken Karahi (Boneless)",
+    "description":"Tender chicken dish",
+    "price":500
+  },
+  {
+    "category":"BRUNCH",
+    "name":"Lahori Chanay",
+    "description":"Delicious item",
+    "price":350
+  },
+  {
+    "category":"BRUNCH",
+    "name":"Murgh Chanay",
+    "description":"Tender chicken dish",
+    "price":500
+  },
+  {
+    "category":"BRUNCH",
+    "name":"Chicken Haleem",
+    "description":"Tender chicken dish",
+    "price":500
+  },
+  {
+    "category":"BRUNCH",
+    "name":"Chicken Nihari",
+    "description":"Tender chicken dish",
+    "price":500
+  },
+  {
+    "category":"BRUNCH",
+    "name":"Beef Nihari",
+    "description":"Rich meat-based curry",
+    "price":550
+  },
+  {
+    "category":"BRUNCH",
+    "name":"Mutton Paya",
+    "description":"Rich meat-based curry",
+    "price":550
+  },
+  {
+    "category":"BRUNCH",
+    "name":"Beef Paya",
+    "description":"Rich meat-based curry",
+    "price":550
+  },
+  {
+    "category":"BRUNCH",
+    "name":"Dum Ka Deema (Beef)",
+    "description":"Rich meat-based curry",
+    "price":550
+  },
+  {
+    "category":"BRUNCH",
+    "name":"Suji Ka Halwa",
+    "description":"Delicious item",
+    "price":350
+  },
+  {
+    "category":"BRUNCH",
+    "name":"Zarda",
+    "description":"Delicious item",
+    "price":350
+  },
+  {
+    "category":"BRUNCH",
+    "name":"Beef Kofta",
+    "description":"Rich meat-based curry",
+    "price":550
+  },
+  {
+    "category":"BRUNCH",
+    "name":"Chicken Handi",
+    "description":"Tender chicken dish",
+    "price":500
+  },
+  {
+    "category":"BRUNCH",
+    "name":"Chicken White Handi",
+    "description":"Tender chicken dish",
+    "price":500
+  },
+  {
+    "category":"BRUNCH",
+    "name":"Aloo Qeema",
+    "description":"Delicious item",
+    "price":350
+  },
+  {
+    "category":"BRUNCH",
+    "name":"Chicken Steam Tikka",
+    "description":"Tender chicken dish",
+    "price":500
+  },
+  {
+    "category":"BRUNCH",
+    "name":"Chicken Steam Roast",
+    "description":"Tender chicken dish",
+    "price":500
+  },
+  {
+    "category":"BRUNCH",
+    "name":"Dal Mash",
+    "description":"Delicious item",
+    "price":350
+  },
+  {
+    "category":"BRUNCH",
+    "name":"Peanut Butter Brownie",
+    "description":"Sweet and satisfying dessert",
+    "price":300
+  },
+  {
+    "category":"PAKISTANI",
+    "name":"Chicken Haleem",
+    "description":"Tender chicken dish",
+    "price":500
+  },
+  {
+    "category":"PAKISTANI",
+    "name":"Chicken Karahi",
+    "description":"Tender chicken dish",
+    "price":500
+  },
+  {
+    "category":"PAKISTANI",
+    "name":"Mutton Karahi",
+    "description":"Rich meat-based curry",
+    "price":550
+  },
+  {
+    "category":"PAKISTANI",
+    "name":"Chicken Yakhni Pulao",
+    "description":"Tender chicken dish",
+    "price":500
+  },
+  {
+    "category":"PAKISTANI",
+    "name":"Mutton Yakhni Pulao",
+    "description":"Rich meat-based curry",
+    "price":550
+  },
+  {
+    "category":"PAKISTANI",
+    "name":"Kabuli Pulao",
+    "description":"Fragrant rice-based meal",
+    "price":450
+  },
+  {
+    "category":"PAKISTANI",
+    "name":"Chicken Biryani",
+    "description":"Tender chicken dish",
+    "price":500
+  },
+  {
+    "category":"PAKISTANI",
+    "name":"Malai Boti Biryani",
+    "description":"Fragrant rice-based meal",
+    "price":450
+  },
+  {
+    "category":"PAKISTANI",
+    "name":"Kabsa Rice (Chicken)",
+    "description":"Tender chicken dish",
+    "price":500
+  },
+  {
+    "category":"PAKISTANI",
+    "name":"Chicken Dorma",
+    "description":"Tender chicken dish",
+    "price":500
+  },
+  {
+    "category":"PAKISTANI",
+    "name":"Mutton Dorma",
+    "description":"Rich meat-based curry",
+    "price":550
+  },
+  {
+    "category":"PAKISTANI",
+    "name":"Mutton Kunna",
+    "description":"Rich meat-based curry",
+    "price":550
+  },
+  {
+    "category":"PAKISTANI",
+    "name":"Mutanjan",
+    "description":"Delicious item",
+    "price":350
+  },
+  {
+    "category":"PAKISTANI",
+    "name":"Gur Wale Chawal",
+    "description":"Delicious item",
+    "price":350
+  },
+  {
+    "category":"PAKISTANI",
+    "name":"Zarda",
+    "description":"Delicious item",
+    "price":350
+  },
+  {
+    "category":"CHINESE",
+    "name":"Beef Chilli",
+    "description":"Rich meat-based curry",
+    "price":550
+  },
+  {
+    "category":"CHINESE",
+    "name":"Chicken Chilli",
+    "description":"Tender chicken dish",
+    "price":500
+  },
+  {
+    "category":"CHINESE",
+    "name":"Chicken Chowmin",
+    "description":"Tender chicken dish",
+    "price":500
+  },
+  {
+    "category":"CHINESE",
+    "name":"Chicken Manchurian",
+    "description":"Tender chicken dish",
+    "price":500
+  },
+  {
+    "category":"CHINESE",
+    "name":"Egg Fried Rice",
+    "description":"Fragrant rice-based meal",
+    "price":450
+  },
+  {
+    "category":"CHINESE",
+    "name":"Schezwan",
+    "description":"Delicious item",
+    "price":350
+  },
+  {
+    "category":"CHINESE",
+    "name":"Fajita Pizza",
+    "description":"Cheesy and hearty Italian delight",
+    "price":600
+  },
+  {
+    "category":"CHINESE",
+    "name":"Malai Boti Pizza",
+    "description":"Cheesy and hearty Italian delight",
+    "price":600
+  },
+  {
+    "category":"CHINESE",
+    "name":"Kheer",
+    "description":"Sweet and satisfying dessert",
+    "price":300
+  },
+  {
+    "category":"CHINESE",
+    "name":"Sheer Khurma",
+    "description":"Delicious item",
+    "price":350
+  },
+  {
+    "category":"CHINESE",
+    "name":"Mukhandi Halwa",
+    "description":"Delicious item",
+    "price":350
+  },
+  {
+    "category":"CHINESE",
+    "name":"Sooji Ka Halwa",
+    "description":"Delicious item",
+    "price":350
+  },
+  {
+    "category":"CHINESE",
+    "name":"Pine Apple Upside Down Cake",
+    "description":"Sweet and satisfying dessert",
+    "price":300
+  },
+  {
+    "category":"CHINESE",
+    "name":"Marble Loaf Cake",
+    "description":"Sweet and satisfying dessert",
+    "price":300
+  },
+  {
+    "category":"CHINESE",
+    "name":"Tea Cake",
+    "description":"Sweet and satisfying dessert",
+    "price":300
+  },
+  {
+    "category":"ITALIAN",
+    "name":"Alferado Pasta",
+    "description":"Cheesy and hearty Italian delight",
+    "price":600
+  },
+  {
+    "category":"ITALIAN",
+    "name":"Beef Lasagna (With Red Sauce)",
+    "description":"Rich meat-based curry",
+    "price":550
+  },
+  {
+    "category":"ITALIAN",
+    "name":"Chicken Lasagna (With White Sauce)",
+    "description":"Tender chicken dish",
+    "price":500
+  },
+  {
+    "category":"ITALIAN",
+    "name":"Chicken Spaghetti",
+    "description":"Tender chicken dish",
+    "price":500
+  },
+  {
+    "category":"ITALIAN",
+    "name":"Chicken Vegetable Pasta",
+    "description":"Tender chicken dish",
+    "price":500
+  },
+  {
+    "category":"ITALIAN",
+    "name":"Chicken Tikka Pizza",
+    "description":"Tender chicken dish",
+    "price":500
+  },
+  {
+    "category":"ITALIAN",
+    "name":"Ras Malai",
+    "description":"Delicious item",
+    "price":350
+  },
+  {
+    "category":"ITALIAN",
+    "name":"Gur Wali Kheer",
+    "description":"Sweet and satisfying dessert",
+    "price":300
+  },
+  {
+    "category":"ITALIAN",
+    "name":"Tres Leches Cake",
+    "description":"Sweet and satisfying dessert",
+    "price":300
+  },
+  {
+    "category":"ITALIAN",
+    "name":"Lemon Pond Cake",
+    "description":"Sweet and satisfying dessert",
+    "price":300
+  },
+  {
+    "category":"ITALIAN",
+    "name":"Bundt Cake",
+    "description":"Sweet and satisfying dessert",
+    "price":300
+  },
+  {
+    "category":"ITALIAN",
+    "name":"Marble Cake",
+    "description":"Sweet and satisfying dessert",
+    "price":300
+  },
+  {
+    "category":"DESSERTS",
+    "name":"Banoffee Pie",
+    "description":"Delicious item",
+    "price":350
+  },
+  {
+    "category":"DESSERTS",
+    "name":"Cinnamon Roll",
+    "description":"Sweet and satisfying dessert",
+    "price":300
+  },
+  {
+    "category":"DESSERTS",
+    "name":"Donuts",
+    "description":"Delicious item",
+    "price":350
+  },
+  {
+    "category":"DESSERTS",
+    "name":"Fruit Trifle",
+    "description":"Sweet and satisfying dessert",
+    "price":300
+  },
+  {
+    "category":"DESSERTS",
+    "name":"Mango Mousse",
+    "description":"Sweet and satisfying dessert",
+    "price":300
+  },
+  {
+    "category":"DESSERTS",
+    "name":"Lemon Tarts",
+    "description":"Delicious item",
+    "price":350
+  },
+  {
+    "category":"DESSERTS",
+    "name":"Cookie & Careem Cake",
+    "description":"Sweet and satisfying dessert",
+    "price":300
+  },
+  {
+    "category":"DESSERTS",
+    "name":"Red Velvet Cake",
+    "description":"Sweet and satisfying dessert",
+    "price":300
+  },
+  {
+    "category":"DESSERTS",
+    "name":"Nutella Cupcake",
+    "description":"Sweet and satisfying dessert",
+    "price":300
+  },
+  {
+    "category":"DESSERTS",
+    "name":"Orio Cupcake",
+    "description":"Sweet and satisfying dessert",
+    "price":300
+  },
+  {
+    "category":"DESSERTS",
+    "name":"Red Velvet Cupcake",
+    "description":"Sweet and satisfying dessert",
+    "price":300
+  },
+  {
+    "category":"DESSERTS",
+    "name":"Vanilla Cupcake",
+    "description":"Sweet and satisfying dessert",
+    "price":300
+  },
+  {
+    "category":"CAKES",
+    "name":"Strawberry Cheese Cake",
+    "description":"Sweet and satisfying dessert",
+    "price":300
+  },
+  {
+    "category":"CAKES",
+    "name":"Blueberry Cheese Cake",
+    "description":"Sweet and satisfying dessert",
+    "price":300
+  },
+  {
+    "category":"CAKES",
+    "name":"Mango Cheese Cake",
+    "description":"Sweet and satisfying dessert",
+    "price":300
+  },
+  {
+    "category":"CAKES",
+    "name":"Black Forest Cake",
+    "description":"Sweet and satisfying dessert",
+    "price":300
+  },
+  {
+    "category":"CAKES",
+    "name":"Chocolate Cake",
+    "description":"Sweet and satisfying dessert",
+    "price":300
+  },
+  {
+    "category":"CAKES",
+    "name":"Coffee Cake",
+    "description":"Sweet and satisfying dessert",
+    "price":300
+  },
+  {
+    "category":"CAKES",
+    "name":"Hummingbird Cupcake",
+    "description":"Sweet and satisfying dessert",
+    "price":300
+  },
+  {
+    "category":"CAKES",
+    "name":"Mocha Cupcake",
+    "description":"Sweet and satisfying dessert",
+    "price":300
+  },
+  {
+    "category":"CUPCAKES",
+    "name":"Banoffee Cupcake",
+    "description":"Sweet and satisfying dessert",
+    "price":300
+  },
+  {
+    "category":"CUPCAKES",
+    "name":"Salted Caramel Cupcake",
+    "description":"Sweet and satisfying dessert",
+    "price":300
+  },
+  {
+    "category":"CUPCAKES",
+    "name":"Lotus Cupcake",
+    "description":"Sweet and satisfying dessert",
+    "price":300
+  },
+  {
+    "category":"CUPCAKES",
+    "name":"Chocolate Cupcake",
+    "description":"Sweet and satisfying dessert",
+    "price":300
+  },
+  {
+    "category":"CUPCAKES",
+    "name":"Cookie & Careem Cupcake",
+    "description":"Sweet and satisfying dessert",
+    "price":300
+  },
+  {
+    "category":"CUPCAKES",
+    "name":"Funfetti Cupcake",
+    "description":"Sweet and satisfying dessert",
+    "price":300
+  },
+  {
+    "category":"MUFFINS",
+    "name":"Banana Walnut Muffin",
+    "description":"Sweet and satisfying dessert",
+    "price":300
+  },
+  {
+    "category":"MUFFINS",
+    "name":"Chocolate Chip Muffin",
+    "description":"Sweet and satisfying dessert",
+    "price":300
+  },
+  {
+    "category":"MUFFINS",
+    "name":"Coffee Crumb Muffin",
+    "description":"Sweet and satisfying dessert",
+    "price":300
+  },
+  {
+    "category":"MUFFINS",
+    "name":"Rainbow Muffin",
+    "description":"Sweet and satisfying dessert",
+    "price":300
+  },
+  {
+    "category":"MUFFINS",
+    "name":"Ultimate Double Chocolate Muffin",
+    "description":"Sweet and satisfying dessert",
+    "price":300
+  },
+  {
+    "category":"MUFFINS",
+    "name":"Zebra Muffin",
+    "description":"Sweet and satisfying dessert",
+    "price":300
+  },
+  {
+    "category":"BROWNIES",
+    "name":"Chocolate Chunk Brownie",
+    "description":"Sweet and satisfying dessert",
+    "price":300
+  },
+  {
+    "category":"BROWNIES",
+    "name":"Chocolate Fudge Brownie",
+    "description":"Sweet and satisfying dessert",
+    "price":300
+  },
+  {
+    "category":"BROWNIES",
+    "name":"Nutella Brownie",
+    "description":"Sweet and satisfying dessert",
+    "price":300
+  }
+]

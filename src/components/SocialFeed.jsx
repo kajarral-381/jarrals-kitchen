@@ -91,9 +91,9 @@ const SocialFeed = () => {
     <div className="social-feed">
       <div className="social-feed-header">
         <h2>Follow Us on Instagram</h2>
-        <p>@sweetdelightsbakery</p>
+        <p>@jarralskitchen</p>
         <a
-          href="https://www.instagram.com/"
+          href="https://www.instagram.com/jarralskitchen/"
           target="_blank"
           rel="noopener noreferrer"
           className="instagram-link"

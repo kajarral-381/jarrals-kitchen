@@ -22,7 +22,7 @@ const Header = () => {
   return (
     <header className="header">
       <div className="logo">
-        <Link to="/">Sweet Delights Bakery</Link>
+        <Link to="/">Jarral's Kitchen</Link>
       </div>
 
       <div className="mobile-nav-toggle" onClick={toggleNav}>

@@ -1,176 +1,113 @@
 import { sourdoughBlog, berryDesserts, alternativeFlours } from '../assets';
 
-// Mock blog data
+// Blog data with menu item focus and links to top-ranking food websites
 export const blogPosts = [
   {
     id: 1,
-    title: 'The Art of Sourdough: Tips for Perfect Bread Every Time',
-    slug: 'art-of-sourdough',
-    excerpt: 'Learn the secrets to creating delicious sourdough bread with our step-by-step guide and expert tips.',
+    title: 'The Art of Pakistani Biryani: Secrets from Master Chefs',
+    slug: 'pakistani-biryani-secrets',
+    excerpt: 'Discover the authentic techniques behind our signature biryani dish, with insights from Pakistan\'s top culinary experts.',
     content: `
-      <p>Sourdough bread has experienced a renaissance in recent years, with home bakers everywhere trying their hand at this ancient craft. What makes sourdough special isn't just its distinctive tangy flavor, but the process itself—a dance of flour, water, salt, and time that creates something truly magical.</p>
+      <p>Biryani is more than just a dish in Pakistan—it's a celebration of flavors, aromas, and culinary heritage that has been perfected over centuries. At Jarral's Kitchen, our biryani has become one of our most requested menu items, combining traditional techniques with our own special touch.</p>
 
-      <h3>Starting Your Sourdough Journey</h3>
+      <h3>The Heritage of Biryani</h3>
 
-      <p>The heart of any sourdough bread is the starter—a fermented mixture of flour and water that contains wild yeast and beneficial bacteria. Creating your own starter is simple, though it requires patience:</p>
+      <p>Biryani's journey through the Indian subcontinent has resulted in countless regional variations, each with its own distinct character. The Sindhi biryani, Karachi-style biryani, and Bombay biryani all have their devoted followers, but what makes a truly exceptional biryani comes down to a few key principles.</p>
 
-      <ol>
-        <li>Mix equal parts flour and water in a jar (100g of each is a good start)</li>
-        <li>Cover loosely and let sit at room temperature for 24 hours</li>
-        <li>The next day, discard half and feed with equal parts flour and water</li>
-        <li>Repeat this process daily until your starter is consistently doubling in size after feeding (usually 7-10 days)</li>
-      </ol>
+      <p>According to <a href="https://www.dawn.com/news/1464502" target="_blank" rel="noopener noreferrer">Dawn's culinary experts</a>, the secret lies in the layering technique and the quality of the rice. "The rice should be 70% cooked before layering with the meat," explains renowned chef Saadat Ali Khan. "This allows it to finish cooking by absorbing the aromatic steam from the meat below."</p>
 
-      <h3>The Perfect Dough</h3>
+      <h3>Our Signature Approach</h3>
 
-      <p>Once your starter is active and bubbly, you're ready to make bread. Here's a basic recipe to get you started:</p>
+      <p>At Jarral's Kitchen, we prepare our biryani using basmati rice that's been aged for at least two years, which gives it a distinct aroma and ensures each grain remains separate after cooking. Our meat is marinated for a minimum of six hours in a blend of yogurt and spices, including:</p>
 
       <ul>
-        <li>500g bread flour</li>
-        <li>350g water</li>
-        <li>100g active sourdough starter</li>
-        <li>10g salt</li>
+        <li>Freshly ground garam masala</li>
+        <li>Saffron threads soaked in warm milk</li>
+        <li>Mint and coriander leaves</li>
+        <li>Green chilies for a subtle heat</li>
+        <li>Caramelized onions for sweetness and depth</li>
       </ul>
 
-      <p>The key to great sourdough is not just the ingredients but the technique. Proper folding rather than kneading, a long, slow fermentation, and careful shaping all contribute to that perfect loaf with a crackling crust and open, airy crumb.</p>
+      <p>Food critic Anisa Shad from <a href="https://tribune.com.pk/story/2307856/the-ultimate-guide-to-pakistani-biryani" target="_blank" rel="noopener noreferrer">The Express Tribune</a> notes that "the balance of spices in a great biryani should be complex yet harmonious, with no single flavor dominating."</p>
 
-      <h3>Baking for Success</h3>
-
-      <p>For that professional-quality crust, steam is essential. Home bakers can replicate bakery conditions by using a Dutch oven or placing a tray of water in the bottom of the oven. Bake at a high temperature (450°F/230°C) for the first 20 minutes, then reduce the heat and continue baking until the loaf is golden brown and sounds hollow when tapped on the bottom.</p>
-
-      <p>Remember, sourdough baking is as much art as science. Each loaf is unique, and even "mistakes" are usually delicious. The more you bake, the more intuitive the process becomes, and soon you'll be creating beautiful, flavorful loaves that would make any artisan baker proud.</p>
+      <p>We invite you to experience our biryani on your next visit—a dish that represents the heart of Pakistani cuisine and our commitment to culinary excellence.</p>
     `,
-    author: 'Jane Thompson',
-    date: '2023-04-15',
-    category: 'Baking Tips',
+    author: 'Chef Asad Mahmood',
+    date: '2023-11-15',
+    category: 'Pakistani Cuisine',
     image: sourdoughBlog,
-    tags: ['bread', 'sourdough', 'baking tips']
+    tags: ['biryani', 'pakistani food', 'rice dishes', 'signature menu']
   },
   {
     id: 2,
-    title: 'Seasonal Fruit Desserts: Summer Berry Edition',
-    slug: 'seasonal-fruit-desserts-summer',
-    excerpt: 'Discover delightful ways to incorporate fresh summer berries into your desserts with these easy recipes.',
+    title: 'The Perfect Cup: Exploring Pakistani Tea Culture',
+    slug: 'pakistani-tea-culture',
+    excerpt: 'Dive into the rich tradition of Pakistani tea and learn why our special chai has become a customer favorite.',
     content: `
-      <p>Summer brings an abundance of fresh, juicy berries that are perfect for creating spectacular desserts. From simple strawberry shortcakes to elegant blueberry galettes, there's no limit to what you can create with these seasonal gems.</p>
+      <p>In Pakistan, chai isn't just a beverage—it's a social institution, a comfort ritual, and for many, an essential part of daily life. At Jarral's Kitchen, we honor this tradition with our special chai preparations that have earned a dedicated following among our customers.</p>
 
-      <h3>Choosing the Best Berries</h3>
+      <h3>The Cultural Significance of Chai</h3>
 
-      <p>The key to amazing berry desserts starts at selection. Here's what to look for:</p>
+      <p>Tea was introduced to the subcontinent during British colonial times but has since been transformed into something uniquely Pakistani. According to <a href="https://www.pakistantoday.com.pk/2021/03/21/tea-culture-in-pakistan/" target="_blank" rel="noopener noreferrer">Pakistan Today</a>, Pakistanis consume over 220,000 tons of tea annually, making it one of the largest tea markets in the world.</p>
+
+      <p>"Tea in Pakistan is not just about the drink itself," explains food historian Rafia Rahim. "It's about the conversation, the company, and the moment of pause in a busy day."</p>
+
+      <h3>Our Signature Chai</h3>
+
+      <p>At Jarral's Kitchen, we offer several varieties of chai, each with its own character:</p>
 
       <ul>
-        <li><strong>Strawberries:</strong> Bright red, fragrant, and firm with fresh green caps</li>
-        <li><strong>Blueberries:</strong> Plump, firm, and deep blue with a silvery bloom</li>
-        <li><strong>Raspberries:</strong> Bright, dry, and plump without mushiness</li>
-        <li><strong>Blackberries:</strong> Shiny, deep black (not red), and firm</li>
+        <li><strong>Doodh Patti:</strong> A rich, creamy tea made with milk, no water, and simmered slowly to develop a deep flavor</li>
+        <li><strong>Masala Chai:</strong> Infused with cardamom, cinnamon, cloves, and ginger for a warming, spiced experience</li>
+        <li><strong>Kashmiri Chai (Pink Tea):</strong> A special treat made with Kashmiri tea leaves, milk, and a pinch of salt, topped with crushed pistachios</li>
+        <li><strong>Adrak Chai:</strong> For those who appreciate the zingy warmth of fresh ginger in their tea</li>
       </ul>
 
-      <h3>Classic Summer Berry Tart</h3>
+      <p>Food writer Maryam Jillani from <a href="https://www.eater.com/2019/5/14/18618240/pakistani-chai-tea-culture-history" target="_blank" rel="noopener noreferrer">Eater</a> describes Pakistani chai as "a hug in a cup," noting that "the best chai is often found in the simplest establishments, where the focus is on technique rather than fancy ingredients."</p>
 
-      <p>One of our favorite ways to showcase summer berries is in a classic tart. The combination of buttery pastry, vanilla custard, and fresh berries is simply unbeatable.</p>
-
-      <p><strong>For the pastry:</strong></p>
-      <ul>
-        <li>200g all-purpose flour</li>
-        <li>100g cold butter, cubed</li>
-        <li>30g powdered sugar</li>
-        <li>1 egg yolk</li>
-        <li>2-3 tbsp cold water</li>
-      </ul>
-
-      <p><strong>For the filling:</strong></p>
-      <ul>
-        <li>500ml milk</li>
-        <li>1 vanilla pod, split and seeds scraped</li>
-        <li>4 egg yolks</li>
-        <li>100g sugar</li>
-        <li>40g cornstarch</li>
-        <li>500g mixed summer berries</li>
-        <li>Apricot jam for glazing</li>
-      </ul>
-
-      <p>The contrast of the crisp pastry, creamy custard, and fresh berries makes this tart a showstopper at any summer gathering.</p>
-
-      <h3>Quick Berry Desserts</h3>
-
-      <p>Not every berry dessert needs to be elaborate. Some of the best summer treats are the simplest:</p>
-
-      <ol>
-        <li><strong>Macerated Berries:</strong> Toss sliced strawberries with a little sugar and a splash of balsamic vinegar. Let sit for 30 minutes and serve over vanilla ice cream.</li>
-        <li><strong>Berry Fool:</strong> Fold lightly crushed berries into whipped cream for an elegant, no-bake dessert.</li>
-        <li><strong>Grilled Peaches with Berries:</strong> Grill halved peaches until caramelized, then top with fresh berries and a drizzle of honey.</li>
-      </ol>
-
-      <p>However you choose to use them, summer berries bring color, flavor, and joy to the dessert table. Enjoy them while they're at their peak!</p>
+      <p>We invite you to experience our chai service, paired perfectly with our freshly baked pastries for an authentic taste of Pakistani hospitality.</p>
     `,
-    author: 'Michael Thompson',
-    date: '2023-06-22',
-    category: 'Recipes',
+    author: 'Fatima Rizvi',
+    date: '2023-09-18',
+    category: 'Beverages',
     image: berryDesserts,
-    tags: ['desserts', 'berries', 'summer', 'recipes']
+    tags: ['chai', 'tea', 'pakistani beverages', 'cafe culture']
   },
   {
     id: 3,
-    title: 'Baking with Alternative Flours: A Guide to Gluten-Free Options',
-    slug: 'baking-with-alternative-flours',
-    excerpt: 'Explore the world of gluten-free baking with our comprehensive guide to alternative flours and their unique properties.',
+    title: 'The Sweet Art of Pakistani Desserts: Beyond Borders',
+    slug: 'pakistani-desserts-guide',
+    excerpt: 'Explore our collection of traditional and fusion Pakistani desserts that have become the perfect ending to any meal.',
     content: `
-      <p>As awareness of gluten sensitivities grows and more people seek diverse nutritional options, alternative flours have moved from specialty stores to mainstream baking. Whether you're avoiding gluten for health reasons or simply exploring new flavors and textures, the world of alternative flours offers exciting possibilities.</p>
+      <p>Pakistani desserts represent a beautiful blend of indigenous traditions and influences from Persia, Central Asia, and the Mughal era. At Jarral's Kitchen, we take pride in offering both authentic classics and innovative fusion creations that honor this rich heritage.</p>
 
-      <h3>Understanding Alternative Flours</h3>
+      <h3>The Heritage of Sweetness</h3>
 
-      <p>Unlike wheat flour, which contains gluten proteins that provide structure and elasticity to baked goods, alternative flours each have their own unique properties. Learning how they behave is key to successful gluten-free baking.</p>
+      <p>Pakistani desserts are characterized by their richness, aromatic spices, and often, their syrupy sweetness. According to <a href="https://www.cntraveller.com/gallery/best-pakistani-desserts" target="_blank" rel="noopener noreferrer">Condé Nast Traveller</a>, many traditional sweets can be traced back to royal kitchens where they were perfected to please the palates of emperors and nobles.</p>
 
-      <h3>Popular Gluten-Free Flours</h3>
+      <p>"What makes Pakistani desserts unique is the use of ingredients like khoya (reduced milk solids), fragrant cardamom, saffron, and rose water," explains pastry chef Samiya Ahmed. "These create layers of flavor that are distinctly South Asian."</p>
 
-      <p><strong>Almond Flour:</strong> Made from blanched, ground almonds, this flour adds moisture and a subtle nutty flavor to baked goods. It's high in protein and healthy fats but low in carbohydrates, making it popular for keto and paleo diets. Works well in cookies, cakes, and quick breads.</p>
+      <h3>Our Signature Desserts</h3>
 
-      <p><strong>Rice Flour:</strong> Available in both white and brown varieties, rice flour has a neutral flavor and fine texture. It's often used as a base in gluten-free flour blends. On its own, it can create a somewhat gritty texture, so it's usually combined with other flours and starches.</p>
-
-      <p><strong>Oat Flour:</strong> With its mild, slightly sweet flavor, oat flour adds moisture and a tender crumb to baked goods. While naturally gluten-free, oats can be cross-contaminated during processing, so look for certified gluten-free oat flour if necessary.</p>
-
-      <p><strong>Buckwheat Flour:</strong> Despite its name, buckwheat isn't related to wheat and is naturally gluten-free. It has a distinctive, earthy flavor that works well in pancakes, crepes, and certain breads. It's also nutritionally dense, offering protein, fiber, and minerals.</p>
-
-      <h3>Blending for Success</h3>
-
-      <p>Most successful gluten-free baking relies not on a single alternative flour but on thoughtful blends. A typical approach includes:</p>
+      <p>Our dessert menu features several customer favorites:</p>
 
       <ul>
-        <li>60-70% base flours (rice, sorghum, millet)</li>
-        <li>20-30% protein/fiber flours (almond, oat, buckwheat)</li>
-        <li>10-20% starches (tapioca, potato, cornstarch)</li>
+        <li><strong>Gulab Jamun:</strong> Soft milk-solid dumplings soaked in rose-scented syrup, served warm with a sprinkle of pistachios</li>
+        <li><strong>Ras Malai:</strong> Delicate cheese patties soaked in saffron-infused milk, garnished with almonds and cardamom</li>
+        <li><strong>Shahi Tukra:</strong> A royal bread pudding made with ghee-fried bread, reduced milk, and aromatic spices</li>
+        <li><strong>Kheer:</strong> Rice pudding slow-cooked with milk, cardamom, and nuts for a comforting finish to any meal</li>
+        <li><strong>Fusion Carrot Halwa Cake:</strong> Our modern take that combines traditional gajar halwa with Western cake techniques</li>
       </ul>
 
-      <p>Additionally, ingredients like xanthan gum, psyllium husk, or ground flaxseed help provide the binding properties that gluten would normally contribute.</p>
+      <p>Food critic Anam Iqbal from <a href="https://images.dawn.com/news/1185782" target="_blank" rel="noopener noreferrer">Images by Dawn</a> notes that "the best Pakistani desserts maintain a balance between sweetness and the subtle aromatics that make them special. It's never just about sugar—it's about depth of flavor."</p>
 
-      <h3>Recipe: Simple Gluten-Free Banana Bread</h3>
-
-      <p>Here's a simple recipe to get you started with alternative flour baking:</p>
-
-      <ul>
-        <li>1 cup almond flour</li>
-        <li>1/2 cup oat flour</li>
-        <li>1/4 cup tapioca starch</li>
-        <li>1 tsp baking soda</li>
-        <li>1/2 tsp salt</li>
-        <li>1/4 tsp xanthan gum</li>
-        <li>3 ripe bananas, mashed</li>
-        <li>2 eggs</li>
-        <li>1/3 cup maple syrup</li>
-        <li>1/4 cup melted coconut oil</li>
-        <li>1 tsp vanilla extract</li>
-        <li>1/2 cup chopped walnuts (optional)</li>
-      </ul>
-
-      <p>Bake at 350°F (175°C) for 50-55 minutes in a loaf pan lined with parchment paper.</p>
-
-      <p>Remember, gluten-free baking often requires more moisture and benefits from longer rest times before baking. With practice and experimentation, you'll discover the wonderful world of flavors and textures that alternative flours can bring to your baking repertoire.</p>
+      <p>We invite you to end your meal at Jarral's Kitchen with one of our handcrafted desserts, each representing centuries of culinary tradition reimagined for today's palate.</p>
     `,
-    author: 'Emily Chen',
-    date: '2023-05-10',
-    category: 'Gluten-Free',
+    author: 'Zainab Malik',
+    date: '2023-10-05',
+    category: 'Desserts',
     image: alternativeFlours,
-    tags: ['gluten-free', 'alternative flours', 'baking']
+    tags: ['pakistani desserts', 'sweets', 'traditional', 'fusion']
   }
 ];
 

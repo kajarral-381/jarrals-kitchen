@@ -9,7 +9,7 @@ const About = () => {
   return (
     <div className="about-page">
       <div className="about-header">
-        <h1>About Sweet Delights Bakery</h1>
+        <h1>About Jarral's Kitchen</h1>
         <p>Our story, our passion, our commitment</p>
       </div>
 
@@ -20,7 +20,7 @@ const About = () => {
           </div>
           <div className="about-content">
             <h2>Our Story</h2>
-            <p>Sweet Delights Bakery was founded in 2010 by Jane and Michael Thompson, a couple with a passion for baking and a dream of creating a warm, welcoming space where people could enjoy freshly baked goods made with love.</p>
+            <p>Jarral's Kitchen was founded in 2020 with a passion for baking and a dream of creating a warm, welcoming space where people could enjoy freshly baked goods made with love.</p>
             <p>What started as a small corner shop has grown into a beloved local institution, but our commitment to quality and community has never wavered. Every day, we wake up before dawn to prepare our doughs, batters, and fillings from scratch, ensuring that everything we serve is as fresh and delicious as possible.</p>
             <p>Over the years, we've expanded our menu to include a wide variety of breads, pastries, cakes, and more, but we've stayed true to our original recipes and techniques that have made us a neighborhood favorite.</p>
           </div>

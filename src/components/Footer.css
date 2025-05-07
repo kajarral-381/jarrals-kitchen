@@ -41,6 +41,16 @@
   color: #d4a373;
 }
 
+.footer-section a {
+  color: #fff;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.footer-section a:hover {
+  color: #f8e3dd;
+}
+
 .footer-bottom {
   text-align: center;
   margin-top: 2rem;

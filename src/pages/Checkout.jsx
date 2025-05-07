@@ -8,6 +8,8 @@ import { FaShoppingCart, FaLock, FaMapMarkerAlt, FaCheck, FaArrowLeft } from 're
 import AddressAutocomplete from '../components/AddressAutocomplete';
 import PaymentMethods from '../components/PaymentMethods';
 import OrderTracking from '../components/OrderTracking';
+import { chocolateCroissant, strawberryCheesecake, sourdoughBread, blueberryMuffin,
+         cinnamonRoll, baguette, chocolateCake, applePie, chocolateChipCookie } from '../assets';
 import './Checkout.css';
 
 const Checkout = () => {
@@ -661,24 +663,64 @@ const Checkout = () => {
                   <h2>Order Summary</h2>
 
                   <div className="cart-items">
-                    {cart.items.map(item => (
-                      <div key={item.id} className="cart-item">
-                        <div className="item-image">
-                          <img src={item.image} alt={item.name} />
-                        </div>
-                        <div className="item-details">
-                          <h3>{item.name}</h3>
-                          <div className="item-price-qty">
-                            <span>{formatPrice(convertPrice(item.price))}</span>
-                            <span>×</span>
-                            <span>{item.quantity}</span>
+                    {cart.items.map(item => {
+                      // Get the correct image based on product name
+                      let productImage = item.image;
+                      if (!productImage || productImage.includes('/src/assets/')) {
+                        // Fallback to imported images if the path is incorrect
+                        switch(item.name) {
+                          case 'Chocolate Croissant':
+                            productImage = chocolateCroissant;
+                            break;
+                          case 'Strawberry Cheesecake':
+                            productImage = strawberryCheesecake;
+                            break;
+                          case 'Sourdough Bread':
+                            productImage = sourdoughBread;
+                            break;
+                          case 'Blueberry Muffin':
+                            productImage = blueberryMuffin;
+                            break;
+                          case 'Cinnamon Roll':
+                            productImage = cinnamonRoll;
+                            break;
+                          case 'Baguette':
+                            productImage = baguette;
+                            break;
+                          case 'Chocolate Cake':
+                            productImage = chocolateCake;
+                            break;
+                          case 'Apple Pie':
+                            productImage = applePie;
+                            break;
+                          case 'Chocolate Chip Cookie':
+                            productImage = chocolateChipCookie;
+                            break;
+                          default:
+                            // Default fallback image
+                            productImage = chocolateCroissant;
+                        }
+                      }
+
+                      return (
+                        <div key={item.id} className="cart-item">
+                          <div className="item-image">
+                            <img src={productImage} alt={item.name} />
+                          </div>
+                          <div className="item-details">
+                            <h3>{item.name}</h3>
+                            <div className="item-price-qty">
+                              <span>{formatPrice(convertPrice(item.price))}</span>
+                              <span>×</span>
+                              <span>{item.quantity}</span>
+                            </div>
+                          </div>
+                          <div className="item-total">
+                            {formatPrice(convertPrice(item.price * item.quantity))}
                           </div>
                         </div>
-                        <div className="item-total">
-                          {formatPrice(convertPrice(item.price * item.quantity))}
-                        </div>
-                      </div>
-                    ))}
+                      );
+                    })}
                   </div>
 
                   <div className="summary-totals">

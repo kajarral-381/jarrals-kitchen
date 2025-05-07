@@ -1,4 +1,4 @@
-import { FaFacebook, FaInstagram, FaTwitter, FaMapMarkerAlt, FaPhone, FaEnvelope } from 'react-icons/fa';
+import { FaFacebook, FaInstagram, FaYoutube, FaMapMarkerAlt, FaWhatsapp } from 'react-icons/fa';
 import './Footer.css';
 
 const Footer = ({ id }) => {
@@ -6,36 +6,32 @@ const Footer = ({ id }) => {
     <footer id={id} className="footer">
       <div className="footer-content">
         <div className="footer-section">
-          <h3>Sweet Delights Bakery</h3>
-          <p>Bringing joy through freshly baked goods since 2010. Our passion is creating delicious treats that make your day sweeter.</p>
+          <h3>Jarral's Kitchen</h3>
+          <p>Bringing joy through freshly baked goods since 2020. Our passion is creating delicious treats that make your day sweeter.</p>
         </div>
 
         <div className="footer-section">
           <h3>Contact Us</h3>
-          <p><FaMapMarkerAlt /> 123 Bakery Lane, Sweet City</p>
-          <p><FaPhone /> (555) 123-4567</p>
-          <p><FaEnvelope /> info@sweetdelightsbakery.com</p>
-        </div>
-
-        <div className="footer-section">
-          <h3>Opening Hours</h3>
-          <p>Monday - Friday: 7:00 AM - 7:00 PM</p>
-          <p>Saturday: 8:00 AM - 6:00 PM</p>
-          <p>Sunday: 8:00 AM - 3:00 PM</p>
+          <p><FaMapMarkerAlt /> HITEC Taxila Cantt. Pakistan</p>
+          <p>
+            <a href="https://wa.me/923125541410" target="_blank" rel="noopener noreferrer" aria-label="Contact us on WhatsApp">
+              <FaWhatsapp /> 03125541410
+            </a>
+          </p>
         </div>
 
         <div className="footer-section">
           <h3>Follow Us</h3>
           <div className="social-icons">
-            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Follow us on Facebook"><FaFacebook /></a>
-            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Follow us on Instagram"><FaInstagram /></a>
-            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" aria-label="Follow us on Twitter"><FaTwitter /></a>
+            <a href="https://www.facebook.com/jarralskitchen381" target="_blank" rel="noopener noreferrer" aria-label="Follow us on Facebook"><FaFacebook /></a>
+            <a href="https://www.instagram.com/jarralskitchen/" target="_blank" rel="noopener noreferrer" aria-label="Follow us on Instagram"><FaInstagram /></a>
+            <a href="https://www.youtube.com/@jarralskitchen" target="_blank" rel="noopener noreferrer" aria-label="Follow us on YouTube"><FaYoutube /></a>
           </div>
         </div>
       </div>
 
       <div className="footer-bottom">
-        <p>&copy; {new Date().getFullYear()} Sweet Delights Bakery. All Rights Reserved.</p>
+        <p>&copy; {new Date().getFullYear()} Jarral's Kitchen. All Rights Reserved.</p>
       </div>
     </footer>
   );

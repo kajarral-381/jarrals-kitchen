@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Outlet } from 'react-router-dom';
 import { Suspense, lazy } from 'react';
 import { CartProvider } from './context/CartContext';
 import { AuthProvider } from './context/AuthContext';
@@ -9,8 +9,6 @@ import ProtectedRoute from './components/ProtectedRoute';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import LoadingSpinner from './components/LoadingSpinner';
-import AccessibilityMenu from './components/Accessibility';
-import SkipLinks from './components/Accessibility/SkipLinks';
 import './App.css';
 
 // Lazy load page components
@@ -31,6 +29,21 @@ const Wishlist = lazy(() => import('./pages/Wishlist'));
 const SearchResults = lazy(() => import('./pages/SearchResults'));
 const AdminDashboard = lazy(() => import('./pages/admin/AdminDashboard'));
 
+// Layout component for regular routes
+const MainLayout = () => {
+  return (
+    <div className="app">
+      <Header />
+      <main className="main-content">
+        <Suspense fallback={<LoadingSpinner />}>
+          <Outlet />
+        </Suspense>
+      </main>
+      <Footer />
+    </div>
+  );
+};
+
 function App() {
   return (
     <Router>
@@ -41,57 +54,42 @@ function App() {
               <ToastProvider>
                 <Routes>
                   {/* Admin routes with special layout */}
-            <Route
-              path="/admin/*"
-              element={
-                <ProtectedRoute adminOnly={true}>
-                  <Suspense fallback={<LoadingSpinner />}>
-                    <AdminDashboard />
-                  </Suspense>
-                </ProtectedRoute>
-              }
-            />
+                  <Route
+                    path="/admin/*"
+                    element={
+                      <ProtectedRoute adminOnly={true}>
+                        <Suspense fallback={<LoadingSpinner />}>
+                          <AdminDashboard />
+                        </Suspense>
+                      </ProtectedRoute>
+                    }
+                  />
 
-            {/* Regular routes with standard layout */}
-            <Route
-              path="/*"
-              element={
-                <div className="app">
-                  <SkipLinks />
-                  <Header />
-                  <main id="main-content" className="main-content">
-                    <Suspense fallback={<LoadingSpinner />}>
-                      <Routes>
-                        <Route path="/" element={<Home />} />
-                        <Route path="/menu" element={<Menu />} />
-                        <Route path="/about" element={<About />} />
-                        <Route path="/contact" element={<Contact />} />
-                        <Route path="/blog" element={<Blog />} />
-                        <Route path="/blog/:slug" element={<BlogPost />} />
-                        <Route path="/product/:id" element={<ProductDetail />} />
-                        <Route path="/search" element={<SearchResults />} />
-                        <Route path="/wishlist" element={<Wishlist />} />
-                        <Route path="/login" element={<Login />} />
-                        <Route path="/register" element={<Register />} />
-                        <Route path="/forgot-password" element={<ForgotPassword />} />
-                        <Route path="/reset-password" element={<ResetPassword />} />
-                        <Route path="/checkout" element={<Checkout />} />
-                        <Route
-                          path="/account"
-                          element={
-                            <ProtectedRoute>
-                              <Account />
-                            </ProtectedRoute>
-                          }
-                        />
-                      </Routes>
-                    </Suspense>
-                  </main>
-                  <Footer id="footer" />
-                  <AccessibilityMenu />
-                </div>
-              }
-            />
+                  {/* Regular routes with standard layout */}
+                  <Route element={<MainLayout />}>
+                    <Route path="/" element={<Home />} />
+                    <Route path="/menu" element={<Menu />} />
+                    <Route path="/about" element={<About />} />
+                    <Route path="/contact" element={<Contact />} />
+                    <Route path="/blog" element={<Blog />} />
+                    <Route path="/blog/:slug" element={<BlogPost />} />
+                    <Route path="/product/:id" element={<ProductDetail />} />
+                    <Route path="/search" element={<SearchResults />} />
+                    <Route path="/wishlist" element={<Wishlist />} />
+                    <Route path="/login" element={<Login />} />
+                    <Route path="/register" element={<Register />} />
+                    <Route path="/forgot-password" element={<ForgotPassword />} />
+                    <Route path="/reset-password" element={<ResetPassword />} />
+                    <Route path="/checkout" element={<Checkout />} />
+                    <Route
+                      path="/account"
+                      element={
+                        <ProtectedRoute>
+                          <Account />
+                        </ProtectedRoute>
+                      }
+                    />
+                  </Route>
                 </Routes>
               </ToastProvider>
             </CurrencyProvider>

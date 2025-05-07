@@ -13,11 +13,22 @@ const ProductCard = ({ product }) => {
   const { convertPrice, formatPrice } = useCurrency();
   const inWishlist = isInWishlist(id);
 
-  const handleAddToCart = () => {
-    addToCart(product);
+  const handleAddToCart = (e) => {
+    // Prevent the default action to avoid conflicts with parent links
+    e.stopPropagation();
+
+    // Add to cart with default options
+    addToCart({
+      ...product,
+      quantity: 1,
+      customizations: null
+    });
   };
 
-  const toggleWishlist = () => {
+  const toggleWishlist = (e) => {
+    // Prevent the default action to avoid conflicts with parent links
+    e.stopPropagation();
+
     if (inWishlist) {
       removeFromWishlist(product);
     } else {
@@ -28,7 +39,9 @@ const ProductCard = ({ product }) => {
   return (
     <div className="product-card">
       <div className="product-image">
-        <img src={image} alt={name} />
+        <Link to={`/product/${id}`} className="product-image-link">
+          <img src={image} alt={name} />
+        </Link>
         <div className="product-actions">
           <button
             className={`wishlist-btn ${inWishlist ? 'active' : ''}`}

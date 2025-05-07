@@ -94,7 +94,7 @@ const cartReducer = (state, action) => {
       };
 
     case 'UPDATE_QUANTITY': {
-      const { id, quantity } = action.payload;
+      const { id, quantity, customizations, price } = action.payload;
 
       if (quantity <= 0) {
         // If quantity is 0 or negative, remove the item
@@ -119,7 +119,11 @@ const cartReducer = (state, action) => {
       const updatedItems = [...state.items];
       updatedItems[existingItemIndex] = {
         ...updatedItems[existingItemIndex],
-        quantity
+        quantity,
+        // Update customizations if provided
+        ...(customizations !== null && { customizations }),
+        // Update price if provided
+        ...(price !== null && { price })
       };
 
       // Calculate new totals
@@ -278,8 +282,8 @@ export const CartProvider = ({ children }) => {
     dispatch({ type: 'REMOVE_ITEM', payload: product });
   };
 
-  const updateQuantity = (id, quantity) => {
-    dispatch({ type: 'UPDATE_QUANTITY', payload: { id, quantity } });
+  const updateQuantity = (id, quantity, customizations = null, price = null) => {
+    dispatch({ type: 'UPDATE_QUANTITY', payload: { id, quantity, customizations, price } });
   };
 
   const saveForLater = (id) => {

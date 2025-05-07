@@ -53,7 +53,7 @@ const GooglePayButton = ({ amount, onPaymentComplete }) => {
     merchantInfo: {
       // This ID is for testing only - replace with your actual merchant ID in production
       merchantId: '12345678901234567890',
-      merchantName: 'Sweet Delights Bakery'
+      merchantName: 'Jarral\'s Kitchen'
     },
     transactionInfo: {
       totalPriceStatus: 'FINAL',
@@ -67,7 +67,7 @@ const GooglePayButton = ({ amount, onPaymentComplete }) => {
     // Check if Google Pay is available
     const checkGooglePayAvailability = async () => {
       setIsLoading(true);
-      
+
       try {
         // Check if Google Pay API is available in the browser
         if (!window.google || !window.google.payments || !window.google.payments.api) {
@@ -150,7 +150,7 @@ const GooglePayButton = ({ amount, onPaymentComplete }) => {
       // In a real implementation, you would use the following to get payment data
       // const paymentData = await client.loadPaymentData(paymentDataRequest);
       // Process the paymentData with your payment processor
-      
+
     } catch (error) {
       console.error('Error processing Google Pay payment:', error);
       showErrorToast('Google Pay payment failed. Please try again.');

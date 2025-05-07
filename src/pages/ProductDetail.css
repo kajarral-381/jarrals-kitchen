@@ -442,7 +442,14 @@
 .related-product-price {
   font-weight: bold;
   color: #8b5e34;
+  margin-bottom: 0.5rem;
+}
+
+.related-product-category {
+  font-size: 0.85rem;
+  color: #666;
   margin-bottom: 1rem;
+  text-transform: capitalize;
 }
 
 .view-product-btn {

@@ -16,12 +16,13 @@
     "serve": "serve -s dist"
   },
   "dependencies": {
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "react-icons": "^5.5.0",
-    "react-router-dom": "^7.5.3"
+    "react-router-dom": "^6.22.3"
   },
   "devDependencies": {
+    "@babel/helper-compilation-targets": "^7.27.2",
     "@eslint/js": "^9.22.0",
     "@types/react": "^19.0.10",
     "@types/react-dom": "^19.0.4",

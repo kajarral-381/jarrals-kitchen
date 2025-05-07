@@ -2,13 +2,15 @@ import { useState } from 'react';
 import { useCurrency } from '../context/CurrencyContext';
 import './ProductCustomization.css';
 
-const ProductCustomization = ({ product, onCustomizationChange }) => {
+const ProductCustomization = ({ product, onCustomizationChange, initialCustomizations = null }) => {
   const { convertPrice, formatPrice } = useCurrency();
-  const [customizations, setCustomizations] = useState({
-    size: 'regular',
-    extras: [],
-    specialInstructions: ''
-  });
+  const [customizations, setCustomizations] = useState(
+    initialCustomizations || {
+      size: 'regular',
+      extras: [],
+      specialInstructions: ''
+    }
+  );
 
   // Define available options based on product category
   const getAvailableOptions = () => {
@@ -145,8 +147,8 @@ const ProductCustomization = ({ product, onCustomizationChange }) => {
                   {size.price !== 0 && (
                     <span className="option-price">
                       {size.price > 0
-                        ? `+${formatPrice(convertPrice(size.price)).replace('₨', '₨')}`
-                        : `-${formatPrice(convertPrice(Math.abs(size.price))).replace('₨', '₨')}`}
+                        ? `+${formatPrice(convertPrice(size.price))}`
+                        : `-${formatPrice(convertPrice(Math.abs(size.price)))}`}
                     </span>
                   )}
                 </span>
@@ -170,7 +172,7 @@ const ProductCustomization = ({ product, onCustomizationChange }) => {
                 />
                 <span className="option-label">
                   {extra.name}
-                  <span className="option-price">+{formatPrice(convertPrice(extra.price)).replace('₨', '₨')}</span>
+                  <span className="option-price">+{formatPrice(convertPrice(extra.price))}</span>
                 </span>
               </label>
             ))}
@@ -193,8 +195,8 @@ const ProductCustomization = ({ product, onCustomizationChange }) => {
           Additional cost:
           <span className="price-amount">
             {calculateAdditionalPrice() > 0
-              ? `+${formatPrice(convertPrice(calculateAdditionalPrice())).replace('₨', '₨')}`
-              : `-${formatPrice(convertPrice(Math.abs(calculateAdditionalPrice()))).replace('₨', '₨')}`
+              ? `+${formatPrice(convertPrice(calculateAdditionalPrice()))}`
+              : `-${formatPrice(convertPrice(Math.abs(calculateAdditionalPrice())))}`
             }
           </span>
         </div>

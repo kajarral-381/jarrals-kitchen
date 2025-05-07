@@ -5,10 +5,11 @@ const CurrencyContext = createContext();
 
 // Currency provider component
 export const CurrencyProvider = ({ children }) => {
-  // Function to convert price (now just returns the price as is since we only use PKR)
-  const convertPrice = (priceInUSD) => {
-    // Convert USD prices to PKR
-    return priceInUSD * 278.5;
+  // Function to convert price - now just returns the price as is since we only use PKR
+  // We keep this function for compatibility with existing code
+  const convertPrice = (price) => {
+    // No conversion needed, prices are already in PKR
+    return price;
   };
 
   // Function to format price with currency symbol

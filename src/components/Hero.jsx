@@ -5,7 +5,7 @@ import './Hero.css';
 const Hero = () => {
   return (
     <div className="hero">
-      <img src={heroImage} alt="Sweet Delights Bakery" />
+      <img src={heroImage} alt="Jarral's Kitchen" />
       <div className="hero-content">
         <h1>Fresh Baked Goodness Every Day</h1>
         <p>Handcrafted with love using only the finest ingredients</p>
