@@ -5,7 +5,6 @@ import { useWishlist } from '../context/WishlistContext';
 import { useCurrency } from '../context/CurrencyContext';
 import { useToast } from '../components/Toast';
 import { FaStar, FaHeart, FaRegHeart, FaShoppingCart, FaArrowLeft, FaSearch, FaSearchMinus, FaSearchPlus } from 'react-icons/fa';
-import ProductCustomization from '../components/ProductCustomization';
 import ReviewSystem from '../components/ReviewSystem';
 import {
   chocolateCroissant,
@@ -375,8 +374,6 @@ const ProductDetail = () => {
   const [quantity, setQuantity] = useState(1);
   const [activeImage, setActiveImage] = useState(0);
   const [activeTab, setActiveTab] = useState('description');
-  const [customizations, setCustomizations] = useState(null);
-  const [additionalPrice, setAdditionalPrice] = useState(0);
   const [zoomLevel, setZoomLevel] = useState(1);
   const [isZoomed, setIsZoomed] = useState(false);
   const [zoomPosition, setZoomPosition] = useState({ x: 0, y: 0 });
@@ -429,28 +426,12 @@ const ProductDetail = () => {
         setIsInCart(true);
         setCartItemId(cartItem.id);
         setQuantity(cartItem.quantity);
-        if (cartItem.customizations) {
-          setCustomizations(cartItem.customizations);
-        }
       } else {
         setIsInCart(false);
         setCartItemId(null);
       }
     }
   }, [cart.items, product]);
-
-  // Initialize customizations when product is loaded
-  useEffect(() => {
-    if (product && !customizations) {
-      // Set default customizations based on product category
-      const defaultCustomizations = {
-        size: 'regular',
-        extras: [],
-        specialInstructions: ''
-      };
-      setCustomizations(defaultCustomizations);
-    }
-  }, [product, customizations]);
 
   useEffect(() => {
     // Find the product in the menu data
@@ -566,8 +547,6 @@ const ProductDetail = () => {
       setQuantity(1);
       setActiveImage(0);
       setActiveTab('description');
-      setCustomizations(null);
-      setAdditionalPrice(0);
     }
 
     setLoading(false);
@@ -611,14 +590,12 @@ const ProductDetail = () => {
   const handleAddToCart = () => {
     const productToAdd = {
       ...product,
-      quantity,
-      price: product.price + additionalPrice,
-      customizations
+      quantity
     };
 
     if (isInCart) {
       // Update existing cart item
-      updateQuantity(product.id, quantity, customizations, product.price + additionalPrice);
+      updateQuantity(product.id, quantity);
       showSuccessToast(`Cart updated with ${quantity} ${product.name}${quantity > 1 ? 's' : ''}!`);
     } else {
       // Add new item to cart
@@ -672,82 +649,7 @@ const ProductDetail = () => {
     }
   };
 
-  const handleCustomizationChange = (newCustomizations) => {
-    setCustomizations(newCustomizations);
 
-    // Calculate additional price
-    let additionalCost = 0;
-
-    // Add size price if applicable
-    if (newCustomizations.size) {
-      const options = getCustomizationOptions();
-      const selectedSize = options.sizes.find(size => size.id === newCustomizations.size);
-      if (selectedSize) {
-        additionalCost += selectedSize.price;
-      }
-
-      // Add extras price
-      newCustomizations.extras.forEach(extraId => {
-        const extra = options.extras.find(e => e.id === extraId);
-        if (extra) {
-          additionalCost += extra.price;
-        }
-      });
-    }
-
-    setAdditionalPrice(additionalCost);
-  };
-
-  const getCustomizationOptions = () => {
-    switch (product.category) {
-      case 'pastries':
-        return {
-          sizes: [
-            { id: 'regular', name: 'Regular', price: 0 },
-            { id: 'large', name: 'Large', price: 1.50 }
-          ],
-          extras: [
-            { id: 'extra-chocolate', name: 'Extra Chocolate', price: 0.75 },
-            { id: 'powdered-sugar', name: 'Powdered Sugar', price: 0.50 },
-            { id: 'nuts', name: 'Chopped Nuts', price: 1.00 }
-          ]
-        };
-      case 'cakes':
-        return {
-          sizes: [
-            { id: 'slice', name: 'Slice', price: 0 },
-            { id: 'small', name: 'Small (6")', price: 15.00 },
-            { id: 'medium', name: 'Medium (8")', price: 25.00 },
-            { id: 'large', name: 'Large (10")', price: 35.00 }
-          ],
-          extras: [
-            { id: 'extra-frosting', name: 'Extra Frosting', price: 2.00 },
-            { id: 'birthday-message', name: 'Birthday Message', price: 3.00 },
-            { id: 'candles', name: 'Candles', price: 1.00 }
-          ]
-        };
-      case 'breads':
-        return {
-          sizes: [
-            { id: 'regular', name: 'Regular Loaf', price: 0 },
-            { id: 'half', name: 'Half Loaf', price: -2.00 },
-            { id: 'rolls', name: 'Dinner Rolls (6)', price: 1.00 }
-          ],
-          extras: [
-            { id: 'sliced', name: 'Pre-sliced', price: 0.50 },
-            { id: 'sesame-seeds', name: 'Sesame Seeds', price: 0.75 },
-            { id: 'herbs', name: 'Herbs & Garlic', price: 1.25 }
-          ]
-        };
-      default:
-        return {
-          sizes: [
-            { id: 'regular', name: 'Regular', price: 0 }
-          ],
-          extras: []
-        };
-    }
-  };
 
   return (
     <div className="product-detail-page">
@@ -825,23 +727,12 @@ const ProductDetail = () => {
             </div>
 
             <div className="product-price">
-              {formatPrice(convertPrice(product.price + additionalPrice))}
-              {additionalPrice > 0 && (
-                <span className="base-price">
-                  {formatPrice(convertPrice(product.price))}
-                </span>
-              )}
+              {formatPrice(convertPrice(product.price))}
             </div>
 
             <div className="product-short-description">
               {product.description}
             </div>
-
-            <ProductCustomization
-              product={product}
-              onCustomizationChange={handleCustomizationChange}
-              initialCustomizations={customizations}
-            />
 
             <div className="product-actions">
               <div className="quantity-selector">
