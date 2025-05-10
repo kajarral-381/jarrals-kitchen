@@ -16,11 +16,11 @@ import {
   applePie,
   chocolateChipCookie
 } from '../assets';
-import menuData from '../assets/menu.json';
+import menuData from '../assets/improved-menu-with-servings.json';
 import './Home.css';
 
 const Home = () => {
-  const [featuredProducts, setFeaturedProducts] = useState([]);
+  const [popularProducts, setPopularProducts] = useState([]);
   const [loading, setLoading] = useState(true);
 
   // Map of product names to images
@@ -61,7 +61,7 @@ const Home = () => {
   };
 
   useEffect(() => {
-    // Get 3 random products from menu data for featured section
+    // Get 3 random products from menu data for popular section
     const randomProducts = [...menuData]
       .sort(() => 0.5 - Math.random())
       .slice(0, 3)
@@ -74,7 +74,7 @@ const Home = () => {
         category: item.category.toLowerCase()
       }));
 
-    setFeaturedProducts(randomProducts);
+    setPopularProducts(randomProducts);
     setLoading(false);
   }, []);
 
@@ -111,14 +111,14 @@ const Home = () => {
         </div>
       </section>
 
-      <section className="featured-products">
+      <section className="popular-products">
         <div className="container">
-          <h2 className="section-title">Featured Treats</h2>
+          <h2 className="section-title">Popular Treats</h2>
           {loading ? (
-            <div className="loading-products">Loading featured products...</div>
+            <div className="loading-products">Loading popular products...</div>
           ) : (
             <div className="products-grid">
-              {featuredProducts.map(product => (
+              {popularProducts.map(product => (
                 <ProductCard key={product.id} product={product} />
               ))}
             </div>

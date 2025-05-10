@@ -12,22 +12,22 @@ const AdminDashboard = () => {
   const { currentUser, logout, isAdmin } = useAuth();
   const navigate = useNavigate();
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
-  
+
   // Redirect if not admin
   if (!isAdmin()) {
     navigate('/');
     return null;
   }
-  
+
   const handleLogout = () => {
     logout();
     navigate('/');
   };
-  
+
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
   };
-  
+
   return (
     <div className={`admin-dashboard ${isSidebarOpen ? '' : 'sidebar-closed'}`}>
       <div className="admin-sidebar">
@@ -37,7 +37,7 @@ const AdminDashboard = () => {
             ☰
           </button>
         </div>
-        
+
         <div className="admin-user">
           <div className="admin-avatar">
             {currentUser.name.charAt(0)}
@@ -47,7 +47,7 @@ const AdminDashboard = () => {
             <p>{currentUser.email}</p>
           </div>
         </div>
-        
+
         <nav className="admin-nav">
           <ul>
             <li>
@@ -77,14 +77,14 @@ const AdminDashboard = () => {
             </li>
           </ul>
         </nav>
-        
+
         <div className="admin-sidebar-footer">
           <button className="logout-btn" onClick={handleLogout}>
             <FaSignOutAlt /> <span>Logout</span>
           </button>
         </div>
       </div>
-      
+
       <div className="admin-content">
         <div className="admin-header">
           <button className="mobile-toggle" onClick={toggleSidebar}>
@@ -92,7 +92,7 @@ const AdminDashboard = () => {
           </button>
           <h1>Admin Dashboard</h1>
         </div>
-        
+
         <div className="admin-main">
           <Routes>
             <Route path="/" element={<AdminOverview />} />
@@ -116,7 +116,15 @@ const AdminOverview = () => {
     { title: 'Total Users', value: 256, icon: <FaUsers />, color: '#36b9cc' },
     { title: 'Blog Posts', value: 12, icon: <FaNewspaper />, color: '#f6c23e' }
   ];
-  
+
+  // Revenue statistics
+  const revenueStats = {
+    daily: 2450,
+    weekly: 14280,
+    monthly: 58900,
+    yearly: 685000
+  };
+
   // Mock recent orders
   const recentOrders = [
     { id: 'ORD-1234', customer: 'John Doe', date: '2023-06-28', total: 42.99, status: 'Delivered' },
@@ -125,7 +133,7 @@ const AdminOverview = () => {
     { id: 'ORD-1237', customer: 'Emily Davis', date: '2023-06-27', total: 52.25, status: 'Shipped' },
     { id: 'ORD-1238', customer: 'Michael Wilson', date: '2023-06-26', total: 18.99, status: 'Delivered' }
   ];
-  
+
   return (
     <div className="admin-overview">
       <div className="stats-grid">
@@ -141,8 +149,30 @@ const AdminOverview = () => {
           </div>
         ))}
       </div>
-      
+
       <div className="admin-sections">
+        <div className="admin-section">
+          <h2>Revenue Summary</h2>
+          <div className="revenue-summary">
+            <div className="revenue-card">
+              <h3>Today</h3>
+              <p className="revenue-value">₨ {revenueStats.daily.toLocaleString()}</p>
+            </div>
+            <div className="revenue-card">
+              <h3>This Week</h3>
+              <p className="revenue-value">₨ {revenueStats.weekly.toLocaleString()}</p>
+            </div>
+            <div className="revenue-card">
+              <h3>This Month</h3>
+              <p className="revenue-value">₨ {revenueStats.monthly.toLocaleString()}</p>
+            </div>
+            <div className="revenue-card">
+              <h3>This Year</h3>
+              <p className="revenue-value">₨ {revenueStats.yearly.toLocaleString()}</p>
+            </div>
+          </div>
+        </div>
+
         <div className="admin-section">
           <h2>Recent Orders</h2>
           <div className="table-responsive">
@@ -163,13 +193,13 @@ const AdminOverview = () => {
                     <td>{order.id}</td>
                     <td>{order.customer}</td>
                     <td>{order.date}</td>
-                    <td>${order.total.toFixed(2)}</td>
+                    <td>₨ {order.total.toFixed(2)}</td>
                     <td>
                       <span className={`status-badge ${order.status.toLowerCase()}`}>
                         {order.status}
                       </span>
                     </td>
-                    <td>
+                    <td className="actions">
                       <Link to={`/admin/orders/${order.id}`} className="view-btn">
                         View
                       </Link>
@@ -185,7 +215,7 @@ const AdminOverview = () => {
             </Link>
           </div>
         </div>
-        
+
         <div className="admin-section">
           <h2>Quick Actions</h2>
           <div className="quick-actions">

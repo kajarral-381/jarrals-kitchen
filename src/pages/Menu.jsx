@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import ProductCard from '../components/ProductCard';
-import menuData from '../assets/menu.json';
+import menuData from '../assets/menu-data.js';
 import './Menu.css';
 
 const Menu = () => {
@@ -11,13 +11,19 @@ const Menu = () => {
 
 
   useEffect(() => {
-    // Process menu data
-    const processedProducts = menuData.map((item, index) => ({
-      id: index + 1,
+    // Process menu data - the data is already in the correct format
+    const processedProducts = menuData.map(item => ({
+      id: item.id,
       name: item.name,
       description: item.description,
-      price: item.price, // Price is already in PKR
-      category: item.category.toLowerCase()
+      price: item.price,
+      category: item.category.toLowerCase(),
+      isVegetarian: item.isVegetarian,
+      spiceLevel: item.spiceLevel,
+      allergens: item.allergens,
+      calories: item.calories,
+      prepTime: item.prepTime,
+      servingInfo: item.servingInfo
     }));
 
     setProducts(processedProducts);
@@ -64,7 +70,7 @@ const Menu = () => {
               className={activeCategory === category ? 'active' : ''}
               onClick={() => setActiveCategory(category)}
             >
-              {category.charAt(0).toUpperCase() + category.slice(1)}
+              {category.split('_').map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()).join(' ')}
             </button>
           ))}
         </div>

@@ -17,7 +17,7 @@ import {
   applePie,
   chocolateChipCookie
 } from '../assets';
-import menuData from '../assets/menu.json';
+import menuData from '../assets/menu-data.js';
 import './ProductDetail.css';
 
 // Mock product data
@@ -435,7 +435,7 @@ const ProductDetail = () => {
 
   useEffect(() => {
     // Find the product in the menu data
-    const menuProduct = menuData.find((item, index) => (index + 1) === parseInt(id));
+    const menuProduct = menuData.find(item => item.id === parseInt(id));
 
     if (menuProduct) {
       // Create a product object with the necessary properties
@@ -526,6 +526,18 @@ const ProductDetail = () => {
         <h3>Ingredients</h3>
         <p>${ingredients}</p>`;
 
+      // Update dimensions if servingInfo is available
+      if (menuProduct.servingInfo) {
+        dimensions = {
+          weight: menuProduct.servingInfo.weight || dimensions.weight,
+          size: menuProduct.servingInfo.size || dimensions.size,
+          serves: menuProduct.servingInfo.serves || 'Standard serving'
+        };
+      }
+
+      // Use the serving info directly from the menu data
+      const servingInfo = menuProduct.servingInfo;
+
       const foundProduct = {
         id: parseInt(id),
         name: menuProduct.name,
@@ -539,7 +551,9 @@ const ProductDetail = () => {
         featured: true,
         nutritionalInfo: nutritionalInfo,
         dimensions: dimensions,
-        allergens: allergens
+        allergens: menuProduct.allergens ? menuProduct.allergens.join(', ') : allergens,
+        servingInfo: servingInfo,
+        prepTime: menuProduct.prepTime
       };
 
       setProduct(foundProduct);
@@ -822,10 +836,29 @@ const ProductDetail = () => {
 
                 <div className="specifications">
                   <div className="spec-group">
-                    <h4>Dimensions</h4>
+                    <h4>Serving Information</h4>
                     <ul>
-                      <li><strong>Weight:</strong> {product.dimensions.weight}</li>
-                      <li><strong>Size:</strong> {product.dimensions.size}</li>
+                      {product.servingInfo && product.servingInfo.serves && (
+                        <li><strong>Serves:</strong> {product.servingInfo.serves}</li>
+                      )}
+                      {product.servingInfo && product.servingInfo.size && (
+                        <li><strong>Size:</strong> {product.servingInfo.size}</li>
+                      )}
+                      {product.servingInfo && product.servingInfo.weight && (
+                        <li><strong>Weight:</strong> {product.servingInfo.weight}</li>
+                      )}
+                      {product.servingInfo && product.servingInfo.quantity && (
+                        <li><strong>Quantity:</strong> {product.servingInfo.quantity}</li>
+                      )}
+                      {product.servingInfo && product.servingInfo.includes && (
+                        <li><strong>Includes:</strong> {product.servingInfo.includes}</li>
+                      )}
+                      {!product.servingInfo && (
+                        <>
+                          <li><strong>Weight:</strong> {product.dimensions.weight}</li>
+                          <li><strong>Size:</strong> {product.dimensions.size}</li>
+                        </>
+                      )}
                     </ul>
                   </div>
 

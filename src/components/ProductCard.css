@@ -119,11 +119,22 @@
 
 .product-info {
   padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.product-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 0.5rem;
 }
 
 .product-info h3 {
   margin: 0 0 0.5rem;
   font-size: 1.3rem;
+  flex: 1;
 }
 
 .product-info h3 a {
@@ -136,10 +147,83 @@
   color: #d4a373;
 }
 
+.product-badges {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.badge {
+  display: inline-block;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.7rem;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.badge.vegetarian {
+  background-color: #4caf50;
+  color: white;
+}
+
+.badge.spice-level {
+  display: flex;
+  align-items: center;
+}
+
+.pepper-icon {
+  font-size: 0.8rem;
+  margin-right: 2px;
+}
+
 .product-description {
   color: #666;
   margin-bottom: 1rem;
   font-size: 0.9rem;
+  flex-grow: 1;
+}
+
+.product-details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  font-size: 0.8rem;
+}
+
+.detail-item {
+  display: flex;
+  align-items: center;
+}
+
+.detail-label {
+  font-weight: bold;
+  margin-right: 0.5rem;
+  color: #8b5e34;
+}
+
+.detail-value {
+  color: #666;
+}
+
+.allergens {
+  color: #f44336;
+}
+
+.serving-info {
+  margin-top: 0.5rem;
+  padding-top: 0.5rem;
+  border-top: 1px dashed #e0e0e0;
+}
+
+.serving-info .detail-item {
+  margin-bottom: 0.25rem;
+}
+
+.serving-info .detail-label {
+  color: #8b5e34;
+  font-weight: bold;
 }
 
 .product-footer {
