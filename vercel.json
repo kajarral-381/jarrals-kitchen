@@ -5,7 +5,7 @@
     { "src": "public/**", "use": "@vercel/static" }
   ],
   "redirects": [
-    { "source": "https://www.jarralskitchen.com/:path*", "destination": "https://jarralskitchen.com/:path*", "permanent": true }
+    { "source": "/:path*", "has": [{ "type": "host", "value": "www.jarralskitchen.com" }], "destination": "https://jarralskitchen.com/:path*", "permanent": true }
   ],
   "rewrites": [
     { "source": "/test", "destination": "/test.html" },
