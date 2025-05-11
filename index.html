@@ -13,14 +13,16 @@
     </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --primary-color: #3a3a3a;
-            --accent-color: #9c8164;
-            --background-color: #f9f9f9;
+            --primary-color: #333333;
+            --accent-color: #b08968;
+            --background-color: #ffffff;
             --text-color: #333333;
-            --light-gray: #f2f2f2;
+            --light-gray: #f7f7f7;
+            --border-color: #e5e5e5;
             --spacing-unit: 8px;
         }
 
@@ -31,7 +33,7 @@
         }
 
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: 'Montserrat', sans-serif;
             font-weight: 300;
             line-height: 1.6;
             margin: 0;
@@ -41,119 +43,422 @@
         }
 
         header {
-            padding: calc(var(--spacing-unit) * 4) 0;
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 15px 20px;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 500;
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--primary-color);
+            font-size: 0.9rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-color);
+        }
+
+        .contact-bar {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 8px 0;
+            font-size: 0.8rem;
             text-align: center;
-            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .contact-bar a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
         }
 
         h1, h2, h3 {
-            font-family: 'Cormorant Garamond', serif;
+            font-family: 'Playfair Display', serif;
             font-weight: 500;
-            letter-spacing: 0.5px;
         }
 
         h1 {
-            font-size: 2.2rem;
-            margin: 0;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
             color: var(--primary-color);
         }
 
         h2 {
-            font-size: 1.8rem;
-            margin-bottom: calc(var(--spacing-unit) * 3);
+            font-size: 2rem;
+            margin-bottom: 20px;
             color: var(--primary-color);
+            text-align: center;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 2px;
+            background-color: var(--accent-color);
         }
 
         h3 {
             font-size: 1.4rem;
-            margin-bottom: calc(var(--spacing-unit) * 2);
+            margin-bottom: 15px;
             color: var(--primary-color);
         }
 
         p {
-            margin-bottom: calc(var(--spacing-unit) * 2);
+            margin-bottom: 15px;
             font-size: 0.95rem;
+            line-height: 1.7;
         }
 
         .container {
-            max-width: 1140px;
+            max-width: 1200px;
             margin: 0 auto;
-            padding: calc(var(--spacing-unit) * 8) calc(var(--spacing-unit) * 3);
+            padding: 60px 20px;
         }
 
         .hero {
+            background-color: var(--light-gray);
+            background-image: url('https://images.unsplash.com/photo-1486427944299-d1955d23e34d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            padding: 120px 0;
             text-align: center;
-            padding: calc(var(--spacing-unit) * 8) calc(var(--spacing-unit) * 3);
-            margin-bottom: calc(var(--spacing-unit) * 8);
-            background-color: white;
+            color: white;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .hero h1 {
+            color: white;
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            margin-bottom: 30px;
         }
 
         .section-title {
             text-align: center;
-            margin-bottom: calc(var(--spacing-unit) * 6);
+            margin-bottom: 50px;
+        }
+
+        .categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .category {
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .category:hover {
+            transform: translateY(-5px);
+        }
+
+        .category img {
+            width: 120px;
+            height: 120px;
+            object-fit: contain;
+            margin-bottom: 15px;
+            filter: grayscale(100%);
+            transition: filter 0.3s ease;
+        }
+
+        .category:hover img {
+            filter: grayscale(0%);
+        }
+
+        .category a {
+            text-decoration: none;
+            color: var(--primary-color);
+            font-weight: 500;
+            font-size: 1rem;
+            display: block;
+        }
+
+        .featured-product {
+            display: flex;
+            align-items: center;
+            background-color: var(--light-gray);
+            margin: 80px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .featured-product::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('https://tehzeeb.com/static/version1746609770/frontend/Magento/tehzeeb_new/en_US/images/bg_home2.png');
+            background-size: cover;
+            opacity: 0.1;
+            z-index: 0;
+        }
+
+        .featured-content {
+            flex: 1;
+            padding: 60px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .featured-image {
+            flex: 1;
+            padding: 60px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .featured-image img {
+            max-width: 100%;
+            border-radius: 50%;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
         }
 
         .menu-section {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: calc(var(--spacing-unit) * 4);
-            margin-bottom: calc(var(--spacing-unit) * 8);
+            gap: 30px;
+            margin-bottom: 60px;
         }
 
         .menu-item {
             background-color: white;
-            padding: calc(var(--spacing-unit) * 4);
-            border: 1px solid rgba(0,0,0,0.05);
+            border: 1px solid var(--border-color);
+            border-radius: 5px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .menu-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+        }
+
+        .menu-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .menu-item-content {
+            padding: 20px;
         }
 
         .price {
-            font-weight: 500;
+            font-weight: 600;
             color: var(--accent-color);
-            margin-top: calc(var(--spacing-unit) * 2);
+            margin-top: 10px;
+            font-size: 1.1rem;
         }
 
-        footer {
+        .about-section {
             background-color: var(--light-gray);
-            color: var(--text-color);
+            padding: 80px 0;
             text-align: center;
-            padding: calc(var(--spacing-unit) * 8) 0;
-            margin-top: calc(var(--spacing-unit) * 8);
         }
 
-        .contact-info {
-            margin: calc(var(--spacing-unit) * 4) 0;
-        }
-
-        .contact-info p {
-            margin-bottom: calc(var(--spacing-unit));
+        .about-content {
+            max-width: 800px;
+            margin: 0 auto;
         }
 
         .button {
             display: inline-block;
-            padding: calc(var(--spacing-unit) * 1.5) calc(var(--spacing-unit) * 3);
+            padding: 12px 30px;
             background-color: var(--accent-color);
             color: white;
             text-decoration: none;
-            margin-top: calc(var(--spacing-unit) * 3);
-            font-weight: 400;
+            font-weight: 500;
             font-size: 0.9rem;
             letter-spacing: 0.5px;
-            transition: background-color 0.2s ease;
+            transition: background-color 0.3s ease;
+            border-radius: 3px;
+            text-transform: uppercase;
         }
 
         .button:hover {
             background-color: var(--primary-color);
         }
 
+        footer {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 60px 0 20px;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            padding: 0 20px;
+        }
+
+        .footer-column h3 {
+            color: white;
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background-color: var(--accent-color);
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-column ul li a {
+            color: #ccc;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-column ul li a:hover {
+            color: white;
+        }
+
+        .contact-info {
+            margin-top: 20px;
+        }
+
+        .contact-info p {
+            margin-bottom: 10px;
+            font-size: 0.9rem;
+            color: #ccc;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            color: white;
+            font-size: 1.2rem;
+            transition: color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: var(--accent-color);
+        }
+
         .copyright {
+            text-align: center;
+            padding-top: 30px;
+            margin-top: 40px;
+            border-top: 1px solid rgba(255,255,255,0.1);
             font-size: 0.8rem;
-            color: #777;
-            margin-top: calc(var(--spacing-unit) * 4);
+            color: #999;
+        }
+
+        @media (max-width: 992px) {
+            .nav-links {
+                display: none;
+            }
+
+            .featured-product {
+                flex-direction: column;
+            }
+
+            .featured-content, .featured-image {
+                padding: 40px;
+            }
         }
 
         @media (max-width: 768px) {
             .container {
-                padding: calc(var(--spacing-unit) * 4) calc(var(--spacing-unit) * 2);
+                padding: 40px 20px;
+            }
+
+            .hero {
+                padding: 80px 0;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .categories {
+                grid-template-columns: repeat(2, 1fr);
             }
 
             .menu-section {
@@ -163,54 +468,152 @@
     </style>
 </head>
 <body>
+    <div class="contact-bar">
+        Delivering in Islamabad. <a href="tel:+923125541410">+92 312 554 1410</a>
+    </div>
+
     <header>
-        <h1>Jarral's Kitchen</h1>
+        <div class="header-container">
+            <a href="/" class="logo">Jarral's Kitchen</a>
+            <nav class="nav-links">
+                <a href="#cakes">Cakes</a>
+                <a href="#pastries">Pastries</a>
+                <a href="#bread">Bread</a>
+                <a href="#contact">Contact</a>
+            </nav>
+        </div>
     </header>
 
     <div class="hero">
-        <div class="container">
-            <h2>Fresh Baked Goods Made With Love</h2>
+        <div class="hero-content">
+            <h1>Fresh Baked Goods Made With Love</h1>
             <p>Welcome to Jarral's Kitchen, where we create delicious treats for every occasion.</p>
-            <p>Our website is currently being updated. Please check back soon for our full menu and online ordering.</p>
-            <a href="https://www.instagram.com/jarralskitchen" class="button">Follow Us on Instagram</a>
+            <a href="#featured" class="button">Explore Our Menu</a>
         </div>
     </div>
 
     <div class="container">
+        <div class="section-title">
+            <h2>CATEGORIES</h2>
+        </div>
+
+        <div class="categories">
+            <div class="category">
+                <img src="https://images.unsplash.com/photo-1608198093002-ad4e005484ec?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=512&h=512&q=80" alt="Cakes">
+                <a href="#cakes">Cakes</a>
+            </div>
+
+            <div class="category">
+                <img src="https://images.unsplash.com/photo-1603532648955-039310d9ed75?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=512&h=512&q=80" alt="Pastries">
+                <a href="#pastries">Pastries</a>
+            </div>
+
+            <div class="category">
+                <img src="https://images.unsplash.com/photo-1549931319-a545dcf3bc7c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=512&h=512&q=80" alt="Bread">
+                <a href="#bread">Bread</a>
+            </div>
+
+            <div class="category">
+                <img src="https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=512&h=512&q=80" alt="Cupcakes">
+                <a href="#cupcakes">Cupcakes</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="featured-product">
+        <div class="featured-content">
+            <h2>Chocolate Fudge Cake</h2>
+            <p>Our iconic cake, loved throughout generations. Perfectly moist sponge, rich and creamy. Have it with tea or coffee for a perfect afternoon.</p>
+            <a href="#" class="button">Order Now</a>
+        </div>
+        <div class="featured-image">
+            <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=580&h=580&q=80" alt="Chocolate Fudge Cake">
+        </div>
+    </div>
+
+    <div class="container" id="featured">
         <div class="section-title">
             <h2>Featured Items</h2>
         </div>
 
         <div class="menu-section">
             <div class="menu-item">
-                <h3>Chocolate Cake</h3>
-                <p>Rich, moist chocolate cake with a smooth chocolate ganache.</p>
-                <p class="price">₨ 1200</p>
+                <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&h=300&q=80" alt="Chocolate Cake">
+                <div class="menu-item-content">
+                    <h3>Chocolate Cake</h3>
+                    <p>Rich, moist chocolate cake with a smooth chocolate ganache.</p>
+                    <p class="price">₨ 1200</p>
+                </div>
             </div>
 
             <div class="menu-item">
-                <h3>Vanilla Cupcakes</h3>
-                <p>Light and fluffy vanilla cupcakes with buttercream frosting.</p>
-                <p class="price">₨ 150 each</p>
+                <img src="https://images.unsplash.com/photo-1614707267537-b85aaf00c4b7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&h=300&q=80" alt="Vanilla Cupcakes">
+                <div class="menu-item-content">
+                    <h3>Vanilla Cupcakes</h3>
+                    <p>Light and fluffy vanilla cupcakes with buttercream frosting.</p>
+                    <p class="price">₨ 150 each</p>
+                </div>
             </div>
 
             <div class="menu-item">
-                <h3>Cinnamon Rolls</h3>
-                <p>Soft, gooey cinnamon rolls with cream cheese frosting.</p>
-                <p class="price">₨ 200 each</p>
+                <img src="https://images.unsplash.com/photo-1509365465985-25d11c17e812?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&h=300&q=80" alt="Cinnamon Rolls">
+                <div class="menu-item-content">
+                    <h3>Cinnamon Rolls</h3>
+                    <p>Soft, gooey cinnamon rolls with cream cheese frosting.</p>
+                    <p class="price">₨ 200 each</p>
+                </div>
             </div>
         </div>
     </div>
 
-    <footer>
-        <div class="container">
-            <h3>Contact Us</h3>
-            <div class="contact-info">
-                <p>Phone: +923125541410</p>
-                <p>Email: info@jarralskitchen.com</p>
-                <p>Address: Islamabad, Pakistan</p>
+    <div class="about-section">
+        <div class="about-content">
+            <h2>The Classic Baking Tradition</h2>
+            <p>At Jarral's Kitchen, we believe in the art of traditional baking with a modern twist. Our recipes have been perfected over years, bringing you the most delicious treats for every occasion.</p>
+            <p>We use only the finest ingredients to create our baked goods, ensuring quality and taste in every bite.</p>
+            <p>Islamabad, Pakistan</p>
+        </div>
+    </div>
+
+    <footer id="contact">
+        <div class="footer-container">
+            <div class="footer-column">
+                <h3>Categories</h3>
+                <ul>
+                    <li><a href="#cakes">Cakes</a></li>
+                    <li><a href="#pastries">Pastries</a></li>
+                    <li><a href="#bread">Bread</a></li>
+                    <li><a href="#cupcakes">Cupcakes</a></li>
+                </ul>
             </div>
-            <p class="copyright">&copy; 2025 Jarral's Kitchen. All rights reserved.</p>
+
+            <div class="footer-column">
+                <h3>Company</h3>
+                <ul>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#contact">Contact Us</a></li>
+                    <li><a href="#terms">Terms & Conditions</a></li>
+                    <li><a href="#privacy">Privacy Policy</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h3>Contact Us</h3>
+                <div class="contact-info">
+                    <p>Phone: +923125541410</p>
+                    <p>Email: info@jarralskitchen.com</p>
+                    <p>Address: Islamabad, Pakistan</p>
+                </div>
+                <div class="social-links">
+                    <a href="https://www.facebook.com/jarralskitchen"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.instagram.com/jarralskitchen"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.twitter.com/jarralskitchen"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="copyright">
+            <p>&copy; 2025 Jarral's Kitchen. All Rights Reserved.</p>
         </div>
     </footer>
 </body>
