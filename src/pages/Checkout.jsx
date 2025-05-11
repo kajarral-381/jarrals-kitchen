@@ -142,20 +142,6 @@ const Checkout = () => {
       paymentMethod: method,
       paymentData: paymentData
     }));
-
-    // If payment is already completed via Google Pay, we can proceed to the next step
-    if (paymentData && method === 'googlePay') {
-      // Store the transaction ID for reference
-      setFormData(prevData => ({
-        ...prevData,
-        transactionId: paymentData.transactionId
-      }));
-
-      // If we're on the payment step, automatically proceed to review
-      if (step === 2) {
-        nextStep();
-      }
-    }
   };
 
   const nextStep = () => {
@@ -202,7 +188,7 @@ const Checkout = () => {
         deliveryFee: deliveryFee,
         tax: tax,
         total: total,
-        paymentMethod: 'NayaPay',
+        paymentMethod: 'NayaPay', // Only NayaPay is supported
         transactionId: formData.paymentData?.transactionId || null,
         deliveryMethod: formData.deliveryOption === 'standard' ? 'Standard Delivery' :
                         formData.deliveryOption === 'express' ? 'Express Delivery' : 'Store Pickup',
@@ -649,69 +635,11 @@ const Checkout = () => {
                       <div className="review-section">
                         <h3>Payment Information</h3>
                         <div className="review-info">
-                          {formData.paymentMethod === 'stripe' ? (
-                            <>
-                              <p><strong>Payment Method:</strong> Stripe</p>
-                              {formData.paymentData?.transactionId && (
-                                <p><strong>Transaction ID:</strong> {formData.paymentData.transactionId}</p>
-                              )}
-                              <p><strong>Status:</strong> <span className="payment-status success">Payment Completed</span></p>
-                            </>
-                          ) : formData.paymentMethod === 'googlePay' ? (
-                            <>
-                              <p><strong>Payment Method:</strong> Google Pay</p>
-                              {formData.transactionId && (
-                                <p><strong>Transaction ID:</strong> {formData.transactionId}</p>
-                              )}
-                              <p><strong>Status:</strong> <span className="payment-status success">Payment Completed</span></p>
-                            </>
-                          ) : formData.paymentMethod === 'creditCard' ? (
-                            <>
-                              <p><strong>Payment Method:</strong> Credit/Debit Card</p>
-                              <p><strong>Card:</strong> **** **** **** {formData.cardNumber ? formData.cardNumber.slice(-4) : '****'}</p>
-                              <p><strong>Name on Card:</strong> {formData.cardName || 'N/A'}</p>
-                            </>
-                          ) : formData.paymentMethod === 'jazzCash' ? (
-                            <>
-                              <p><strong>Payment Method:</strong> JazzCash</p>
-                              {formData.paymentData?.transactionId && (
-                                <p><strong>Transaction ID:</strong> {formData.paymentData.transactionId}</p>
-                              )}
-                              <p><strong>Status:</strong> <span className="payment-status success">Payment Verified</span></p>
-                            </>
-                          ) : formData.paymentMethod === 'easyPaisa' ? (
-                            <>
-                              <p><strong>Payment Method:</strong> EasyPaisa</p>
-                              {formData.paymentData?.transactionId && (
-                                <p><strong>Transaction ID:</strong> {formData.paymentData.transactionId}</p>
-                              )}
-                              <p><strong>Status:</strong> <span className="payment-status success">Payment Verified</span></p>
-                            </>
-                          ) : formData.paymentMethod === 'nayaPay' ? (
-                            <>
-                              <p><strong>Payment Method:</strong> NayaPay</p>
-                              {formData.paymentData?.transactionId && (
-                                <p><strong>Transaction ID:</strong> {formData.paymentData.transactionId}</p>
-                              )}
-                              <p><strong>Status:</strong> <span className="payment-status success">Payment Verified</span></p>
-                            </>
-                          ) : formData.paymentMethod === 'bankTransfer' ? (
-                            <>
-                              <p><strong>Payment Method:</strong> Bank Transfer</p>
-                              {formData.paymentData?.transactionId && (
-                                <p><strong>Reference Number:</strong> {formData.paymentData.transactionId}</p>
-                              )}
-                              <p><strong>Status:</strong> <span className="payment-status pending">Pending Verification</span></p>
-                              <p className="payment-note">We'll verify your payment within 24 hours.</p>
-                            </>
-                          ) : (
-                            <p><strong>Payment Method:</strong> {
-                              formData.paymentMethod === 'paypal' ? 'PayPal' :
-                              formData.paymentMethod === 'applePay' ? 'Apple Pay' :
-                              formData.paymentMethod === 'cashOnDelivery' ? 'Cash on Delivery' :
-                              'Not specified'
-                            }</p>
+                          <p><strong>Payment Method:</strong> NayaPay</p>
+                          {formData.paymentData?.transactionId && (
+                            <p><strong>Transaction ID:</strong> {formData.paymentData.transactionId}</p>
                           )}
+                          <p><strong>Status:</strong> <span className="payment-status success">Payment Verified</span></p>
                         </div>
                       </div>
 
