@@ -1,17 +1,14 @@
 {
   "version": 2,
-  "cleanUrls": true,
-  "trailingSlash": false,
   "builds": [
     { "src": "index.html", "use": "@vercel/static" },
     { "src": "public/**", "use": "@vercel/static" }
   ],
-  "routes": [
-    { "handle": "filesystem" },
-    { "src": "/test", "dest": "/test.html" },
-    { "src": "/fallback", "dest": "/fallback.html" },
-    { "src": "/static", "dest": "/index-static.html" },
-    { "src": "/(.*)", "dest": "/index.html" }
+  "rewrites": [
+    { "source": "/test", "destination": "/test.html" },
+    { "source": "/fallback", "destination": "/fallback.html" },
+    { "source": "/static", "destination": "/index-static.html" },
+    { "source": "/(.*)", "destination": "/index.html" }
   ],
   "headers": [
     {
@@ -30,5 +27,7 @@
   ],
   "github": {
     "silent": true
-  }
+  },
+  "cleanUrls": true,
+  "trailingSlash": false
 }
