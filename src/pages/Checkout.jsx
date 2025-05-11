@@ -8,6 +8,7 @@ import { FaShoppingCart, FaLock, FaMapMarkerAlt, FaCheck, FaArrowLeft } from 're
 import AddressAutocomplete from '../components/AddressAutocomplete';
 import PaymentMethods from '../components/PaymentMethods';
 import OrderTracking from '../components/OrderTracking';
+import { sendOrderNotifications } from '../services/NotificationService';
 import { chocolateCroissant, strawberryCheesecake, sourdoughBread, blueberryMuffin,
          cinnamonRoll, baguette, chocolateCake, applePie, chocolateChipCookie } from '../assets';
 import './Checkout.css';
@@ -31,7 +32,7 @@ const Checkout = () => {
     zipCode: '',
     country: 'Pakistan',
     deliveryOption: 'standard',
-    paymentMethod: 'creditCard',
+    paymentMethod: 'nayaPay',
     orderNotes: ''
   });
   const [errors, setErrors] = useState({});
@@ -189,9 +190,42 @@ const Checkout = () => {
       // Generate a random order ID
       const randomOrderId = 'ORD-' + Math.floor(100000 + Math.random() * 900000);
 
+      // Prepare order data for notifications
+      const orderData = {
+        orderId: randomOrderId,
+        customerName: `${formData.firstName} ${formData.lastName}`,
+        email: formData.email,
+        phone: formData.phone,
+        address: `${formData.address}, ${formData.city}, ${formData.state} ${formData.zipCode}`,
+        items: cart.items,
+        subtotal: subtotal,
+        deliveryFee: deliveryFee,
+        tax: tax,
+        total: total,
+        paymentMethod: 'NayaPay',
+        transactionId: formData.paymentData?.transactionId || null,
+        deliveryMethod: formData.deliveryOption === 'standard' ? 'Standard Delivery' :
+                        formData.deliveryOption === 'express' ? 'Express Delivery' : 'Store Pickup',
+        notes: formData.orderNotes || ''
+      };
+
       // Simulate API call delay
-      setTimeout(() => {
+      setTimeout(async () => {
         setOrderId(randomOrderId);
+
+        // Send notifications
+        try {
+          const notificationResult = await sendOrderNotifications(orderData);
+          console.log('Notification results:', notificationResult);
+
+          if (notificationResult.success) {
+            console.log('All notifications sent successfully');
+          } else {
+            console.warn('Some notifications failed to send:', notificationResult);
+          }
+        } catch (error) {
+          console.error('Error sending notifications:', error);
+        }
 
         // Clear the cart
         clearCart();
@@ -254,6 +288,7 @@ const Checkout = () => {
             <h2>Thank You for Your Order!</h2>
             <p className="order-id">Order #{orderId}</p>
             <p>Your order has been placed successfully. We've sent a confirmation email to {formData.email}.</p>
+            <p className="notification-info">Our team has been notified about your order via WhatsApp and email.</p>
 
             <div className="order-details">
               <h3>Order Details</h3>
@@ -278,35 +313,15 @@ const Checkout = () => {
 
               <div className="payment-method-info">
                 <h4>Payment Method</h4>
-                <p>
-                  {formData.paymentMethod === 'stripe' ? 'Stripe' :
-                   formData.paymentMethod === 'creditCard' ? 'Credit/Debit Card' :
-                   formData.paymentMethod === 'paypal' ? 'PayPal' :
-                   formData.paymentMethod === 'applePay' ? 'Apple Pay' :
-                   formData.paymentMethod === 'googlePay' ? 'Google Pay' :
-                   formData.paymentMethod === 'jazzCash' ? 'JazzCash' :
-                   formData.paymentMethod === 'easyPaisa' ? 'EasyPaisa' :
-                   formData.paymentMethod === 'nayaPay' ? 'NayaPay' :
-                   formData.paymentMethod === 'bankTransfer' ? 'Bank Transfer' :
-                   formData.paymentMethod === 'cashOnDelivery' ? 'Cash on Delivery' :
-                   'Not specified'}
-                </p>
+                <p>NayaPay</p>
 
-                {(formData.paymentMethod === 'jazzCash' ||
-                  formData.paymentMethod === 'easyPaisa' ||
-                  formData.paymentMethod === 'nayaPay' ||
-                  formData.paymentMethod === 'bankTransfer') &&
-                  formData.paymentData?.transactionId && (
+                {formData.paymentData?.transactionId && (
                   <p className="transaction-id">
                     <strong>Transaction ID:</strong> {formData.paymentData.transactionId}
                   </p>
                 )}
 
-                {formData.paymentMethod === 'bankTransfer' && (
-                  <p className="payment-note">
-                    We'll verify your payment within 24 hours.
-                  </p>
-                )}
+
               </div>
             </div>
 

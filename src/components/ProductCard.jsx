@@ -86,14 +86,28 @@ const ProductCard = ({ product }) => {
         </div>
         <p className="product-description">{description}</p>
         <div className="product-details">
+          <div className="product-experience">
+            <div className="experience-section">
+              <h4>Taste</h4>
+              <p>A delightful blend of flavors that creates a memorable culinary experience</p>
+            </div>
+
+            <div className="experience-section">
+              <h4>Serve with</h4>
+              <p>Perfect with a cup of tea or coffee for an elegant dining experience</p>
+            </div>
+          </div>
+
           <div className="detail-item">
-            <span className="detail-label">Prep Time:</span>
+            <span className="detail-label">Preparation:</span>
             <span className="detail-value">{prepTime}</span>
           </div>
+
           <div className="detail-item">
             <span className="detail-label">Calories:</span>
             <span className="detail-value">{calories}</span>
           </div>
+
           {allergens && allergens.length > 0 && allergens[0] !== "None" && (
             <div className="detail-item allergens">
               <span className="detail-label">Allergens:</span>

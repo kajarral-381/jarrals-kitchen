@@ -601,7 +601,11 @@ const ProductDetail = () => {
     }
   };
 
+  const [addingToCart, setAddingToCart] = useState(false);
+
   const handleAddToCart = () => {
+    setAddingToCart(true);
+
     const productToAdd = {
       ...product,
       quantity
@@ -616,6 +620,11 @@ const ProductDetail = () => {
       addToCart(productToAdd);
       showSuccessToast(`${quantity} ${product.name}${quantity > 1 ? 's' : ''} added to cart!`);
     }
+
+    // Reset animation state after a short delay
+    setTimeout(() => {
+      setAddingToCart(false);
+    }, 500);
   };
 
   const toggleWishlist = () => {
@@ -774,7 +783,7 @@ const ProductDetail = () => {
               </div>
 
               <button
-                className="add-to-cart-btn"
+                className={`add-to-cart-btn ${addingToCart ? 'adding' : ''}`}
                 onClick={handleAddToCart}
                 disabled={product.stock === 0}
               >

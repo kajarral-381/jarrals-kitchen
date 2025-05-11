@@ -9,70 +9,70 @@ const About = () => {
   return (
     <div className="about-page">
       <div className="about-header">
-        <h1>About Jarral's Kitchen</h1>
-        <p>Our story, our passion, our commitment</p>
+        <h1>The Legacy of Jarral's Kitchen</h1>
+        <p>A tradition of culinary excellence, passion, and cultural heritage</p>
       </div>
 
       <div className="container">
         <section className="about-story">
           <div className="about-image">
-            <img src={aboutImage} alt="Our bakery story" />
+            <img src={aboutImage} alt="Our culinary journey" />
           </div>
           <div className="about-content">
-            <h2>Our Story</h2>
-            <p>Jarral's Kitchen was founded in 2020 with a passion for baking and a dream of creating a warm, welcoming space where people could enjoy freshly baked goods made with love.</p>
-            <p>What started as a small corner shop has grown into a beloved local institution, but our commitment to quality and community has never wavered. Every day, we wake up before dawn to prepare our doughs, batters, and fillings from scratch, ensuring that everything we serve is as fresh and delicious as possible.</p>
-            <p>Over the years, we've expanded our menu to include a wide variety of breads, pastries, cakes, and more, but we've stayed true to our original recipes and techniques that have made us a neighborhood favorite.</p>
+            <h2>Our Cherished Heritage</h2>
+            <p>Jarral's Kitchen embodies the rich culinary traditions of Pakistan, founded in 2020 with a vision to create not just a restaurant, but a cultural institution where the art of authentic cooking is celebrated and preserved.</p>
+            <p>What began as an intimate establishment has blossomed into a beloved culinary landmark, while our dedication to excellence remains unwavering. Each day before dawn, our master chefs meticulously prepare every element from scratch—from hand-kneading doughs to grinding fresh spices—ensuring an unparalleled dining experience.</p>
+            <p>Through the years, we have thoughtfully expanded our repertoire to include a diverse array of culinary treasures, yet we remain steadfastly committed to the time-honored recipes and techniques that have earned us distinction among discerning patrons, including diplomats and distinguished visitors to Pakistan.</p>
           </div>
         </section>
 
         <section className="about-values">
-          <h2>Our Values</h2>
+          <h2>Our Guiding Principles</h2>
           <div className="values-grid">
             <div className="value-card">
               <div className="value-icon">
                 <FaHeart />
               </div>
-              <h3>Made with Love</h3>
-              <p>We believe that baking is an act of love. Every item we create is made with care, attention to detail, and a genuine desire to bring joy to our customers.</p>
+              <h3>Crafted with Devotion</h3>
+              <p>We believe that culinary creation is an expression of love and artistry. Each dish we present is crafted with meticulous attention to detail, reflecting our genuine passion for bringing moments of joy and delight to our esteemed guests.</p>
             </div>
             <div className="value-card">
               <div className="value-icon">
                 <FaLeaf />
               </div>
-              <h3>Quality Ingredients</h3>
-              <p>We source the finest, freshest ingredients, working with local farmers and suppliers whenever possible to ensure exceptional quality and flavor.</p>
+              <h3>Exceptional Ingredients</h3>
+              <p>We curate only the finest, premium-quality ingredients, partnering with select local farmers and artisanal suppliers to ensure that every flavor is authentic, vibrant, and of the highest standard—a foundation for culinary excellence.</p>
             </div>
             <div className="value-card">
               <div className="value-icon">
                 <FaHandsHelping />
               </div>
-              <h3>Community First</h3>
-              <p>We're proud to be part of our local community. We support local causes, participate in neighborhood events, and strive to create a welcoming space for everyone.</p>
+              <h3>Cultural Stewardship</h3>
+              <p>We take pride in our role as custodians of Pakistan's rich culinary heritage. Through our creations, we honor traditions while fostering community connections, supporting local initiatives, and creating an elegant sanctuary where memories are crafted.</p>
             </div>
           </div>
         </section>
 
         <section className="about-team">
-          <h2>Meet Our Team</h2>
+          <h2>The Artisans Behind Our Creations</h2>
           <div className="team-grid">
             <div className="team-member">
               <img src={team1} alt="Jane Thompson" />
               <h3>Jane Thompson</h3>
-              <p className="team-role">Co-Founder & Head Baker</p>
-              <p>Jane has been baking since she was a child, learning traditional techniques from her grandmother. She specializes in artisanal breads and pastries.</p>
+              <p className="team-role">Executive Chef & Culinary Director</p>
+              <p>Jane's culinary journey began in her grandmother's kitchen, where she absorbed centuries-old techniques and recipes. Her masterful creations blend traditional methods with innovative approaches, resulting in dishes that evoke nostalgia while delighting modern palates.</p>
             </div>
             <div className="team-member">
               <img src={team2} alt="Michael Thompson" />
               <h3>Michael Thompson</h3>
-              <p className="team-role">Co-Founder & Pastry Chef</p>
-              <p>Michael trained at the Culinary Institute before opening Sweet Delights. His cakes and desserts have won multiple local awards.</p>
+              <p className="team-role">Master Pastry Artisan</p>
+              <p>After refining his craft at the prestigious Culinary Institute, Michael brings unparalleled expertise to our pastry kitchen. His award-winning creations have earned acclaim for their exquisite balance of flavors, textures, and artistic presentation.</p>
             </div>
             <div className="team-member">
               <img src={team3} alt="Emily Chen" />
               <h3>Emily Chen</h3>
-              <p className="team-role">Cake Decorator</p>
-              <p>Emily joined our team in 2015 and has amazed customers with her intricate cake designs and decorating skills.</p>
+              <p className="team-role">Artistic Confectionery Specialist</p>
+              <p>Emily's extraordinary talent for transforming simple ingredients into breathtaking visual masterpieces has captivated our patrons since 2015. Her intricate designs and meticulous attention to detail elevate each creation into a work of edible art.</p>
             </div>
           </div>
         </section>

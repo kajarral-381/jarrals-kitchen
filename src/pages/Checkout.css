@@ -447,7 +447,17 @@
 .order-id {
   font-weight: 600;
   color: #8b5e34;
+  margin-bottom: 1rem;
+}
+
+.notification-info {
+  background-color: #e6f7ff;
+  color: #0066cc;
+  padding: 0.8rem;
+  border-radius: 4px;
   margin-bottom: 1.5rem;
+  font-size: 0.95rem;
+  display: inline-block;
 }
 
 .order-details {

@@ -84,28 +84,28 @@ const Home = () => {
 
       <section className="features">
         <div className="container">
-          <h2 className="section-title">Why Choose Us</h2>
+          <h2 className="section-title">The Jarral's Kitchen Experience</h2>
           <div className="features-grid">
             <div className="feature">
               <div className="feature-icon">
                 <FaCookie />
               </div>
-              <h3>Fresh Ingredients</h3>
-              <p>We use only the finest, locally-sourced ingredients in all our baked goods.</p>
+              <h3>Artisanal Quality</h3>
+              <p>We meticulously select premium ingredients, sourced from trusted local farmers and suppliers, to create exceptional flavors in every bite.</p>
             </div>
             <div className="feature">
               <div className="feature-icon">
                 <FaBirthdayCake />
               </div>
-              <h3>Handcrafted Daily</h3>
-              <p>Every item is baked fresh daily by our skilled artisan bakers.</p>
+              <h3>Culinary Heritage</h3>
+              <p>Our master bakers blend time-honored traditions with innovative techniques to craft delicacies that delight the senses and create lasting memories.</p>
             </div>
             <div className="feature">
               <div className="feature-icon">
                 <FaMugHot />
               </div>
-              <h3>Cozy Atmosphere</h3>
-              <p>Enjoy our treats in our warm, welcoming café environment.</p>
+              <h3>Elegant Ambiance</h3>
+              <p>Immerse yourself in our refined atmosphere where every detail is designed to elevate your dining experience and create moments of joy.</p>
             </div>
           </div>
         </div>
@@ -113,9 +113,10 @@ const Home = () => {
 
       <section className="popular-products">
         <div className="container">
-          <h2 className="section-title">Popular Treats</h2>
+          <h2 className="section-title">Our Signature Creations</h2>
+          <p className="section-subtitle">Indulge in our most beloved culinary masterpieces, each one crafted to perfection</p>
           {loading ? (
-            <div className="loading-products">Loading popular products...</div>
+            <div className="loading-products">Preparing our exquisite selection...</div>
           ) : (
             <div className="products-grid">
               {popularProducts.map(product => (
@@ -124,26 +125,61 @@ const Home = () => {
             </div>
           )}
           <div className="view-all">
-            <Link to="/menu" className="btn btn-primary">View All Products</Link>
+            <Link to="/menu" className="btn btn-primary">Explore Our Complete Collection</Link>
           </div>
         </div>
       </section>
 
       <section className="testimonials">
         <div className="container">
-          <h2 className="section-title">What Our Customers Say</h2>
+          <h2 className="section-title">Cherished Moments & Memories</h2>
+          <p className="section-subtitle">The experiences of our esteemed patrons who have made us part of their special occasions</p>
           <div className="testimonials-grid">
             <div className="testimonial">
-              <p>"Their biryani reminds me of my grandmother's recipe from Lahore. The fragrant rice and tender meat are perfectly balanced with spices. It's now our family's Friday tradition!"</p>
-              <div className="testimonial-author">- Ayesha Khan</div>
+              <p>"Jarral's Kitchen's biryani evokes the cherished memories of my grandmother's kitchen in Lahore. The aromatic rice and perfectly seasoned meat create a symphony of flavors that has become our family's treasured Friday tradition."</p>
+              <div className="testimonial-author">- Ayesha Khan, Loyal Patron</div>
             </div>
             <div className="testimonial">
-              <p>"The chai at Jarral's Kitchen is exceptional. I stop by every morning on my way to work. Their Kashmiri Pink Tea is unlike anything else in the area."</p>
-              <div className="testimonial-author">- Faisal Ahmed</div>
+              <p>"The artistry in their Kashmiri Pink Tea is unparalleled. Each morning, I indulge in this exquisite blend that awakens my senses and prepares me for the day ahead. It's a small luxury that has become an essential part of my daily ritual."</p>
+              <div className="testimonial-author">- Faisal Ahmed, Tea Connoisseur</div>
             </div>
             <div className="testimonial">
-              <p>"Jarral's Kitchen made my son's graduation party a huge success with their catering. The guests couldn't stop talking about the gulab jamun and ras malai!"</p>
-              <div className="testimonial-author">- Saima Malik</div>
+              <p>"For my son's graduation celebration, Jarral's Kitchen transformed an ordinary gathering into an extraordinary event. Their meticulously crafted desserts—especially the velvety gulab jamun and delicate ras malai—left our guests enchanted and created memories we'll cherish forever."</p>
+              <div className="testimonial-author">- Saima Malik, Celebration Host</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="legacy-section">
+        <div className="container">
+          <h2 className="section-title">The Classic Culinary Tradition</h2>
+          <p className="section-subtitle">A heritage of excellence spanning generations</p>
+
+          <div className="legacy-content">
+            <div className="legacy-text">
+              <h3>A Culinary Journey Through Time</h3>
+              <p>Jarral's Kitchen embodies the rich tapestry of Pakistani culinary arts, with recipes and techniques passed down through generations. Our establishment is more than a restaurant—it's a living museum of gastronomic heritage.</p>
+
+              <p>We believe in preserving the authentic flavors that have delighted discerning palates for centuries while introducing subtle innovations that speak to contemporary tastes.</p>
+
+              <div className="legacy-highlight">
+                <span className="legacy-years">Since 2020</span>
+                <p>Creating memorable dining experiences and becoming a beloved culinary landmark</p>
+              </div>
+
+              <p>Our kitchen is a sanctuary where time-honored traditions meet meticulous craftsmanship, resulting in creations that not only satisfy hunger but nourish the soul and create lasting memories.</p>
+
+              <div className="legacy-signature">
+                <p>We invite you to become part of our continuing story.</p>
+                <Link to="/about" className="btn btn-secondary">Discover Our Heritage</Link>
+              </div>
+            </div>
+
+            <div className="legacy-image">
+              <div className="legacy-image-frame">
+                <img src={aboutImage} alt="Jarral's Kitchen Legacy" />
+              </div>
             </div>
           </div>
         </div>
@@ -159,21 +195,26 @@ const Home = () => {
 
       <section className="location-section">
         <div className="container">
-          <h2 className="section-title">Find Us</h2>
+          <h2 className="section-title">Visit Our Culinary Haven</h2>
+          <p className="section-subtitle">Experience the warmth and elegance of our establishment</p>
           <div className="location-content">
             <div className="location-info">
               <div className="location-icon">
                 <FaMapMarkerAlt />
               </div>
-              <h3>Our Location</h3>
+              <h3>Our Distinguished Address</h3>
               <p>HITEC Taxila Cantt. Pakistan</p>
+              <p className="location-description">
+                Our elegant establishment welcomes you to a world of culinary delights in the heart of Taxila.
+                Visit us to experience the perfect blend of tradition and innovation in every creation.
+              </p>
               <a
                 href="https://maps.google.com/?q=33.72892099625079,72.81864076730872"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn btn-primary"
               >
-                Get Directions
+                Navigate to Us
               </a>
             </div>
             <div className="map-container">
