@@ -5,6 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jarral's Kitchen</title>
     <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
+    <script>
+        // Redirect www to non-www
+        if (window.location.hostname.startsWith('www.')) {
+            window.location.href = window.location.href.replace('www.', '');
+        }
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
