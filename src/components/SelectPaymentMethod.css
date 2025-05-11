@@ -107,24 +107,43 @@
   margin-top: 1rem;
 }
 
-.qr-code-placeholder {
+.qr-code {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 150px;
-  height: 150px;
-  background-color: #f5f5f5;
-  border: 1px dashed #d4a373;
+  background-color: #fff;
+  border: 1px solid #d4a373;
   border-radius: 8px;
-  padding: 1rem;
+  padding: 1.5rem;
   margin-top: 0.5rem;
 }
 
-.qr-code-placeholder p {
+.qr-code-text {
+  text-align: center;
+  padding: 1rem;
+  background-color: #f8f4e5;
+  border-radius: 8px;
+  width: 100%;
+}
+
+.qr-code-name {
+  margin-bottom: 0.5rem;
+  font-size: 1.1rem;
+  color: #333;
+  font-weight: 500;
+}
+
+.qr-code-id {
+  font-size: 1rem;
+  color: #8b5e34;
+}
+
+.transaction-id-help {
+  display: block;
   margin-top: 0.5rem;
-  font-size: 0.9rem;
   color: #666;
+  font-style: italic;
 }
 
 @media (max-width: 768px) {

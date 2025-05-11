@@ -60,13 +60,6 @@
   margin-bottom: 0.5rem;
 }
 
-.card-details {
-  background-color: #f9f9f9;
-  padding: 1.5rem;
-  border-radius: 8px;
-  margin-top: 1rem;
-}
-
 .secure-badge {
   display: inline-flex;
   align-items: center;
@@ -132,31 +125,7 @@
   padding-left: 2.8rem;
 }
 
-.cvv-toggle {
-  position: absolute;
-  right: 1rem;
-  background: none;
-  border: none;
-  color: #8b5e34;
-  cursor: pointer;
-  padding: 0.5rem;
-  font-size: 1.2rem;
-  z-index: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: color 0.2s;
-}
 
-.cvv-toggle:hover {
-  color: #6e4a29;
-}
-
-.card-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1rem;
-}
 
 .payment-info {
   background-color: #f9f9f9;
@@ -305,10 +274,6 @@
 
 @media (max-width: 576px) {
   .payment-options-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .card-row {
     grid-template-columns: 1fr;
   }
 }

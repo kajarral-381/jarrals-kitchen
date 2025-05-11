@@ -1,8 +1,5 @@
 import { useState, useEffect } from 'react';
-import {
-  FaMobile,
-  FaQrcode
-} from 'react-icons/fa';
+import { FaMobile } from 'react-icons/fa';
 import './SelectPaymentMethod.css';
 
 const SelectPaymentMethod = ({ onPaymentMethodSelect, totalAmount = 0 }) => {
@@ -16,7 +13,7 @@ const SelectPaymentMethod = ({ onPaymentMethodSelect, totalAmount = 0 }) => {
 
   return (
     <div className="payment-methods">
-      <h3>Select Payment Method</h3>
+      <h3>Payment Method</h3>
 
       <div className="payment-info local-payment">
         <div className="local-payment-header">
@@ -33,13 +30,13 @@ const SelectPaymentMethod = ({ onPaymentMethodSelect, totalAmount = 0 }) => {
             <li>Enter amount: <strong>₨ {totalAmount.toFixed(2)}</strong></li>
             <li>Include your Order ID in the message/note</li>
             <li>Complete the payment in your NayaPay app</li>
-            <li>Enter the Transaction ID below</li>
+            <li>After payment, enter the Transaction ID below to complete your order</li>
           </ol>
         </div>
 
         <div className="local-payment-form">
           <div className="form-group">
-            <label htmlFor="nayaPayTransactionId">NayaPay Transaction ID</label>
+            <label htmlFor="nayaPayTransactionId">Enter NayaPay Transaction ID to Complete Order</label>
             <input
               type="text"
               id="nayaPayTransactionId"
@@ -53,12 +50,15 @@ const SelectPaymentMethod = ({ onPaymentMethodSelect, totalAmount = 0 }) => {
                 }
               }}
             />
+            <small className="transaction-id-help">You can find this in your NayaPay app payment history</small>
           </div>
           <div className="qr-code-container">
-            <p>Or scan this QR code with your NayaPay app:</p>
-            <div className="qr-code-placeholder">
-              <FaQrcode size={120} />
-              <p>NayaPay QR Code</p>
+            <p>Or use this NayaPay ID:</p>
+            <div className="qr-code">
+              <div className="qr-code-text">
+                <p className="qr-code-name">Munazza Kamal</p>
+                <p className="qr-code-id"><strong>jarralskitchen@nayapay</strong></p>
+              </div>
             </div>
           </div>
         </div>
