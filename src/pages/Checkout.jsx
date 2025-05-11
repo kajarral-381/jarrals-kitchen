@@ -6,7 +6,7 @@ import { useCurrency } from '../context/CurrencyContext';
 import { useToast } from '../components/Toast';
 import { FaShoppingCart, FaLock, FaMapMarkerAlt, FaCheck, FaArrowLeft } from 'react-icons/fa';
 import AddressAutocomplete from '../components/AddressAutocomplete';
-import PaymentMethods from '../components/PaymentMethods';
+import SelectPaymentMethod from '../components/SelectPaymentMethod';
 import OrderTracking from '../components/OrderTracking';
 import { sendOrderNotifications } from '../services/NotificationService';
 import { chocolateCroissant, strawberryCheesecake, sourdoughBread, blueberryMuffin,
@@ -590,7 +590,7 @@ const Checkout = () => {
                     <div className="checkout-step">
                       <h2>Payment Information</h2>
 
-                      <PaymentMethods
+                      <SelectPaymentMethod
                         onPaymentMethodSelect={handlePaymentMethodSelect}
                         totalAmount={total}
                       />
