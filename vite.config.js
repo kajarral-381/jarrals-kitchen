@@ -5,7 +5,7 @@ import { resolve } from 'path'
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
-  base: '/',
+  base: './',
   server: {
     historyApiFallback: true,
   },
@@ -19,7 +19,15 @@ export default defineConfig({
       input: {
         main: resolve(__dirname, 'index.html'),
       },
+      output: {
+        manualChunks: undefined,
+        entryFileNames: 'assets/[name].[hash].js',
+        chunkFileNames: 'assets/[name].[hash].js',
+        assetFileNames: 'assets/[name].[hash].[ext]'
+      }
     },
     outDir: 'dist',
+    assetsDir: 'assets',
+    emptyOutDir: true,
   },
 })
