@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jarral's Kitchen</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f4e5;
+            color: #333;
+        }
+        header {
+            background-color: #8b5e34;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+        }
+        h1 {
+            font-family: 'Pacifico', cursive, Arial, sans-serif;
+            margin: 0;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        .hero {
+            text-align: center;
+            padding: 3rem 1rem;
+            background-color: white;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .hero h2 {
+            color: #8b5e34;
+            margin-top: 0;
+        }
+        .menu-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        .menu-item {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .menu-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        .menu-item-content {
+            padding: 1rem;
+        }
+        .menu-item h3 {
+            color: #8b5e34;
+            margin-top: 0;
+        }
+        .price {
+            font-weight: bold;
+            color: #8b5e34;
+        }
+        footer {
+            background-color: #8b5e34;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+        .contact-info {
+            margin-top: 1rem;
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <h1>Jarral's Kitchen</h1>
+    </header>
+    
+    <div class="container">
+        <div class="hero">
+            <h2>Fresh Baked Goods Made With Love</h2>
+            <p>Welcome to Jarral's Kitchen, where we create delicious treats for every occasion.</p>
+            <p>Our website is currently being updated. Please check back soon for our full menu and online ordering.</p>
+        </div>
+        
+        <h2>Featured Items</h2>
+        <div class="menu-section">
+            <div class="menu-item">
+                <div class="menu-item-content">
+                    <h3>Chocolate Cake</h3>
+                    <p>Rich, moist chocolate cake with a smooth chocolate ganache.</p>
+                    <p class="price">₨ 1200</p>
+                </div>
+            </div>
+            
+            <div class="menu-item">
+                <div class="menu-item-content">
+                    <h3>Vanilla Cupcakes</h3>
+                    <p>Light and fluffy vanilla cupcakes with buttercream frosting.</p>
+                    <p class="price">₨ 150 each</p>
+                </div>
+            </div>
+            
+            <div class="menu-item">
+                <div class="menu-item-content">
+                    <h3>Cinnamon Rolls</h3>
+                    <p>Soft, gooey cinnamon rolls with cream cheese frosting.</p>
+                    <p class="price">₨ 200 each</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <h2>Contact Us</h2>
+        <div class="contact-info">
+            <p>Phone: +923125541410</p>
+            <p>Email: info@jarralskitchen.com</p>
+            <p>Address: Islamabad, Pakistan</p>
+        </div>
+        <p>&copy; 2025 Jarral's Kitchen. All rights reserved.</p>
+    </footer>
+</body>
+</html>

@@ -3,6 +3,9 @@
   "cleanUrls": true,
   "trailingSlash": false,
   "rewrites": [
+    { "source": "/test", "destination": "/test.html" },
+    { "source": "/fallback", "destination": "/fallback.html" },
+    { "source": "/static", "destination": "/index-static.html" },
     { "source": "/(.*)", "destination": "/index.html" }
   ],
   "builds": [
