@@ -11,32 +11,92 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <!-- Ensure fonts are loaded -->
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+      .loading-fallback {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        font-family: 'Poppins', sans-serif;
+        text-align: center;
+        padding: 2rem;
+        background-color: #f8f4e5;
+      }
+      .loading-fallback h1 {
+        color: #8b5e34;
+        font-family: 'Pacifico', cursive;
+        margin-bottom: 1rem;
+      }
+      .loading-fallback button {
+        padding: 0.5rem 1rem;
+        background: #8b5e34;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        margin-top: 1rem;
+        font-family: 'Poppins', sans-serif;
+      }
+      .loading-spinner {
+        border: 4px solid rgba(0, 0, 0, 0.1);
+        border-radius: 50%;
+        border-top: 4px solid #8b5e34;
+        width: 40px;
+        height: 40px;
+        animation: spin 1s linear infinite;
+        margin: 20px auto;
+      }
+      @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+    </style>
   </head>
   <body>
-    <div id="root"></div>
+    <div id="root">
+      <!-- Initial loading state that will be replaced by React -->
+      <div class="loading-fallback">
+        <h1>Jarral's Kitchen</h1>
+        <p>Loading your delicious experience...</p>
+        <div class="loading-spinner"></div>
+      </div>
+    </div>
     <script type="module" src="/src/main.jsx"></script>
     <!-- Fallback script in case of loading issues -->
     <script>
-      // If the app doesn't load within 10 seconds, show an error message
+      // If the app doesn't load within 15 seconds, show an error message
       const timeout = setTimeout(() => {
         const root = document.getElementById('root');
-        if (!root.hasChildNodes()) {
+        const reactRoot = root.querySelector('[data-reactroot]');
+
+        if (!reactRoot) {
+          console.error('React app failed to load within timeout period');
           root.innerHTML = `
-            <div style="text-align: center; padding: 2rem; font-family: sans-serif;">
+            <div class="loading-fallback">
               <h1>Jarral's Kitchen</h1>
-              <p>We're having trouble loading the page. Please try refreshing your browser.</p>
-              <button onclick="window.location.reload()" style="padding: 0.5rem 1rem; background: #8b5e34; color: white; border: none; border-radius: 4px; cursor: pointer;">
+              <p>We're having trouble loading the page.</p>
+              <p>Error: JavaScript bundle could not be loaded.</p>
+              <p>Please check your internet connection and try again.</p>
+              <button onclick="window.location.reload()">
                 Refresh Page
               </button>
             </div>
           `;
         }
-      }, 10000);
+      }, 15000);
 
       // Clear the timeout if the app loads successfully
       window.addEventListener('load', () => {
-        clearTimeout(timeout);
+        console.log('Window loaded event fired');
       });
+
+      // Log any script loading errors
+      window.addEventListener('error', function(e) {
+        if (e.target.tagName === 'SCRIPT') {
+          console.error('Script loading error:', e);
+        }
+      }, true);
     </script>
   </body>
 </html>
