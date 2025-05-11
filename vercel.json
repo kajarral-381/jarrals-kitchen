@@ -2,14 +2,16 @@
   "version": 2,
   "cleanUrls": true,
   "trailingSlash": false,
-  "rewrites": [
-    { "source": "/test", "destination": "/test.html" },
-    { "source": "/fallback", "destination": "/fallback.html" },
-    { "source": "/static", "destination": "/index-static.html" },
-    { "source": "/(.*)", "destination": "/index.html" }
-  ],
   "builds": [
-    { "src": "package.json", "use": "@vercel/static-build", "config": { "distDir": "dist" } }
+    { "src": "package.json", "use": "@vercel/static-build", "config": { "distDir": "dist" } },
+    { "src": "api/index.js", "use": "@vercel/node" }
+  ],
+  "routes": [
+    { "src": "/test", "dest": "/test.html" },
+    { "src": "/fallback", "dest": "/fallback.html" },
+    { "src": "/static", "dest": "/index-static.html" },
+    { "src": "/api/(.*)", "dest": "/api/index.js" },
+    { "src": "/(.*)", "dest": "/api/index.js" }
   ],
   "headers": [
     {
