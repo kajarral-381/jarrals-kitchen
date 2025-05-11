@@ -1,102 +1,141 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Jarral's Kitchen - Fresh baked goods made with love. Order online for pickup or delivery." />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jarral's Kitchen</title>
-    <!-- Preconnect to Google Fonts -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <!-- Ensure fonts are loaded -->
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-      .loading-fallback {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        min-height: 100vh;
-        font-family: 'Poppins', sans-serif;
-        text-align: center;
-        padding: 2rem;
-        background-color: #f8f4e5;
-      }
-      .loading-fallback h1 {
-        color: #8b5e34;
-        font-family: 'Pacifico', cursive;
-        margin-bottom: 1rem;
-      }
-      .loading-fallback button {
-        padding: 0.5rem 1rem;
-        background: #8b5e34;
-        color: white;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-        margin-top: 1rem;
-        font-family: 'Poppins', sans-serif;
-      }
-      .loading-spinner {
-        border: 4px solid rgba(0, 0, 0, 0.1);
-        border-radius: 50%;
-        border-top: 4px solid #8b5e34;
-        width: 40px;
-        height: 40px;
-        animation: spin 1s linear infinite;
-        margin: 20px auto;
-      }
-      @keyframes spin {
-        0% { transform: rotate(0deg); }
-        100% { transform: rotate(360deg); }
-      }
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f4e5;
+            color: #333;
+        }
+        header {
+            background-color: #8b5e34;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+        }
+        h1 {
+            font-family: 'Pacifico', cursive, Arial, sans-serif;
+            margin: 0;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        .hero {
+            text-align: center;
+            padding: 3rem 1rem;
+            background-color: white;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .hero h2 {
+            color: #8b5e34;
+            margin-top: 0;
+        }
+        .menu-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        .menu-item {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .menu-item-content {
+            padding: 1rem;
+        }
+        .menu-item h3 {
+            color: #8b5e34;
+            margin-top: 0;
+        }
+        .price {
+            font-weight: bold;
+            color: #8b5e34;
+        }
+        footer {
+            background-color: #8b5e34;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+        .contact-info {
+            margin-top: 1rem;
+        }
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #8b5e34;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            margin-top: 20px;
+            font-weight: 500;
+        }
     </style>
-  </head>
-  <body>
-    <div id="root">
-      <!-- Initial loading state that will be replaced by React -->
-      <div class="loading-fallback">
+</head>
+<body>
+    <header>
         <h1>Jarral's Kitchen</h1>
-        <p>Loading your delicious experience...</p>
-        <div class="loading-spinner"></div>
-      </div>
-    </div>
-    <script type="module" src="/src/main.jsx"></script>
-    <!-- Fallback script in case of loading issues -->
-    <script>
-      // If the app doesn't load within 15 seconds, show an error message
-      const timeout = setTimeout(() => {
-        const root = document.getElementById('root');
-        const reactRoot = root.querySelector('[data-reactroot]');
+    </header>
 
-        if (!reactRoot) {
-          console.error('React app failed to load within timeout period');
-          root.innerHTML = `
-            <div class="loading-fallback">
-              <h1>Jarral's Kitchen</h1>
-              <p>We're having trouble loading the page.</p>
-              <p>Error: JavaScript bundle could not be loaded.</p>
-              <p>Please check your internet connection and try again.</p>
-              <button onclick="window.location.reload()">
-                Refresh Page
-              </button>
+    <div class="container">
+        <div class="hero">
+            <h2>Fresh Baked Goods Made With Love</h2>
+            <p>Welcome to Jarral's Kitchen, where we create delicious treats for every occasion.</p>
+            <p>Our website is currently being updated. Please check back soon for our full menu and online ordering.</p>
+            <a href="https://www.instagram.com/jarralskitchen" class="button">Follow Us on Instagram</a>
+        </div>
+
+        <h2>Featured Items</h2>
+        <div class="menu-section">
+            <div class="menu-item">
+                <div class="menu-item-content">
+                    <h3>Chocolate Cake</h3>
+                    <p>Rich, moist chocolate cake with a smooth chocolate ganache.</p>
+                    <p class="price">₨ 1200</p>
+                </div>
             </div>
-          `;
-        }
-      }, 15000);
 
-      // Clear the timeout if the app loads successfully
-      window.addEventListener('load', () => {
-        console.log('Window loaded event fired');
-      });
+            <div class="menu-item">
+                <div class="menu-item-content">
+                    <h3>Vanilla Cupcakes</h3>
+                    <p>Light and fluffy vanilla cupcakes with buttercream frosting.</p>
+                    <p class="price">₨ 150 each</p>
+                </div>
+            </div>
 
-      // Log any script loading errors
-      window.addEventListener('error', function(e) {
-        if (e.target.tagName === 'SCRIPT') {
-          console.error('Script loading error:', e);
-        }
-      }, true);
-    </script>
-  </body>
+            <div class="menu-item">
+                <div class="menu-item-content">
+                    <h3>Cinnamon Rolls</h3>
+                    <p>Soft, gooey cinnamon rolls with cream cheese frosting.</p>
+                    <p class="price">₨ 200 each</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <h2>Contact Us</h2>
+        <div class="contact-info">
+            <p>Phone: +923125541410</p>
+            <p>Email: info@jarralskitchen.com</p>
+            <p>Address: Islamabad, Pakistan</p>
+        </div>
+        <p>&copy; 2025 Jarral's Kitchen. All rights reserved.</p>
+    </footer>
+</body>
 </html>
