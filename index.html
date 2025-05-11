@@ -13,7 +13,7 @@
     </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
@@ -24,12 +24,33 @@
             --light-gray: #f7f7f7;
             --border-color: #e5e5e5;
             --spacing-unit: 8px;
+            --header-height: 80px;
+        }
+
+        /* Construction Banner */
+        .construction-banner {
+            background-color: #ffcc00;
+            color: #333;
+            text-align: center;
+            padding: 10px;
+            font-weight: bold;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
         }
 
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: calc(var(--header-height) + 40px); /* Accounts for fixed header and construction banner */
         }
 
         body {
@@ -46,8 +67,11 @@
             background-color: white;
             box-shadow: 0 2px 10px rgba(0,0,0,0.05);
             position: sticky;
-            top: 0;
+            top: 40px; /* Account for construction banner */
             z-index: 100;
+            height: var(--header-height);
+            display: flex;
+            align-items: center;
         }
 
         .header-container {
@@ -55,14 +79,15 @@
             justify-content: space-between;
             align-items: center;
             max-width: 1200px;
+            width: 100%;
             margin: 0 auto;
-            padding: 15px 20px;
+            padding: 0 20px;
         }
 
         .logo {
             font-family: 'Playfair Display', serif;
             font-size: 1.8rem;
-            font-weight: 500;
+            font-weight: 600;
             color: var(--primary-color);
             text-decoration: none;
         }
@@ -80,10 +105,121 @@
             text-transform: uppercase;
             letter-spacing: 0.5px;
             transition: color 0.3s ease;
+            position: relative;
+            padding: 5px 0;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent-color);
+            transition: width 0.3s ease;
         }
 
         .nav-links a:hover {
             color: var(--accent-color);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .phone-link {
+            text-decoration: none;
+            color: var(--primary-color);
+            font-size: 0.9rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .search-icon {
+            color: var(--primary-color);
+            font-size: 1.1rem;
+        }
+
+        .mobile-menu-toggle {
+            display: none;
+            cursor: pointer;
+            font-size: 1.5rem;
+            color: var(--primary-color);
+        }
+
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            left: -100%;
+            width: 80%;
+            max-width: 320px;
+            height: 100vh;
+            background-color: white;
+            z-index: 200;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            transition: left 0.3s ease;
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        .mobile-menu.active {
+            left: 0;
+        }
+
+        .mobile-menu-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .mobile-menu-close {
+            cursor: pointer;
+            font-size: 1.5rem;
+            color: var(--primary-color);
+        }
+
+        .mobile-nav-links {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .mobile-nav-links a {
+            text-decoration: none;
+            color: var(--primary-color);
+            font-size: 1rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            padding: 10px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .mobile-contact {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .mobile-contact a {
+            text-decoration: none;
+            color: var(--primary-color);
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
         .contact-bar {
@@ -92,6 +228,7 @@
             padding: 8px 0;
             font-size: 0.8rem;
             text-align: center;
+            margin-top: 40px; /* Account for construction banner */
         }
 
         .contact-bar a {
@@ -149,45 +286,113 @@
             padding: 60px 20px;
         }
 
-        .hero {
-            background-color: var(--light-gray);
-            background-image: url('https://images.unsplash.com/photo-1486427944299-d1955d23e34d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+        .hero-slider {
+            position: relative;
+            height: 600px;
+            overflow: hidden;
+        }
+
+        .hero-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            opacity: 0;
+            transition: opacity 1s ease;
+            z-index: 1;
+        }
+
+        .hero-slide.active {
+            opacity: 1;
+            z-index: 2;
+        }
+
+        .hero-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 0 80px;
+            background-color: var(--background-color);
+            color: var(--primary-color);
+            text-align: left;
+        }
+
+        .hero-image {
+            flex: 1;
             background-size: cover;
             background-position: center;
             position: relative;
-            padding: 120px 0;
-            text-align: center;
-            color: white;
         }
 
-        .hero::before {
+        .hero-image::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
             bottom: 0;
-            background-color: rgba(0, 0, 0, 0.5);
-            z-index: 1;
+            background-color: rgba(0, 0, 0, 0.2);
         }
 
-        .hero-content {
-            position: relative;
-            z-index: 2;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        .hero h1 {
-            color: white;
+        .hero-content h1 {
             font-size: 3rem;
             margin-bottom: 20px;
+            color: var(--primary-color);
+            max-width: 500px;
         }
 
-        .hero p {
+        .hero-content p {
             font-size: 1.1rem;
             margin-bottom: 30px;
+            max-width: 500px;
+        }
+
+        .hero-controls {
+            position: absolute;
+            bottom: 30px;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            z-index: 3;
+        }
+
+        .hero-prev, .hero-next {
+            background: none;
+            border: none;
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 10px;
+            transition: color 0.3s ease;
+        }
+
+        .hero-prev:hover, .hero-next:hover {
+            color: var(--accent-color);
+        }
+
+        .hero-dots {
+            display: flex;
+            gap: 10px;
+        }
+
+        .hero-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: rgba(0, 0, 0, 0.3);
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .hero-dot.active {
+            background-color: var(--accent-color);
         }
 
         .section-title {
@@ -197,8 +402,8 @@
 
         .categories {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 20px;
             margin-bottom: 60px;
         }
 
@@ -261,6 +466,28 @@
             z-index: 1;
         }
 
+        .featured-details {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 20px 0;
+            padding: 15px 0;
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .featured-serving-info {
+            font-size: 0.9rem;
+            color: #777;
+            font-style: italic;
+        }
+
+        .featured-price {
+            font-weight: 600;
+            color: var(--accent-color);
+            font-size: 1.3rem;
+        }
+
         .featured-image {
             flex: 1;
             padding: 60px;
@@ -307,11 +534,24 @@
             padding: 20px;
         }
 
+        .menu-item-details {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 15px;
+        }
+
+        .serving-info {
+            font-size: 0.85rem;
+            color: #777;
+            font-style: italic;
+        }
+
         .price {
             font-weight: 600;
             color: var(--accent-color);
-            margin-top: 10px;
             font-size: 1.1rem;
+            margin: 0;
         }
 
         .about-section {
@@ -320,9 +560,19 @@
             text-align: center;
         }
 
-        .about-content {
+        .about-content, .content-section {
             max-width: 800px;
             margin: 0 auto;
+        }
+
+        .content-section {
+            text-align: left;
+            padding: 20px;
+        }
+
+        .content-section h3 {
+            margin-top: 30px;
+            color: var(--primary-color);
         }
 
         .button {
@@ -435,12 +685,35 @@
                 display: none;
             }
 
+            .header-right .phone-link {
+                display: none;
+            }
+
+            .mobile-menu-toggle {
+                display: block;
+            }
+
             .featured-product {
                 flex-direction: column;
             }
 
             .featured-content, .featured-image {
                 padding: 40px;
+            }
+
+            .overlay {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0,0,0,0.5);
+                z-index: 150;
+            }
+
+            .overlay.active {
+                display: block;
             }
         }
 
@@ -449,12 +722,31 @@
                 padding: 40px 20px;
             }
 
-            .hero {
-                padding: 80px 0;
+            .hero-slider {
+                height: 500px;
             }
 
-            .hero h1 {
-                font-size: 2.5rem;
+            .hero-slide {
+                flex-direction: column-reverse;
+            }
+
+            .hero-content {
+                padding: 30px;
+                text-align: center;
+                align-items: center;
+            }
+
+            .hero-content h1 {
+                font-size: 2.2rem;
+                text-align: center;
+            }
+
+            .hero-content p {
+                text-align: center;
+            }
+
+            .hero-image {
+                height: 250px;
             }
 
             .categories {
@@ -468,6 +760,10 @@
     </style>
 </head>
 <body>
+    <div class="construction-banner">
+        🚧 WEBSITE UNDER CONSTRUCTION 🚧 We're working on making this site even better for you!
+    </div>
+
     <div class="contact-bar">
         Delivering in Islamabad. <a href="tel:+923125541410">+92 312 554 1410</a>
     </div>
@@ -476,19 +772,85 @@
         <div class="header-container">
             <a href="/" class="logo">Jarral's Kitchen</a>
             <nav class="nav-links">
+                <a href="#pakistani">Pakistani</a>
+                <a href="#chinese">Chinese</a>
+                <a href="#italian">Italian</a>
                 <a href="#cakes">Cakes</a>
-                <a href="#pastries">Pastries</a>
-                <a href="#bread">Bread</a>
+                <a href="#cupcakes">Cupcakes</a>
+                <a href="#muffins">Muffins</a>
+                <a href="#brownies">Brownies</a>
+                <a href="#desserts">Desserts</a>
                 <a href="#contact">Contact</a>
             </nav>
+            <div class="header-right">
+                <a href="tel:+923125541410" class="phone-link"><i class="fas fa-phone"></i> +92 312 554 1410</a>
+                <a href="#" class="search-icon"><i class="fas fa-search"></i></a>
+            </div>
+            <div class="mobile-menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
         </div>
     </header>
 
-    <div class="hero">
-        <div class="hero-content">
-            <h1>Fresh Baked Goods Made With Love</h1>
-            <p>Welcome to Jarral's Kitchen, where we create delicious treats for every occasion.</p>
-            <a href="#featured" class="button">Explore Our Menu</a>
+    <div class="mobile-menu">
+        <div class="mobile-menu-header">
+            <a href="/" class="logo">Jarral's Kitchen</a>
+            <div class="mobile-menu-close">
+                <i class="fas fa-times"></i>
+            </div>
+        </div>
+        <nav class="mobile-nav-links">
+            <a href="#pakistani">Pakistani</a>
+            <a href="#chinese">Chinese</a>
+            <a href="#italian">Italian</a>
+            <a href="#cakes">Cakes</a>
+            <a href="#cupcakes">Cupcakes</a>
+            <a href="#muffins">Muffins</a>
+            <a href="#brownies">Brownies</a>
+            <a href="#desserts">Desserts</a>
+            <a href="#contact">Contact</a>
+        </nav>
+        <div class="mobile-contact">
+            <a href="tel:+923125541410"><i class="fas fa-phone"></i> +92 312 554 1410</a>
+            <a href="mailto:info@jarralskitchen.com"><i class="fas fa-envelope"></i> info@jarralskitchen.com</a>
+        </div>
+    </div>
+
+    <div class="overlay"></div>
+
+    <div class="hero-slider">
+        <div class="hero-slide active">
+            <div class="hero-content">
+                <h1>Fresh Baked Goods Made With Love</h1>
+                <p>Welcome to Jarral's Kitchen, where we create delicious treats for every occasion.</p>
+                <a href="#featured" class="button">Explore Our Menu</a>
+            </div>
+            <div class="hero-image" style="background-image: url('https://images.unsplash.com/photo-1486427944299-d1955d23e34d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');"></div>
+        </div>
+        <div class="hero-slide">
+            <div class="hero-content">
+                <h1>Artisan Breads & Pastries</h1>
+                <p>Handcrafted with premium ingredients for exceptional taste and quality.</p>
+                <a href="#bread" class="button">View Collection</a>
+            </div>
+            <div class="hero-image" style="background-image: url('https://images.unsplash.com/photo-1509440159596-0249088772ff?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2072&q=80');"></div>
+        </div>
+        <div class="hero-slide">
+            <div class="hero-content">
+                <h1>Special Occasion Cakes</h1>
+                <p>Celebrate your special moments with our custom-designed cakes.</p>
+                <a href="#cakes" class="button">Order Now</a>
+            </div>
+            <div class="hero-image" style="background-image: url('https://images.unsplash.com/photo-1578985545062-69928b1d9587?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2089&q=80');"></div>
+        </div>
+        <div class="hero-controls">
+            <button class="hero-prev"><i class="fas fa-chevron-left"></i></button>
+            <div class="hero-dots">
+                <span class="hero-dot active" data-slide="0"></span>
+                <span class="hero-dot" data-slide="1"></span>
+                <span class="hero-dot" data-slide="2"></span>
+            </div>
+            <button class="hero-next"><i class="fas fa-chevron-right"></i></button>
         </div>
     </div>
 
@@ -499,23 +861,43 @@
 
         <div class="categories">
             <div class="category">
-                <img src="https://images.unsplash.com/photo-1608198093002-ad4e005484ec?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=512&h=512&q=80" alt="Cakes">
+                <img src="https://images.unsplash.com/photo-1631292784640-2b24be784d1c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=512&h=512&q=80" alt="Pakistani">
+                <a href="#pakistani">Pakistani</a>
+            </div>
+
+            <div class="category">
+                <img src="https://images.unsplash.com/photo-1563245372-f21724e3856d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=512&h=512&q=80" alt="Chinese">
+                <a href="#chinese">Chinese</a>
+            </div>
+
+            <div class="category">
+                <img src="https://images.unsplash.com/photo-1551183053-bf91a1d81141?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=512&h=512&q=80" alt="Italian">
+                <a href="#italian">Italian</a>
+            </div>
+
+            <div class="category">
+                <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=512&h=512&q=80" alt="Cakes">
                 <a href="#cakes">Cakes</a>
             </div>
 
             <div class="category">
-                <img src="https://images.unsplash.com/photo-1603532648955-039310d9ed75?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=512&h=512&q=80" alt="Pastries">
-                <a href="#pastries">Pastries</a>
-            </div>
-
-            <div class="category">
-                <img src="https://images.unsplash.com/photo-1549931319-a545dcf3bc7c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=512&h=512&q=80" alt="Bread">
-                <a href="#bread">Bread</a>
-            </div>
-
-            <div class="category">
-                <img src="https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=512&h=512&q=80" alt="Cupcakes">
+                <img src="https://images.unsplash.com/photo-1614707267537-b85aaf00c4b7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=512&h=512&q=80" alt="Cupcakes">
                 <a href="#cupcakes">Cupcakes</a>
+            </div>
+
+            <div class="category">
+                <img src="https://images.unsplash.com/photo-1606188074044-fcd750f6996a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=512&h=512&q=80" alt="Muffins">
+                <a href="#muffins">Muffins</a>
+            </div>
+
+            <div class="category">
+                <img src="https://images.unsplash.com/photo-1606313564200-e75d5e30476c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=512&h=512&q=80" alt="Brownies">
+                <a href="#brownies">Brownies</a>
+            </div>
+
+            <div class="category">
+                <img src="https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=512&h=512&q=80" alt="Desserts">
+                <a href="#desserts">Desserts</a>
             </div>
         </div>
     </div>
@@ -524,10 +906,450 @@
         <div class="featured-content">
             <h2>Chocolate Fudge Cake</h2>
             <p>Our iconic cake, loved throughout generations. Perfectly moist sponge, rich and creamy. Have it with tea or coffee for a perfect afternoon.</p>
-            <a href="#" class="button">Order Now</a>
+            <div class="featured-details">
+                <span class="featured-serving-info">1 kg (serves 8-10)</span>
+                <span class="featured-price">₨ 1200</span>
+            </div>
+            <a href="#contact" class="button">Order Now</a>
         </div>
         <div class="featured-image">
             <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=580&h=580&q=80" alt="Chocolate Fudge Cake">
+        </div>
+    </div>
+
+    <div class="container" id="cakes">
+        <div class="section-title">
+            <h2>Cakes</h2>
+        </div>
+
+        <div class="menu-section">
+            <div class="menu-item">
+                <img src="https://images.unsplash.com/photo-1533134242443-d4fd215305ad?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&h=300&q=80" alt="Strawberry Cheese Cake">
+                <div class="menu-item-content">
+                    <h3>Strawberry Cheese Cake</h3>
+                    <p>Creamy cheesecake with a graham cracker crust topped with fresh strawberry compote.</p>
+                    <div class="menu-item-details">
+                        <span class="serving-info">1 kg (serves 4) - Preparation: 60 min</span>
+                        <p class="price">₨ 1000</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-item">
+                <img src="https://images.unsplash.com/photo-1611329695518-1763fc1fac1d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&h=300&q=80" alt="Blueberry Cheese Cake">
+                <div class="menu-item-content">
+                    <h3>Blueberry Cheese Cake</h3>
+                    <p>Smooth and creamy cheesecake topped with a sweet blueberry compote and fresh berries.</p>
+                    <div class="menu-item-details">
+                        <span class="serving-info">1 kg (serves 4) - Preparation: 60 min</span>
+                        <p class="price">₨ 1000</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-item">
+                <img src="https://images.unsplash.com/photo-1602351447937-745cb720612f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&h=300&q=80" alt="Mango Cheese Cake">
+                <div class="menu-item-content">
+                    <h3>Mango Cheese Cake</h3>
+                    <p>Tropical cheesecake infused with fresh mango puree and topped with mango slices.</p>
+                    <div class="menu-item-details">
+                        <span class="serving-info">1 kg (serves 4) - Preparation: 60 min</span>
+                        <p class="price">₨ 1000</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-item">
+                <img src="https://images.unsplash.com/photo-1571115177098-24ec42ed204d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&h=300&q=80" alt="Black Forest Cake">
+                <div class="menu-item-content">
+                    <h3>Black Forest Cake</h3>
+                    <p>Classic chocolate cake layered with whipped cream and cherries, topped with chocolate shavings.</p>
+                    <div class="menu-item-details">
+                        <span class="serving-info">1 kg (serves 4) - Preparation: 60 min</span>
+                        <p class="price">₨ 1000</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-item">
+                <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&h=300&q=80" alt="Chocolate Cake">
+                <div class="menu-item-content">
+                    <h3>Chocolate Cake</h3>
+                    <p>Rich, moist chocolate cake with a smooth chocolate ganache frosting.</p>
+                    <div class="menu-item-details">
+                        <span class="serving-info">1 kg (serves 4) - Preparation: 60 min</span>
+                        <p class="price">₨ 1000</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-item">
+                <img src="https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&h=300&q=80" alt="Coffee Cake">
+                <div class="menu-item-content">
+                    <h3>Coffee Cake</h3>
+                    <p>Moist coffee-infused cake with a light coffee buttercream frosting and chocolate shavings.</p>
+                    <div class="menu-item-details">
+                        <span class="serving-info">1 kg (serves 4) - Preparation: 60 min</span>
+                        <p class="price">₨ 1000</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-item">
+                <img src="https://images.unsplash.com/photo-1557925923-cd4648e211a0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&h=300&q=80" alt="Cookie & Cream Cake">
+                <div class="menu-item-content">
+                    <h3>Cookie & Cream Cake</h3>
+                    <p>Vanilla cake with layers of crushed cookies and cream frosting, topped with cookie pieces.</p>
+                    <div class="menu-item-details">
+                        <span class="serving-info">1 kg (serves 4) - Preparation: 60 min</span>
+                        <p class="price">₨ 1000</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-item">
+                <img src="https://images.unsplash.com/photo-1586788224331-947f68671cf1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&h=300&q=80" alt="Red Velvet Cake">
+                <div class="menu-item-content">
+                    <h3>Red Velvet Cake</h3>
+                    <p>Velvety smooth red cake with a hint of cocoa, layered with cream cheese frosting.</p>
+                    <div class="menu-item-details">
+                        <span class="serving-info">1 kg (serves 4) - Preparation: 60 min</span>
+                        <p class="price">₨ 1000</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container" id="muffins">
+        <div class="section-title">
+            <h2>Muffins</h2>
+        </div>
+
+        <div class="menu-section">
+            <div class="menu-item">
+                <img src="https://images.unsplash.com/photo-1606188074044-fcd750f6996a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&h=300&q=80" alt="Banana Walnut Muffin">
+                <div class="menu-item-content">
+                    <h3>Banana Walnut Muffin</h3>
+                    <p>Moist banana muffin with crunchy walnuts and a hint of cinnamon.</p>
+                    <div class="menu-item-details">
+                        <span class="serving-info">1 kg (serves 4) - Preparation: 60 min</span>
+                        <p class="price">₨ 1000</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-item">
+                <img src="https://images.unsplash.com/photo-1607958996333-41aef7caefaa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&h=300&q=80" alt="Chocolate Chip Muffin">
+                <div class="menu-item-content">
+                    <h3>Chocolate Chip Muffin</h3>
+                    <p>Classic vanilla muffin loaded with chocolate chips throughout.</p>
+                    <div class="menu-item-details">
+                        <span class="serving-info">1 kg (serves 4) - Preparation: 60 min</span>
+                        <p class="price">₨ 1000</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-item">
+                <img src="https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&h=300&q=80" alt="Coffee Crumb Muffin">
+                <div class="menu-item-content">
+                    <h3>Coffee Crumb Muffin</h3>
+                    <p>Coffee-flavored muffin topped with a sweet crumb topping.</p>
+                    <div class="menu-item-details">
+                        <span class="serving-info">1 kg (serves 4) - Preparation: 60 min</span>
+                        <p class="price">₨ 1000</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-item">
+                <img src="https://images.unsplash.com/photo-1587668178277-295251f900ce?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&h=300&q=80" alt="Rainbow Muffin">
+                <div class="menu-item-content">
+                    <h3>Rainbow Muffin</h3>
+                    <p>Colorful vanilla muffin with rainbow sprinkles baked throughout.</p>
+                    <div class="menu-item-details">
+                        <span class="serving-info">1 kg (serves 4) - Preparation: 60 min</span>
+                        <p class="price">₨ 1000</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-item">
+                <img src="https://images.unsplash.com/photo-1607958996333-41aef7caefaa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&h=300&q=80" alt="Ultimate Double Chocolate Muffin">
+                <div class="menu-item-content">
+                    <h3>Ultimate Double Chocolate Muffin</h3>
+                    <p>Rich chocolate muffin loaded with chocolate chips for the ultimate chocolate lover.</p>
+                    <div class="menu-item-details">
+                        <span class="serving-info">1 kg (serves 4) - Preparation: 60 min</span>
+                        <p class="price">₨ 1000</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-item">
+                <img src="https://images.unsplash.com/photo-1606188074044-fcd750f6996a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&h=300&q=80" alt="Zebra Muffin">
+                <div class="menu-item-content">
+                    <h3>Zebra Muffin</h3>
+                    <p>Striking muffin with alternating layers of vanilla and chocolate batter.</p>
+                    <div class="menu-item-details">
+                        <span class="serving-info">1 kg (serves 4) - Preparation: 60 min</span>
+                        <p class="price">₨ 1000</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container" id="brownies">
+        <div class="section-title">
+            <h2>Brownies</h2>
+        </div>
+
+        <div class="menu-section">
+            <div class="menu-item">
+                <img src="https://images.unsplash.com/photo-1606313564200-e75d5e30476c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&h=300&q=80" alt="Chocolate Chunk Brownie">
+                <div class="menu-item-content">
+                    <h3>Chocolate Chunk Brownie</h3>
+                    <p>Rich, fudgy brownie with chunks of chocolate throughout for extra indulgence.</p>
+                    <div class="menu-item-details">
+                        <span class="serving-info">1 kg (serves 4) - Preparation: 60 min</span>
+                        <p class="price">₨ 1000</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-item">
+                <img src="https://images.unsplash.com/photo-1606313564200-e75d5e30476c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&h=300&q=80" alt="Chocolate Fudge Brownie">
+                <div class="menu-item-content">
+                    <h3>Chocolate Fudge Brownie</h3>
+                    <p>Dense, fudgy brownie with a rich chocolate flavor and smooth texture.</p>
+                    <div class="menu-item-details">
+                        <span class="serving-info">1 kg (serves 4) - Preparation: 60 min</span>
+                        <p class="price">₨ 1000</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-item">
+                <img src="https://images.unsplash.com/photo-1606313564200-e75d5e30476c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&h=300&q=80" alt="Nutella Brownie">
+                <div class="menu-item-content">
+                    <h3>Nutella Brownie</h3>
+                    <p>Decadent chocolate brownie swirled with Nutella and topped with hazelnuts.</p>
+                    <div class="menu-item-details">
+                        <span class="serving-info">1 kg (serves 4) - Preparation: 60 min</span>
+                        <p class="price">₨ 1000</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-item">
+                <img src="https://images.unsplash.com/photo-1606313564200-e75d5e30476c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&h=300&q=80" alt="Peanut Butter Brownie">
+                <div class="menu-item-content">
+                    <h3>Peanut Butter Brownie</h3>
+                    <p>Fudgy chocolate brownie with peanut butter swirls throughout.</p>
+                    <div class="menu-item-details">
+                        <span class="serving-info">1 kg (serves 4) - Preparation: 60 min</span>
+                        <p class="price">₨ 1000</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container" id="cupcakes">
+        <div class="section-title">
+            <h2>Cupcakes</h2>
+        </div>
+
+        <div class="menu-section">
+            <div class="menu-item">
+                <img src="https://images.unsplash.com/photo-1576618148400-f54bed99fcfd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&h=300&q=80" alt="Banoffee Cupcake">
+                <div class="menu-item-content">
+                    <h3>Banoffee Cupcake</h3>
+                    <p>Banana-flavored cupcake with toffee filling and caramel buttercream frosting.</p>
+                    <div class="menu-item-details">
+                        <span class="serving-info">1 kg (serves 4) - Preparation: 60 min</span>
+                        <p class="price">₨ 1000</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-item">
+                <img src="https://images.unsplash.com/photo-1599785209707-a456fc1337bb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&h=300&q=80" alt="Salted Caramel Cupcake">
+                <div class="menu-item-content">
+                    <h3>Salted Caramel Cupcake</h3>
+                    <p>Vanilla cupcake with salted caramel filling and caramel buttercream frosting.</p>
+                    <div class="menu-item-details">
+                        <span class="serving-info">1 kg (serves 4) - Preparation: 60 min</span>
+                        <p class="price">₨ 1000</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-item">
+                <img src="https://images.unsplash.com/photo-1603532648955-039310d9ed75?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&h=300&q=80" alt="Lotus Cupcake">
+                <div class="menu-item-content">
+                    <h3>Lotus Cupcake</h3>
+                    <p>Spiced cupcake with Lotus Biscoff spread filling and Biscoff buttercream frosting.</p>
+                    <div class="menu-item-details">
+                        <span class="serving-info">1 kg (serves 4) - Preparation: 60 min</span>
+                        <p class="price">₨ 1000</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-item">
+                <img src="https://images.unsplash.com/photo-1614707267537-b85aaf00c4b7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&h=300&q=80" alt="Chocolate Cupcake">
+                <div class="menu-item-content">
+                    <h3>Chocolate Cupcake</h3>
+                    <p>Moist chocolate cupcake topped with rich chocolate buttercream frosting and sprinkles.</p>
+                    <div class="menu-item-details">
+                        <span class="serving-info">1 kg (serves 4) - Preparation: 60 min</span>
+                        <p class="price">₨ 1000</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-item">
+                <img src="https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&h=300&q=80" alt="Cookie & Cream Cupcake">
+                <div class="menu-item-content">
+                    <h3>Cookie & Cream Cupcake</h3>
+                    <p>Vanilla cupcake with crushed cookies mixed in, topped with cookies and cream frosting.</p>
+                    <div class="menu-item-details">
+                        <span class="serving-info">1 kg (serves 4) - Preparation: 60 min</span>
+                        <p class="price">₨ 1000</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-item">
+                <img src="https://images.unsplash.com/photo-1587668178277-295251f900ce?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&h=300&q=80" alt="Funfetti Cupcake">
+                <div class="menu-item-content">
+                    <h3>Funfetti Cupcake</h3>
+                    <p>Vanilla cupcake with colorful sprinkles baked in, topped with vanilla buttercream and more sprinkles.</p>
+                    <div class="menu-item-details">
+                        <span class="serving-info">1 kg (serves 4) - Preparation: 60 min</span>
+                        <p class="price">₨ 1000</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-item">
+                <img src="https://images.unsplash.com/photo-1599785209707-a456fc1337bb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&h=300&q=80" alt="Red Velvet Cupcake">
+                <div class="menu-item-content">
+                    <h3>Red Velvet Cupcake</h3>
+                    <p>Classic red velvet cupcake with a hint of cocoa, topped with cream cheese frosting.</p>
+                    <div class="menu-item-details">
+                        <span class="serving-info">1 kg (serves 4) - Preparation: 60 min</span>
+                        <p class="price">₨ 1000</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-item">
+                <img src="https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&h=300&q=80" alt="Vanilla Cupcake">
+                <div class="menu-item-content">
+                    <h3>Vanilla Cupcake</h3>
+                    <p>Light and fluffy vanilla cupcake topped with smooth vanilla buttercream frosting.</p>
+                    <div class="menu-item-details">
+                        <span class="serving-info">1 kg (serves 4) - Preparation: 60 min</span>
+                        <p class="price">₨ 1000</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container" id="desserts">
+        <div class="section-title">
+            <h2>Desserts</h2>
+        </div>
+
+        <div class="menu-section">
+            <div class="menu-item">
+                <img src="https://images.unsplash.com/photo-1576618148400-f54bed99fcfd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&h=300&q=80" alt="Banoffee Pie">
+                <div class="menu-item-content">
+                    <h3>Banoffee Pie</h3>
+                    <p>Buttery biscuit base topped with toffee, sliced bananas, and whipped cream.</p>
+                    <div class="menu-item-details">
+                        <span class="serving-info">1 kg (serves 4) - Preparation: 60 min</span>
+                        <p class="price">₨ 1000</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-item">
+                <img src="https://images.unsplash.com/photo-1509365465985-25d11c17e812?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&h=300&q=80" alt="Cinnamon Roll">
+                <div class="menu-item-content">
+                    <h3>Cinnamon Roll</h3>
+                    <p>Soft, gooey cinnamon rolls with cream cheese frosting.</p>
+                    <div class="menu-item-details">
+                        <span class="serving-info">1 kg (serves 4) - Preparation: 60 min</span>
+                        <p class="price">₨ 1000</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-item">
+                <img src="https://images.unsplash.com/photo-1551024506-0bccd828d307?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&h=300&q=80" alt="Sheer Khurma">
+                <div class="menu-item-content">
+                    <h3>Sheer Khurma</h3>
+                    <p>Vermicelli pudding with dates, nuts, and milk - a festive Eid specialty.</p>
+                    <div class="menu-item-details">
+                        <span class="serving-info">1 kg (serves 4) - Preparation: 60 min</span>
+                        <p class="price">₨ 1000</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-item">
+                <img src="https://images.unsplash.com/photo-1627308595171-d1b5d95d051d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&h=300&q=80" alt="Ras Malai">
+                <div class="menu-item-content">
+                    <h3>Ras Malai</h3>
+                    <p>Soft cheese patties soaked in sweetened, thickened milk flavored with cardamom.</p>
+                    <div class="menu-item-details">
+                        <span class="serving-info">1 kg (serves 4) - Preparation: 60 min</span>
+                        <p class="price">₨ 1000</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-item">
+                <img src="https://images.unsplash.com/photo-1488477181946-6428a0291777?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&h=300&q=80" alt="Fruit Trifle">
+                <div class="menu-item-content">
+                    <h3>Fruit Trifle</h3>
+                    <p>Layers of cake, custard, jelly, fresh fruits, and whipped cream in a glass.</p>
+                    <div class="menu-item-details">
+                        <span class="serving-info">1 kg (serves 4) - Preparation: 60 min</span>
+                        <p class="price">₨ 1000</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-item">
+                <img src="https://images.unsplash.com/photo-1563805042-7684c019e1cb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&h=300&q=80" alt="Mango Mousse">
+                <div class="menu-item-content">
+                    <h3>Mango Mousse</h3>
+                    <p>Light and airy mango-flavored dessert with the perfect balance of sweetness.</p>
+                    <div class="menu-item-details">
+                        <span class="serving-info">1 kg (serves 4) - Preparation: 60 min</span>
+                        <p class="price">₨ 1000</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-item">
+                <img src="https://images.unsplash.com/photo-1528975604071-b4dc52a2d18c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&h=300&q=80" alt="Kheer">
+                <div class="menu-item-content">
+                    <h3>Kheer</h3>
+                    <p>Creamy rice pudding flavored with cardamom, saffron, and topped with pistachios.</p>
+                    <div class="menu-item-details">
+                        <span class="serving-info">1 kg (serves 4) - Preparation: 60 min</span>
+                        <p class="price">₨ 1000</p>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -542,7 +1364,10 @@
                 <div class="menu-item-content">
                     <h3>Chocolate Cake</h3>
                     <p>Rich, moist chocolate cake with a smooth chocolate ganache.</p>
-                    <p class="price">₨ 1200</p>
+                    <div class="menu-item-details">
+                        <span class="serving-info">1 kg (serves 8-10)</span>
+                        <p class="price">₨ 1200</p>
+                    </div>
                 </div>
             </div>
 
@@ -551,22 +1376,292 @@
                 <div class="menu-item-content">
                     <h3>Vanilla Cupcakes</h3>
                     <p>Light and fluffy vanilla cupcakes with buttercream frosting.</p>
-                    <p class="price">₨ 150 each</p>
+                    <div class="menu-item-details">
+                        <span class="serving-info">Box of 6 (60g each)</span>
+                        <p class="price">₨ 900</p>
+                    </div>
                 </div>
             </div>
 
             <div class="menu-item">
-                <img src="https://images.unsplash.com/photo-1509365465985-25d11c17e812?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&h=300&q=80" alt="Cinnamon Rolls">
+                <img src="https://images.unsplash.com/photo-1603532648955-039310d9ed75?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&h=300&q=80" alt="Croissants">
                 <div class="menu-item-content">
-                    <h3>Cinnamon Rolls</h3>
-                    <p>Soft, gooey cinnamon rolls with cream cheese frosting.</p>
-                    <p class="price">₨ 200 each</p>
+                    <h3>Butter Croissants</h3>
+                    <p>Flaky, buttery croissants made with premium French butter.</p>
+                    <div class="menu-item-details">
+                        <span class="serving-info">Pack of 3 (65g each)</span>
+                        <p class="price">₨ 450</p>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="about-section">
+    <div class="container" id="pakistani">
+        <div class="section-title">
+            <h2>Pakistani Cuisine</h2>
+        </div>
+
+        <div class="menu-section">
+            <div class="menu-item">
+                <img src="https://images.unsplash.com/photo-1586190848861-99aa4a171e90?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&h=300&q=80" alt="Aloo Bhujia">
+                <div class="menu-item-content">
+                    <h3>Aloo Bhujia</h3>
+                    <p>Spiced potato hash with aromatic herbs and spices, perfect for a hearty breakfast.</p>
+                    <div class="menu-item-details">
+                        <span class="serving-info">0.5 kg (serves 5)</span>
+                        <p class="price">₨ 600</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-item">
+                <img src="https://images.unsplash.com/photo-1631292784640-2b24be784d1c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&h=300&q=80" alt="Chicken Karahi (Boneless)">
+                <div class="menu-item-content">
+                    <h3>Chicken Karahi (Boneless)</h3>
+                    <p>Tender boneless chicken cooked in a wok with tomatoes, green chilies, and special karahi spices.</p>
+                    <div class="menu-item-details">
+                        <span class="serving-info">1 kg (serves 4) - Preparation: 45 min</span>
+                        <p class="price">₨ 1500</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-item">
+                <img src="https://images.unsplash.com/photo-1619860705243-c3f93c73bea5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&h=300&q=80" alt="Lahori Chanay">
+                <div class="menu-item-content">
+                    <h3>Lahori Chanay</h3>
+                    <p>Traditional chickpea curry cooked with tangy spices and served with fresh naan.</p>
+                    <div class="menu-item-details">
+                        <span class="serving-info">1 kg (serves 5) - Preparation: 60 min</span>
+                        <p class="price">₨ 700</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-item">
+                <img src="https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&h=300&q=80" alt="Murgh Chanay">
+                <div class="menu-item-content">
+                    <h3>Murgh Chanay</h3>
+                    <p>Chickpeas cooked with tender chicken pieces in a flavorful gravy with special spices.</p>
+                    <div class="menu-item-details">
+                        <span class="serving-info">1.2 kg (serves 5) - Preparation: 60 min</span>
+                        <p class="price">₨ 900</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-item">
+                <img src="https://images.unsplash.com/photo-1547116180-c1f9e57ed13d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&h=300&q=80" alt="Chicken Haleem">
+                <div class="menu-item-content">
+                    <h3>Chicken Haleem</h3>
+                    <p>A hearty stew of chicken, lentils, and wheat, slow-cooked to perfection with aromatic spices.</p>
+                    <div class="menu-item-details">
+                        <span class="serving-info">1.5 kg (serves 6) - Preparation: 5 hours</span>
+                        <p class="price">₨ 1200</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-item">
+                <img src="https://images.unsplash.com/photo-1565557623262-b51c2513a641?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&h=300&q=80" alt="Dal Mash">
+                <div class="menu-item-content">
+                    <h3>Dal Mash</h3>
+                    <p>Creamy black lentils slow-cooked to perfection with aromatic spices and butter.</p>
+                    <div class="menu-item-details">
+                        <span class="serving-info">1 kg (serves 4) - Preparation: 60 min</span>
+                        <p class="price">₨ 1000</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-item">
+                <img src="https://images.unsplash.com/photo-1589302168068-964664d93dc0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&h=300&q=80" alt="Chicken Biryani">
+                <div class="menu-item-content">
+                    <h3>Chicken Biryani</h3>
+                    <p>Layers of fragrant basmati rice and spiced chicken cooked together with saffron and herbs.</p>
+                    <div class="menu-item-details">
+                        <span class="serving-info">1 kg (serves 4) - Preparation: 60 min</span>
+                        <p class="price">₨ 1000</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-item">
+                <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&h=300&q=80" alt="Chicken Nihari">
+                <div class="menu-item-content">
+                    <h3>Chicken Nihari</h3>
+                    <p>A rich, slow-cooked stew made with chicken, aromatic spices, and thickened with flour.</p>
+                    <div class="menu-item-details">
+                        <span class="serving-info">1.2 kg (serves 5) - Preparation: 3 hours</span>
+                        <p class="price">₨ 1300</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container" id="chinese">
+        <div class="section-title">
+            <h2>Chinese Cuisine</h2>
+        </div>
+
+        <div class="menu-section">
+            <div class="menu-item">
+                <img src="https://images.unsplash.com/photo-1525755662778-989d0524087e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&h=300&q=80" alt="Beef Chilli">
+                <div class="menu-item-content">
+                    <h3>Beef Chilli</h3>
+                    <p>Tender strips of beef stir-fried with colorful bell peppers and onions in a spicy sauce.</p>
+                    <div class="menu-item-details">
+                        <span class="serving-info">1 kg (serves 4) - Preparation: 60 min</span>
+                        <p class="price">₨ 1000</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-item">
+                <img src="https://images.unsplash.com/photo-1603133872878-684f208fb84b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&h=300&q=80" alt="Chicken Chilli">
+                <div class="menu-item-content">
+                    <h3>Chicken Chilli</h3>
+                    <p>Juicy chicken pieces stir-fried with bell peppers, onions, and green chilies in a savory sauce.</p>
+                    <div class="menu-item-details">
+                        <span class="serving-info">1 kg (serves 4) - Preparation: 60 min</span>
+                        <p class="price">₨ 1000</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-item">
+                <img src="https://images.unsplash.com/photo-1585032226651-759b368d7246?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&h=300&q=80" alt="Chicken Chowmin">
+                <div class="menu-item-content">
+                    <h3>Chicken Chowmin</h3>
+                    <p>Stir-fried noodles with chicken, vegetables, and aromatic sauces for a perfect balance of flavors.</p>
+                    <div class="menu-item-details">
+                        <span class="serving-info">1 kg (serves 4) - Preparation: 60 min</span>
+                        <p class="price">₨ 1000</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-item">
+                <img src="https://images.unsplash.com/photo-1525197134303-9fe694281ee5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&h=300&q=80" alt="Chicken Manchurian">
+                <div class="menu-item-content">
+                    <h3>Chicken Manchurian</h3>
+                    <p>Crispy chicken balls tossed in a tangy, sweet, and spicy Manchurian sauce with garlic and ginger.</p>
+                    <div class="menu-item-details">
+                        <span class="serving-info">1 kg (serves 4) - Preparation: 60 min</span>
+                        <p class="price">₨ 1000</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-item">
+                <img src="https://images.unsplash.com/photo-1603133872878-684f208fb84b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&h=300&q=80" alt="Egg Fried Rice">
+                <div class="menu-item-content">
+                    <h3>Egg Fried Rice</h3>
+                    <p>Fragrant rice stir-fried with eggs, vegetables, and soy sauce for a delicious side dish.</p>
+                    <div class="menu-item-details">
+                        <span class="serving-info">1 kg (serves 4) - Preparation: 60 min</span>
+                        <p class="price">₨ 1000</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-item">
+                <img src="https://images.unsplash.com/photo-1563379926898-05f4575a45d8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&h=300&q=80" alt="Schezwan">
+                <div class="menu-item-content">
+                    <h3>Schezwan</h3>
+                    <p>A fiery and flavorful dish with a perfect balance of spicy, tangy, and savory flavors.</p>
+                    <div class="menu-item-details">
+                        <span class="serving-info">1 kg (serves 4) - Preparation: 60 min</span>
+                        <p class="price">₨ 1000</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container" id="italian">
+        <div class="section-title">
+            <h2>Italian Cuisine</h2>
+        </div>
+
+        <div class="menu-section">
+            <div class="menu-item">
+                <img src="https://images.unsplash.com/photo-1558401391-2b1646c6ce0d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&h=300&q=80" alt="Alfredo Pasta">
+                <div class="menu-item-content">
+                    <h3>Alfredo Pasta</h3>
+                    <p>Creamy fettuccine pasta with a rich parmesan sauce, garlic, and herbs.</p>
+                    <div class="menu-item-details">
+                        <span class="serving-info">1 kg (serves 4) - Preparation: 60 min</span>
+                        <p class="price">₨ 1000</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-item">
+                <img src="https://images.unsplash.com/photo-1574894709920-11b28e7367e3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&h=300&q=80" alt="Beef Lasagna">
+                <div class="menu-item-content">
+                    <h3>Beef Lasagna (With Red Sauce)</h3>
+                    <p>Layers of pasta, seasoned ground beef, tomato sauce, and cheese baked to perfection.</p>
+                    <div class="menu-item-details">
+                        <span class="serving-info">1 kg (serves 4) - Preparation: 60 min</span>
+                        <p class="price">₨ 1000</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-item">
+                <img src="https://images.unsplash.com/photo-1619740455993-9e612b50793e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&h=300&q=80" alt="Chicken Lasagna">
+                <div class="menu-item-content">
+                    <h3>Chicken Lasagna (With White Sauce)</h3>
+                    <p>Creamy layers of pasta, tender chicken, béchamel sauce, and cheese baked until golden.</p>
+                    <div class="menu-item-details">
+                        <span class="serving-info">1 kg (serves 4) - Preparation: 60 min</span>
+                        <p class="price">₨ 1000</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-item">
+                <img src="https://images.unsplash.com/photo-1551183053-bf91a1d81141?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&h=300&q=80" alt="Chicken Spaghetti">
+                <div class="menu-item-content">
+                    <h3>Chicken Spaghetti</h3>
+                    <p>Al dente spaghetti with tender chicken pieces in a flavorful tomato sauce.</p>
+                    <div class="menu-item-details">
+                        <span class="serving-info">1 kg (serves 4) - Preparation: 60 min</span>
+                        <p class="price">₨ 1000</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-item">
+                <img src="https://images.unsplash.com/photo-1473093295043-cdd812d0e601?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&h=300&q=80" alt="Chicken Vegetable Pasta">
+                <div class="menu-item-content">
+                    <h3>Chicken Vegetable Pasta</h3>
+                    <p>Pasta tossed with sautéed chicken, colorful vegetables, and herbs in a light sauce.</p>
+                    <div class="menu-item-details">
+                        <span class="serving-info">1 kg (serves 4) - Preparation: 60 min</span>
+                        <p class="price">₨ 1000</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-item">
+                <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&h=300&q=80" alt="Chicken Tikka Pizza">
+                <div class="menu-item-content">
+                    <h3>Chicken Tikka Pizza</h3>
+                    <p>Hand-tossed pizza topped with spicy chicken tikka, onions, bell peppers, and cheese.</p>
+                    <div class="menu-item-details">
+                        <span class="serving-info">1 kg (serves 4) - Preparation: 60 min</span>
+                        <p class="price">₨ 1000</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="about-section" id="about">
         <div class="about-content">
             <h2>The Classic Baking Tradition</h2>
             <p>At Jarral's Kitchen, we believe in the art of traditional baking with a modern twist. Our recipes have been perfected over years, bringing you the most delicious treats for every occasion.</p>
@@ -575,15 +1670,53 @@
         </div>
     </div>
 
+    <div class="container" id="terms" style="display: none;">
+        <div class="section-title">
+            <h2>Terms & Conditions</h2>
+        </div>
+        <div class="content-section">
+            <p>These Terms & Conditions govern your use of Jarral's Kitchen website and services. By accessing or using our website, you agree to be bound by these Terms.</p>
+            <h3>1. Orders and Delivery</h3>
+            <p>All orders are subject to availability and confirmation of the order price. Delivery times may vary depending on your location and order volume.</p>
+            <h3>2. Payment</h3>
+            <p>We accept payments through NayaPay. All prices are inclusive of applicable taxes.</p>
+            <h3>3. Cancellations</h3>
+            <p>Orders can be cancelled up to 24 hours before the scheduled delivery time. For custom orders, cancellation policies may vary.</p>
+            <h3>4. Product Information</h3>
+            <p>We make every effort to display as accurately as possible the colors, sizes, and details of our products. However, we cannot guarantee that your device's display accurately reflects the actual product.</p>
+        </div>
+    </div>
+
+    <div class="container" id="privacy" style="display: none;">
+        <div class="section-title">
+            <h2>Privacy Policy</h2>
+        </div>
+        <div class="content-section">
+            <p>At Jarral's Kitchen, we are committed to protecting your privacy. This Privacy Policy explains how we collect, use, and safeguard your information when you visit our website or place an order.</p>
+            <h3>1. Information We Collect</h3>
+            <p>We collect personal information such as your name, contact details, and delivery address when you place an order or contact us.</p>
+            <h3>2. How We Use Your Information</h3>
+            <p>We use your information to process orders, communicate with you about your order, and improve our services.</p>
+            <h3>3. Information Sharing</h3>
+            <p>We do not sell or rent your personal information to third parties. We may share your information with delivery partners solely for the purpose of delivering your order.</p>
+            <h3>4. Data Security</h3>
+            <p>We implement appropriate security measures to protect your personal information from unauthorized access or disclosure.</p>
+        </div>
+    </div>
+
     <footer id="contact">
         <div class="footer-container">
             <div class="footer-column">
                 <h3>Categories</h3>
                 <ul>
+                    <li><a href="#pakistani">Pakistani</a></li>
+                    <li><a href="#chinese">Chinese</a></li>
+                    <li><a href="#italian">Italian</a></li>
                     <li><a href="#cakes">Cakes</a></li>
-                    <li><a href="#pastries">Pastries</a></li>
-                    <li><a href="#bread">Bread</a></li>
                     <li><a href="#cupcakes">Cupcakes</a></li>
+                    <li><a href="#muffins">Muffins</a></li>
+                    <li><a href="#brownies">Brownies</a></li>
+                    <li><a href="#desserts">Desserts</a></li>
                 </ul>
             </div>
 
@@ -616,5 +1749,173 @@
             <p>&copy; 2025 Jarral's Kitchen. All Rights Reserved.</p>
         </div>
     </footer>
+
+    <script>
+        // Mobile menu functionality
+        const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+        const mobileMenu = document.querySelector('.mobile-menu');
+        const mobileMenuClose = document.querySelector('.mobile-menu-close');
+        const overlay = document.querySelector('.overlay');
+
+        mobileMenuToggle.addEventListener('click', () => {
+            mobileMenu.classList.add('active');
+            overlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+
+        mobileMenuClose.addEventListener('click', () => {
+            mobileMenu.classList.remove('active');
+            overlay.classList.remove('active');
+            document.body.style.overflow = '';
+        });
+
+        overlay.addEventListener('click', () => {
+            mobileMenu.classList.remove('active');
+            overlay.classList.remove('active');
+            document.body.style.overflow = '';
+        });
+
+        // Close mobile menu when clicking on a link
+        const mobileNavLinks = document.querySelectorAll('.mobile-nav-links a');
+        mobileNavLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+                overlay.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+        });
+
+        // Hero slider functionality
+        const heroSlides = document.querySelectorAll('.hero-slide');
+        const heroDots = document.querySelectorAll('.hero-dot');
+        const heroPrev = document.querySelector('.hero-prev');
+        const heroNext = document.querySelector('.hero-next');
+        let currentSlide = 0;
+        let slideInterval;
+
+        function showSlide(index) {
+            // Hide all slides
+            heroSlides.forEach(slide => {
+                slide.classList.remove('active');
+            });
+
+            // Remove active class from all dots
+            heroDots.forEach(dot => {
+                dot.classList.remove('active');
+            });
+
+            // Show the selected slide
+            heroSlides[index].classList.add('active');
+            heroDots[index].classList.add('active');
+            currentSlide = index;
+        }
+
+        function nextSlide() {
+            let nextIndex = currentSlide + 1;
+            if (nextIndex >= heroSlides.length) {
+                nextIndex = 0;
+            }
+            showSlide(nextIndex);
+        }
+
+        function prevSlide() {
+            let prevIndex = currentSlide - 1;
+            if (prevIndex < 0) {
+                prevIndex = heroSlides.length - 1;
+            }
+            showSlide(prevIndex);
+        }
+
+        // Event listeners for controls
+        heroPrev.addEventListener('click', () => {
+            prevSlide();
+            resetSlideInterval();
+        });
+
+        heroNext.addEventListener('click', () => {
+            nextSlide();
+            resetSlideInterval();
+        });
+
+        // Event listeners for dots
+        heroDots.forEach((dot, index) => {
+            dot.addEventListener('click', () => {
+                showSlide(index);
+                resetSlideInterval();
+            });
+        });
+
+        // Auto slide
+        function startSlideInterval() {
+            slideInterval = setInterval(() => {
+                nextSlide();
+            }, 5000); // Change slide every 5 seconds
+        }
+
+        function resetSlideInterval() {
+            clearInterval(slideInterval);
+            startSlideInterval();
+        }
+
+        // Start the slider
+        startSlideInterval();
+
+        // Smooth scrolling for all anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return; // Skip if it's just a "#" link
+
+                // Special handling for Terms and Privacy
+                if (targetId === '#terms' || targetId === '#privacy') {
+                    // Hide all other special sections
+                    document.querySelectorAll('#terms, #privacy').forEach(section => {
+                        section.style.display = 'none';
+                    });
+
+                    // Show the target section
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        targetElement.style.display = 'block';
+
+                        // Close mobile menu if open
+                        if (mobileMenu.classList.contains('active')) {
+                            mobileMenu.classList.remove('active');
+                            overlay.classList.remove('active');
+                            document.body.style.overflow = '';
+                        }
+
+                        // Scroll to the target
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                    }
+                    return;
+                }
+
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    // Hide terms and privacy sections when navigating to other sections
+                    document.querySelectorAll('#terms, #privacy').forEach(section => {
+                        section.style.display = 'none';
+                    });
+
+                    // Close mobile menu if open
+                    if (mobileMenu.classList.contains('active')) {
+                        mobileMenu.classList.remove('active');
+                        overlay.classList.remove('active');
+                        document.body.style.overflow = '';
+                    }
+
+                    // Scroll to the target
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
 </body>
 </html>
