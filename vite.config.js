@@ -5,7 +5,7 @@ import { resolve } from 'path'
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
-  // Remove the base path for Netlify deployment
+  base: '/',
   server: {
     historyApiFallback: true,
   },
@@ -20,5 +20,6 @@ export default defineConfig({
         main: resolve(__dirname, 'index.html'),
       },
     },
+    outDir: 'dist',
   },
 })
