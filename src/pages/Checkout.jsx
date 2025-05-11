@@ -275,6 +275,39 @@ const Checkout = () => {
                   <span>{formatPrice(convertPrice(total))}</span>
                 </div>
               </div>
+
+              <div className="payment-method-info">
+                <h4>Payment Method</h4>
+                <p>
+                  {formData.paymentMethod === 'stripe' ? 'Stripe' :
+                   formData.paymentMethod === 'creditCard' ? 'Credit/Debit Card' :
+                   formData.paymentMethod === 'paypal' ? 'PayPal' :
+                   formData.paymentMethod === 'applePay' ? 'Apple Pay' :
+                   formData.paymentMethod === 'googlePay' ? 'Google Pay' :
+                   formData.paymentMethod === 'jazzCash' ? 'JazzCash' :
+                   formData.paymentMethod === 'easyPaisa' ? 'EasyPaisa' :
+                   formData.paymentMethod === 'nayaPay' ? 'NayaPay' :
+                   formData.paymentMethod === 'bankTransfer' ? 'Bank Transfer' :
+                   formData.paymentMethod === 'cashOnDelivery' ? 'Cash on Delivery' :
+                   'Not specified'}
+                </p>
+
+                {(formData.paymentMethod === 'jazzCash' ||
+                  formData.paymentMethod === 'easyPaisa' ||
+                  formData.paymentMethod === 'nayaPay' ||
+                  formData.paymentMethod === 'bankTransfer') &&
+                  formData.paymentData?.transactionId && (
+                  <p className="transaction-id">
+                    <strong>Transaction ID:</strong> {formData.paymentData.transactionId}
+                  </p>
+                )}
+
+                {formData.paymentMethod === 'bankTransfer' && (
+                  <p className="payment-note">
+                    We'll verify your payment within 24 hours.
+                  </p>
+                )}
+              </div>
             </div>
 
             <div className="delivery-info">
@@ -601,7 +634,15 @@ const Checkout = () => {
                       <div className="review-section">
                         <h3>Payment Information</h3>
                         <div className="review-info">
-                          {formData.paymentMethod === 'googlePay' ? (
+                          {formData.paymentMethod === 'stripe' ? (
+                            <>
+                              <p><strong>Payment Method:</strong> Stripe</p>
+                              {formData.paymentData?.transactionId && (
+                                <p><strong>Transaction ID:</strong> {formData.paymentData.transactionId}</p>
+                              )}
+                              <p><strong>Status:</strong> <span className="payment-status success">Payment Completed</span></p>
+                            </>
+                          ) : formData.paymentMethod === 'googlePay' ? (
                             <>
                               <p><strong>Payment Method:</strong> Google Pay</p>
                               {formData.transactionId && (
@@ -614,6 +655,39 @@ const Checkout = () => {
                               <p><strong>Payment Method:</strong> Credit/Debit Card</p>
                               <p><strong>Card:</strong> **** **** **** {formData.cardNumber ? formData.cardNumber.slice(-4) : '****'}</p>
                               <p><strong>Name on Card:</strong> {formData.cardName || 'N/A'}</p>
+                            </>
+                          ) : formData.paymentMethod === 'jazzCash' ? (
+                            <>
+                              <p><strong>Payment Method:</strong> JazzCash</p>
+                              {formData.paymentData?.transactionId && (
+                                <p><strong>Transaction ID:</strong> {formData.paymentData.transactionId}</p>
+                              )}
+                              <p><strong>Status:</strong> <span className="payment-status success">Payment Verified</span></p>
+                            </>
+                          ) : formData.paymentMethod === 'easyPaisa' ? (
+                            <>
+                              <p><strong>Payment Method:</strong> EasyPaisa</p>
+                              {formData.paymentData?.transactionId && (
+                                <p><strong>Transaction ID:</strong> {formData.paymentData.transactionId}</p>
+                              )}
+                              <p><strong>Status:</strong> <span className="payment-status success">Payment Verified</span></p>
+                            </>
+                          ) : formData.paymentMethod === 'nayaPay' ? (
+                            <>
+                              <p><strong>Payment Method:</strong> NayaPay</p>
+                              {formData.paymentData?.transactionId && (
+                                <p><strong>Transaction ID:</strong> {formData.paymentData.transactionId}</p>
+                              )}
+                              <p><strong>Status:</strong> <span className="payment-status success">Payment Verified</span></p>
+                            </>
+                          ) : formData.paymentMethod === 'bankTransfer' ? (
+                            <>
+                              <p><strong>Payment Method:</strong> Bank Transfer</p>
+                              {formData.paymentData?.transactionId && (
+                                <p><strong>Reference Number:</strong> {formData.paymentData.transactionId}</p>
+                              )}
+                              <p><strong>Status:</strong> <span className="payment-status pending">Pending Verification</span></p>
+                              <p className="payment-note">We'll verify your payment within 24 hours.</p>
                             </>
                           ) : (
                             <p><strong>Payment Method:</strong> {

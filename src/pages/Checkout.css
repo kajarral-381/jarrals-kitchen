@@ -405,7 +405,14 @@
 
 .payment-status.pending {
   background-color: #fff3cd;
-  color: #ffc107;
+  color: #856404;
+}
+
+.payment-note {
+  font-size: 0.9rem;
+  font-style: italic;
+  color: #666;
+  margin-top: 0.5rem;
 }
 
 /* Order Confirmation */
@@ -455,6 +462,27 @@
   color: #8b5e34;
   margin-bottom: 1rem;
   text-align: center;
+}
+
+.payment-method-info {
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid #eee;
+}
+
+.payment-method-info h4 {
+  color: #8b5e34;
+  margin-bottom: 0.5rem;
+  font-size: 1.1rem;
+}
+
+.transaction-id {
+  margin-top: 0.5rem;
+  font-size: 0.95rem;
+  background-color: #f8f9fa;
+  padding: 0.5rem;
+  border-radius: 4px;
+  display: inline-block;
 }
 
 .delivery-info {

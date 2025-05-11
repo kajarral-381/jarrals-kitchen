@@ -621,7 +621,7 @@ const OrderDetail = () => {
         </div>
       </div>
 
-      <div className="order-status-banner" className={`order-status-banner ${order.status.toLowerCase()}`}>
+      <div className={`order-status-banner ${order.status.toLowerCase()}`}>
         <h3>Status: {order.status}</h3>
         <button
           className="history-toggle"

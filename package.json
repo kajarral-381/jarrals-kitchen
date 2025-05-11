@@ -13,14 +13,21 @@
     "predeploy": "npm run build",
     "deploy:github": "gh-pages -d dist",
     "deploy:surge": "surge dist sweet-delights-bakery.surge.sh",
-    "serve": "serve -s dist"
+    "serve": "serve -s dist",
+    "start": "node server.js",
+    "vercel-build": "vite build"
   },
   "dependencies": {
+    "@stripe/react-stripe-js": "^2.9.0",
+    "@stripe/stripe-js": "^3.5.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.5.0",
     "express": "^4.17.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^5.5.0",
-    "react-router-dom": "^6.22.3"
+    "react-router-dom": "^6.22.3",
+    "stripe": "^14.25.0"
   },
   "devDependencies": {
     "@babel/helper-compilation-targets": "^7.27.2",
@@ -36,6 +43,7 @@
     "netlify-cli": "^20.1.1",
     "serve": "^14.2.4",
     "surge": "^0.24.6",
+    "vercel": "^41.7.4",
     "vite": "^6.3.1"
   }
 }

@@ -1,11 +1,29 @@
 import express from 'express';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import dotenv from 'dotenv';
+import cors from 'cors';
+
+// Load environment variables
+dotenv.config();
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const app = express();
+
+// Middleware
+app.use(cors());
+app.use(express.json());
+
+// Special middleware for Stripe webhooks
+app.use('/api/stripe/webhook', express.raw({ type: 'application/json' }));
+
+// Import routes
+import stripeRoutes from './server/stripe.js';
+
+// API routes
+app.use('/api/stripe', stripeRoutes);
 
 // Serve static files from the React app
 app.use(express.static(path.join(__dirname, 'dist')));

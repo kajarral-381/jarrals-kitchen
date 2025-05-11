@@ -1,0 +1,95 @@
+.stripe-checkout-container {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.stripe-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-row {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-row label {
+  font-weight: 500;
+  color: #424770;
+  font-size: 14px;
+  margin-bottom: 5px;
+}
+
+.StripeElement {
+  height: 40px;
+  padding: 10px 12px;
+  width: 100%;
+  color: #32325d;
+  background-color: white;
+  border: 1px solid #e6e6e6;
+  border-radius: 4px;
+  box-shadow: 0 1px 3px 0 #e6ebf1;
+  -webkit-transition: box-shadow 150ms ease;
+  transition: box-shadow 150ms ease;
+}
+
+.StripeElement--focus {
+  box-shadow: 0 1px 3px 0 #cfd7df;
+}
+
+.StripeElement--invalid {
+  border-color: #fa755a;
+}
+
+.StripeElement--webkit-autofill {
+  background-color: #fefde5 !important;
+}
+
+.card-error {
+  color: #e25950;
+  font-size: 14px;
+  margin-top: 8px;
+}
+
+.pay-button {
+  background: #5469d4;
+  color: white;
+  font-family: Arial, sans-serif;
+  border-radius: 4px;
+  border: 0;
+  padding: 12px 16px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  display: block;
+  transition: all 0.2s ease;
+  box-shadow: 0px 4px 5.5px 0px rgba(0, 0, 0, 0.07);
+  width: 100%;
+}
+
+.pay-button:hover {
+  filter: brightness(1.1);
+}
+
+.pay-button:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.pay-button.loading {
+  background-color: #cfd7df;
+}
+
+/* Responsive styles */
+@media (max-width: 600px) {
+  .stripe-checkout-container {
+    padding: 15px;
+    width: 100%;
+  }
+}
